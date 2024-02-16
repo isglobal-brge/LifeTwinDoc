@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="CLivD Simulation Model" href="models.clivd.html" />
-    <link rel="prev" title="LifeTwin Automatic GUI Generator" href="gui.html" /> 
+    <link rel="prev" title="LifeTwin Simulation Language" href="transformations.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,10 +48,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Statistical Models</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="models.clivd.html">CLivD Simulation Model</a></li>
@@ -83,7 +80,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
 </ul>
 </li>
 </ul>
@@ -115,6 +115,73 @@
              
   <section id="lifetwin-statistical-models">
 <h1>LifeTwin Statistical Models<a class="headerlink" href="#lifetwin-statistical-models" title="Link to this heading"></a></h1>
+<p>This table offers an overview of various health models included in LifeTwin with their specific caracteristics. Models are primarily distinguished result type, and the application of the Cox Survival Model. For instance, the ‘Framingham’ model, implemented using R, is based on regression. Similarly, the ‘Prostate’ model utilizes a binary tree approach. Notably, both of these models account for age as a factor.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Age dependent</p></th>
+<th class="head"><p>Cox Model</p></th>
+<th class="head"><p>Language</p></th>
+<th class="head"><p>Model Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Framingham</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>R</p></td>
+<td><p>Regression</p></td>
+</tr>
+<tr class="row-odd"><td><p>LifeCRC</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Python</p></td>
+<td><p>Regression</p></td>
+</tr>
+<tr class="row-even"><td><p>Gail</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Python</p></td>
+<td><p>Regression</p></td>
+</tr>
+<tr class="row-odd"><td><p>Score</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Python</p></td>
+<td><p>Regression</p></td>
+</tr>
+<tr class="row-even"><td><p>Qrisk</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Python</p></td>
+<td><p>Regression</p></td>
+</tr>
+<tr class="row-odd"><td><p>CovidSurvival</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Python</p></td>
+<td><p>CART</p></td>
+</tr>
+<tr class="row-even"><td><p>PIM</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Python</p></td>
+<td><p>Regression</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prostate</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Python</p></td>
+<td><p>CART</p></td>
+</tr>
+<tr class="row-even"><td><p>CLivD</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Python</p></td>
+<td><p>Regression</p></td>
+</tr>
+</tbody>
+</table>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
@@ -799,7 +866,7 @@ country (str): Country of the individual.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="gui.html" class="btn btn-neutral float-left" title="LifeTwin Automatic GUI Generator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transformations.html" class="btn btn-neutral float-left" title="LifeTwin Simulation Language" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="models.clivd.html" class="btn btn-neutral float-right" title="CLivD Simulation Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

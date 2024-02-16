@@ -75,6 +75,41 @@
              
   <section id="welcome-to-lifetwin-s-documentation">
 <h1>Welcome to LifeTwin’s documentation!<a class="headerlink" href="#welcome-to-lifetwin-s-documentation" title="Link to this heading"></a></h1>
+<p>We introduce LifeTwin, a python framework
+for simulation of individual and population medical digital
+twins. LifeTwin defines a common development layer
+for medical digital twins that allows the easy incorporation
+of new medical models with a common data layer.</p>
+<p>The concept of Digital Twin was conceived to serve as the foundational concept for Product Lifecycle Management. The underlying idea being that the digital entity would accompany the
+physical entity’s lifecycle - from its creation to its destruction.
+This digital twin would get its source of data from the real world
+and then process it, model it, use it for simulations, and produce
+useful forecasting and information about the future of such entities.</p>
+<p>In healthcare, Digital Twin technology aligns with the shift toward
+personalized medical care, and it’s expected to become
+particularly relevant given the aging global population and
+the prevalence of chronic diseases.
+Digital Twins can predict disease progression, enable personalized
+treatments, and reduce systemic pressures on healthcare
+systems and much more. This can have a significant impact on both
+patients and the healthcare system itself.</p>
+<p>In fact, most of the scientific research that we have found to be applicable to identify, prevent and effectively treat diseases do not usually refer to the concept of Digital Twin, and instead just provide basic statistical and machine learning models that can then be used in real-world scenarios based on individual or population data.</p>
+<p>The main problems that we have identified in this set of studies can mostly be grouped in:</p>
+<ul class="simple">
+<li><p>The lack of a well structured communication interface that allows the simulations to define their data requirements in a compatible and pluggable way. We have defined this problem as the lack of a common data layer.</p></li>
+<li><p>The lack of an structured project or framework that would allow these statistical models to be easily integrated and tweakable by developers and users. This is, essentially, an implementation problem.</p></li>
+<li><p>The ability to run structured and well-behaved simulations with an agnostic simulation engine that can work well on both individual patients and a population. That is, a simulation framework.</p></li>
+</ul>
+<p>For all of these reasons, we designed LifeTwin, a framework for modelling medical digital twins that fit these objectives and can scale and be easily used by both end-users and application developers.</p>
+<p>In order to tackle the problems defined and achieve a satisfying solution, we have designed LifeTwin according to the following diagram:</p>
+<img alt="_images/lifetwin-arch.png" src="_images/lifetwin-arch.png" />
+<p>The main components of LifeTwin are:</p>
+<ul class="simple">
+<li><p>Data Domain definer that allows models to specify their data requirements according to the OMOP Common Data Model</p></li>
+<li><p>Model Interface that serves as an interoperability entrypoint between the framework and the actual statistical models that can be implemented through inheritance</p></li>
+<li><p>An automatic local GUI Generator that can automatically adapt itself to any model</p></li>
+<li><p>A Data Source module to allow Users to run the models with different sets of data.</p></li>
+</ul>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -101,12 +136,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="internal/modules.html">LifeTwin Internals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="internal/biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal/transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal/models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal/gui.html">LifeTwin Automatic GUI Generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/database.html">LifeTwin Database Connector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="internal/graph.html">LifeTwin Graph Representation Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internal/gui.html">LifeTwin Automatic GUI Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internal/models.html">LifeTwin Statistical Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internal/transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="internal/biomodel.html">LifeTwin Core Internals</a></li>
 </ul>
 </li>
 </ul>

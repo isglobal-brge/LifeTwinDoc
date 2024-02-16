@@ -21,7 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Score Simulation Model" href="models.score.html" /> 
+    <link rel="next" title="LifeTwin Statistical Models" href="models.html" />
+    <link rel="prev" title="LifeTwin Internals" href="modules.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,177 +48,20 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Simulation Language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lifetwin-modelling-language">LifeTwin Modelling Language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data-distribution-section">Data distribution section</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#attribute-transformations">Attribute Transformations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformation-section">Transformation section</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Simulation Language</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.After"><code class="docutils literal notranslate"><span class="pre">After</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.After.apply_this_year"><code class="docutils literal notranslate"><span class="pre">After.apply_this_year()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.After.transformation"><code class="docutils literal notranslate"><span class="pre">After.transformation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.After.year"><code class="docutils literal notranslate"><span class="pre">After.year</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Always"><code class="docutils literal notranslate"><span class="pre">Always</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Always.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Always.apply_this_year()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Always.transformation"><code class="docutils literal notranslate"><span class="pre">Always.transformation</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Before"><code class="docutils literal notranslate"><span class="pre">Before</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Before.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Before.apply_this_year()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Before.transformation"><code class="docutils literal notranslate"><span class="pre">Before.transformation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Before.year"><code class="docutils literal notranslate"><span class="pre">Before.year</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.BeforeAndThen"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.BeforeAndThen.apply_this_year"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen.apply_this_year()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.BeforeAndThen.transformation"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen.transformation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.BeforeAndThen.year"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen.year</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Clap"><code class="docutils literal notranslate"><span class="pre">Clap</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Clap.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.max"><code class="docutils literal notranslate"><span class="pre">Clap.max</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.min"><code class="docutils literal notranslate"><span class="pre">Clap.min</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.sample"><code class="docutils literal notranslate"><span class="pre">Clap.sample()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.source"><code class="docutils literal notranslate"><span class="pre">Clap.source</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Distribution"><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Distribution.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Distribution.contains_distribution()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Every"><code class="docutils literal notranslate"><span class="pre">Every</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Every.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Every.apply_this_year()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Every.transformation"><code class="docutils literal notranslate"><span class="pre">Every.transformation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Every.years"><code class="docutils literal notranslate"><span class="pre">Every.years</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Group"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Group.apply"><code class="docutils literal notranslate"><span class="pre">Group.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Group.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Group.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Group.transformations"><code class="docutils literal notranslate"><span class="pre">Group.transformations</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Increase"><code class="docutils literal notranslate"><span class="pre">Increase</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Increase.apply"><code class="docutils literal notranslate"><span class="pre">Increase.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Increase.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Increase.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Increase.id"><code class="docutils literal notranslate"><span class="pre">Increase.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Increase.value"><code class="docutils literal notranslate"><span class="pre">Increase.value</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.IncreaseByPercentage"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.IncreaseByPercentage.apply"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.IncreaseByPercentage.contains_distribution"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.IncreaseByPercentage.id"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.IncreaseByPercentage.percentage"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.percentage</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.LimitValue"><code class="docutils literal notranslate"><span class="pre">LimitValue</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.LimitValue.contains_distribution"><code class="docutils literal notranslate"><span class="pre">LimitValue.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.LimitValue.sample"><code class="docutils literal notranslate"><span class="pre">LimitValue.sample()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.LogNormal"><code class="docutils literal notranslate"><span class="pre">LogNormal</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.LogNormal.mean"><code class="docutils literal notranslate"><span class="pre">LogNormal.mean</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.LogNormal.sample"><code class="docutils literal notranslate"><span class="pre">LogNormal.sample()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.LogNormal.std"><code class="docutils literal notranslate"><span class="pre">LogNormal.std</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Normal"><code class="docutils literal notranslate"><span class="pre">Normal</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Normal.mean"><code class="docutils literal notranslate"><span class="pre">Normal.mean</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Normal.sample"><code class="docutils literal notranslate"><span class="pre">Normal.sample()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Normal.std"><code class="docutils literal notranslate"><span class="pre">Normal.std</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Normal95IC"><code class="docutils literal notranslate"><span class="pre">Normal95IC()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.OnRange"><code class="docutils literal notranslate"><span class="pre">OnRange</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnRange.apply_this_year"><code class="docutils literal notranslate"><span class="pre">OnRange.apply_this_year()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnRange.end"><code class="docutils literal notranslate"><span class="pre">OnRange.end</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnRange.start"><code class="docutils literal notranslate"><span class="pre">OnRange.start</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnRange.transformation"><code class="docutils literal notranslate"><span class="pre">OnRange.transformation</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.OnSubset"><code class="docutils literal notranslate"><span class="pre">OnSubset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.apply"><code class="docutils literal notranslate"><span class="pre">OnSubset.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.contains_distribution"><code class="docutils literal notranslate"><span class="pre">OnSubset.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.id"><code class="docutils literal notranslate"><span class="pre">OnSubset.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.operator"><code class="docutils literal notranslate"><span class="pre">OnSubset.operator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.transformation"><code class="docutils literal notranslate"><span class="pre">OnSubset.transformation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.value"><code class="docutils literal notranslate"><span class="pre">OnSubset.value</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Once"><code class="docutils literal notranslate"><span class="pre">Once</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Once.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Once.apply_this_year()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Once.transformation"><code class="docutils literal notranslate"><span class="pre">Once.transformation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Once.year"><code class="docutils literal notranslate"><span class="pre">Once.year</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Reduce"><code class="docutils literal notranslate"><span class="pre">Reduce</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Reduce.apply"><code class="docutils literal notranslate"><span class="pre">Reduce.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Reduce.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Reduce.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Reduce.id"><code class="docutils literal notranslate"><span class="pre">Reduce.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Reduce.value"><code class="docutils literal notranslate"><span class="pre">Reduce.value</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.ReduceByPercentage"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.ReduceByPercentage.apply"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.ReduceByPercentage.contains_distribution"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.ReduceByPercentage.id"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.ReduceByPercentage.percentage"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.percentage</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.RegressToValue"><code class="docutils literal notranslate"><span class="pre">RegressToValue</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.apply"><code class="docutils literal notranslate"><span class="pre">RegressToValue.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.contains_distribution"><code class="docutils literal notranslate"><span class="pre">RegressToValue.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.id"><code class="docutils literal notranslate"><span class="pre">RegressToValue.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.percentage"><code class="docutils literal notranslate"><span class="pre">RegressToValue.percentage</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.value"><code class="docutils literal notranslate"><span class="pre">RegressToValue.value</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Set"><code class="docutils literal notranslate"><span class="pre">Set</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Set.apply"><code class="docutils literal notranslate"><span class="pre">Set.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Set.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Set.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Set.id"><code class="docutils literal notranslate"><span class="pre">Set.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Set.value"><code class="docutils literal notranslate"><span class="pre">Set.value</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.ThenOnwards"><code class="docutils literal notranslate"><span class="pre">ThenOnwards</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.ThenOnwards.apply_this_year"><code class="docutils literal notranslate"><span class="pre">ThenOnwards.apply_this_year()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.ThenOnwards.transformation"><code class="docutils literal notranslate"><span class="pre">ThenOnwards.transformation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.ThenOnwards.year"><code class="docutils literal notranslate"><span class="pre">ThenOnwards.year</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.TimeDelta"><code class="docutils literal notranslate"><span class="pre">TimeDelta</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.TimeDelta.apply"><code class="docutils literal notranslate"><span class="pre">TimeDelta.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.TimeDelta.apply_this_year"><code class="docutils literal notranslate"><span class="pre">TimeDelta.apply_this_year()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.TimeDelta.contains_distribution"><code class="docutils literal notranslate"><span class="pre">TimeDelta.contains_distribution()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Transformation"><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Transformation.apply"><code class="docutils literal notranslate"><span class="pre">Transformation.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Transformation.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Transformation.contains_distribution()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.Uniform"><code class="docutils literal notranslate"><span class="pre">Uniform</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Uniform.max"><code class="docutils literal notranslate"><span class="pre">Uniform.max</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Uniform.min"><code class="docutils literal notranslate"><span class="pre">Uniform.min</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.Uniform.sample"><code class="docutils literal notranslate"><span class="pre">Uniform.sample()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.WithProbability"><code class="docutils literal notranslate"><span class="pre">WithProbability</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.WithProbability.apply"><code class="docutils literal notranslate"><span class="pre">WithProbability.apply()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.WithProbability.contains_distribution"><code class="docutils literal notranslate"><span class="pre">WithProbability.contains_distribution()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.WithProbability.probability"><code class="docutils literal notranslate"><span class="pre">WithProbability.probability</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#transformations.WithProbability.transformation"><code class="docutils literal notranslate"><span class="pre">WithProbability.transformation</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.get_as_id"><code class="docutils literal notranslate"><span class="pre">get_as_id()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.get_id_value"><code class="docutils literal notranslate"><span class="pre">get_id_value()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transformations.get_value"><code class="docutils literal notranslate"><span class="pre">get_value()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
 </ul>
 </li>
 </ul>
@@ -247,9 +91,177 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-transformations">
-<span id="lifetwin-simulation-language"></span><h1>LifeTwin Simulation Language<a class="headerlink" href="#module-transformations" title="Link to this heading"></a></h1>
-<p>This file contains classes and functions for implementing limit values, distributions, transformations, and time delta transformations. It includes functionality for sampling, containing distributions, applying transformations, and checking if a transformation should be applied in the current year. The classes and functions are designed to be easily extended and overridden for specific use cases.</p>
+  <section id="lifetwin-simulation-language">
+<h1>LifeTwin Simulation Language<a class="headerlink" href="#lifetwin-simulation-language" title="Link to this heading"></a></h1>
+<section id="lifetwin-modelling-language">
+<h2>LifeTwin Modelling Language<a class="headerlink" href="#lifetwin-modelling-language" title="Link to this heading"></a></h2>
+<section id="data-distribution-section">
+<h3>Data distribution section<a class="headerlink" href="#data-distribution-section" title="Link to this heading"></a></h3>
+<p>These Python classes are critical for simulating
+and statistical behavior on our population attributes. The classes of this section are
+then represented in the tree in the next figure.</p>
+<img alt="../_images/LimitValue.png" src="../_images/LimitValue.png" />
+</section>
+<section id="attribute-transformations">
+<h3>Attribute Transformations<a class="headerlink" href="#attribute-transformations" title="Link to this heading"></a></h3>
+<p>This table outlines the Python classes designed for manipulating and sampling parameter values in a population model. The classes range from interfaces, like LimitValue, to more specialized classes, like Uniform and Normal, which inherit from Distribution.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Inherits From</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LimitValue</span></code></p></td>
+<td><p>–</p></td>
+<td><p>An interface that mandates the implementation of a <code class="docutils literal notranslate"><span class="pre">sample()</span></code> method and a
+<code class="docutils literal notranslate"><span class="pre">contains_distribution()</span></code> method for value limitations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Clap</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LimitValue</span></code></p></td>
+<td><p>Clamps a given source value within specified minimum and maximum bounds. Capable of sampling
+from nested <code class="docutils literal notranslate"><span class="pre">LimitValue</span></code> objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LimitValue</span></code></p></td>
+<td><p>An abstract class for generating samples from a distribution. Always returns true for
+<code class="docutils literal notranslate"><span class="pre">contains_distribution()</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Uniform</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></p></td>
+<td><p>Generates samples from a uniform distribution given minimum and maximum bounds.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Normal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></p></td>
+<td><p>Generates samples from a normal distribution specified by a mean and standard deviation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Normal95IC</span></code></p></td>
+<td><p>–</p></td>
+<td><p>Utility function that returns a <code class="docutils literal notranslate"><span class="pre">Normal</span></code> object, whose mean and standard deviation are calculated
+based on 95% confidence intervals.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LogNormal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></p></td>
+<td><p>Generates samples from a log-normal distribution specified by a mean and standard deviation.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="transformation-section">
+<h3>Transformation section<a class="headerlink" href="#transformation-section" title="Link to this heading"></a></h3>
+<p>This table describes the Python classes responsible for transformations on attributes.
+These classes provide utilities for a wide range of modifications, from simple value
+assignments (Set) to complex conditional transformations (OnSubset). These transformations are applied to the attributes and can introduce deterministic or stochastic
+changes.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Inherits From</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>–</p></td>
+<td><p>Interface necessary to implement attribute transformations. It requires
+subclasses to implement <code class="docutils literal notranslate"><span class="pre">apply()</span></code> and <code class="docutils literal notranslate"><span class="pre">contains_distribution()</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Set</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Sets an attribute to a specific value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">WithProbability</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Applies a nested transformation with a given probability.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Group</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Applies a sequence of transformations to attributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OnSubset</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Conditionally applies a transformation based on a relational operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Reduce</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Decreases an attribute by a given value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Decreases an attribute by a given percentage.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Increase</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Increases an attribute by a given value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Increases an attribute by a given percentage.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RegressToValue</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Adjusts an attribute towards a specific value by a percentage.</p></td>
+</tr>
+</tbody>
+</table>
+<p>This table outlines a set of Python classes designed for implementing timedependent attribute transformations. These classes inherit from a base TimeDelta class
+and provide different strategies to apply transformations based on the passage of time.
+For instance, the Every class applies a transformation every n years, while the Once
+class triggers the transformation in a specific year</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Inherits From</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>–</p></td>
+<td><p>Interface necessary to implement attribute transformations. It requires
+subclasses to implement <code class="docutils literal notranslate"><span class="pre">apply()</span></code> and <code class="docutils literal notranslate"><span class="pre">contains_distribution()</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Set</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Sets an attribute to a specific value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">WithProbability</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Applies a nested transformation with a given probability.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Group</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Applies a sequence of transformations to attributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OnSubset</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Conditionally applies a transformation based on a relational operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Reduce</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Decreases an attribute by a given value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Decreases an attribute by a given percentage.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Increase</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Increases an attribute by a given value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Increases an attribute by a given percentage.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RegressToValue</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></p></td>
+<td><p>Adjusts an attribute towards a specific value by a percentage.</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/Transformation.png" src="../_images/Transformation.png" />
+<p id="module-transformations">This file contains classes and functions for implementing limit values, distributions, transformations, and time delta transformations. It includes functionality for sampling, containing distributions, applying transformations, and checking if a transformation should be applied in the current year. The classes and functions are designed to be easily extended and overridden for specific use cases.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="transformations.After">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">After</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.After" title="Link to this definition"></a></dt>
@@ -909,12 +921,15 @@
 </dd></dl>
 
 </section>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="models.score.html" class="btn btn-neutral float-left" title="Score Simulation Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="LifeTwin Internals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.html" class="btn btn-neutral float-right" title="LifeTwin Statistical Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

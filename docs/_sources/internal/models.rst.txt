@@ -1,6 +1,32 @@
 LifeTwin Statistical Models
 ===========================
 
+This table offers an overview of various health models included in LifeTwin with their specific caracteristics. Models are primarily distinguished result type, and the application of the Cox Survival Model. For instance, the 'Framingham' model, implemented using R, is based on regression. Similarly, the 'Prostate' model utilizes a binary tree approach. Notably, both of these models account for age as a factor.
+
++---------------+-----------------+------------+-----------+----------------+
+| Model         | Age dependent   | Cox Model  | Language  | Model Type     |
++===============+=================+============+===========+================+
+| Framingham    | Yes             | Yes        | R         | Regression     |
++---------------+-----------------+------------+-----------+----------------+
+| LifeCRC       | Yes             | Yes        | Python    | Regression     |
++---------------+-----------------+------------+-----------+----------------+
+| Gail          | Yes             | No         | Python    | Regression     |
++---------------+-----------------+------------+-----------+----------------+
+| Score         | Yes             | Yes        | Python    | Regression     |
++---------------+-----------------+------------+-----------+----------------+
+| Qrisk         | Yes             | Yes        | Python    | Regression     |
++---------------+-----------------+------------+-----------+----------------+
+| CovidSurvival | No              | No         | Python    | CART           |
++---------------+-----------------+------------+-----------+----------------+
+| PIM           | No              | No         | Python    | Regression     |
++---------------+-----------------+------------+-----------+----------------+
+| Prostate      | Yes             | No         | Python    | CART           |
++---------------+-----------------+------------+-----------+----------------+
+| CLivD         | Yes             | Yes        | Python    | Regression     |
++---------------+-----------------+------------+-----------+----------------+
+
+
+
 Subpackages
 -----------
 

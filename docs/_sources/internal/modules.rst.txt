@@ -4,9 +4,9 @@ LifeTwin Internals
 .. toctree::
    :maxdepth: 4
 
-   biomodel
+   transformations
+   models
+   gui
    database
    graph
-   gui
-   models
-   transformations
+   biomodel

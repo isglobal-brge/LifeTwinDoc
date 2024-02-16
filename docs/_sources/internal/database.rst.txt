@@ -1,6 +1,11 @@
 LifeTwin Database Connector
 ===========================
 
+General Architecture Diagram
+----------------------------
+
+.. image:: ../images/arch.png
+
 .. automodule:: database
    :members:
    :undoc-members:

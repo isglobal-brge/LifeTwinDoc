@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="LifeTwin Statistical Models" href="models.html" />
-    <link rel="prev" title="LifeTwin Graph Representation Module" href="graph.html" /> 
+    <link rel="next" title="LifeTwin Database Connector" href="database.html" />
+    <link rel="prev" title="Score Simulation Model" href="models.score.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,36 +48,22 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Automatic GUI Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-gui-generator-example">Automatic GUI Generator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-gui">Gui Internals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gui.DoubleSlider"><code class="docutils literal notranslate"><span class="pre">DoubleSlider</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.InterfaceModel"><code class="docutils literal notranslate"><span class="pre">InterfaceModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.ParameterChangedSignal"><code class="docutils literal notranslate"><span class="pre">ParameterChangedSignal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.check_value_in_range"><code class="docutils literal notranslate"><span class="pre">check_value_in_range()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Automatic GUI Generator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#gui.DoubleSlider"><code class="docutils literal notranslate"><span class="pre">DoubleSlider</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gui.DoubleSlider.doubleValueChanged"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.doubleValueChanged</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.DoubleSlider.emitDoubleValueChanged"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.emitDoubleValueChanged()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.DoubleSlider.setMaximum"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setMaximum()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.DoubleSlider.setMinimum"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setMinimum()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.DoubleSlider.setSingleStep"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setSingleStep()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.DoubleSlider.setValue"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setValue()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.DoubleSlider.singleStep"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.singleStep()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.DoubleSlider.value"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.value()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#gui.InterfaceModel"><code class="docutils literal notranslate"><span class="pre">InterfaceModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gui.InterfaceModel.on_parameter_changed"><code class="docutils literal notranslate"><span class="pre">InterfaceModel.on_parameter_changed()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.InterfaceModel.run"><code class="docutils literal notranslate"><span class="pre">InterfaceModel.run()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.InterfaceModel.update_graph"><code class="docutils literal notranslate"><span class="pre">InterfaceModel.update_graph()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#gui.ParameterChangedSignal"><code class="docutils literal notranslate"><span class="pre">ParameterChangedSignal</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gui.ParameterChangedSignal.signal"><code class="docutils literal notranslate"><span class="pre">ParameterChangedSignal.signal</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#gui.check_value_in_range"><code class="docutils literal notranslate"><span class="pre">check_value_in_range()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
 </ul>
 </li>
 </ul>
@@ -107,8 +93,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-gui">
-<span id="lifetwin-automatic-gui-generator"></span><h1>LifeTwin Automatic GUI Generator<a class="headerlink" href="#module-gui" title="Link to this heading"></a></h1>
+  <section id="lifetwin-automatic-gui-generator">
+<h1>LifeTwin Automatic GUI Generator<a class="headerlink" href="#lifetwin-automatic-gui-generator" title="Link to this heading"></a></h1>
+<section id="automatic-gui-generator-example">
+<h2>Automatic GUI Generator Example<a class="headerlink" href="#automatic-gui-generator-example" title="Link to this heading"></a></h2>
+<img alt="../_images/fr_graph.png" src="../_images/fr_graph.png" />
+</section>
+<section id="module-gui">
+<span id="gui-internals"></span><h2>Gui Internals<a class="headerlink" href="#module-gui" title="Link to this heading"></a></h2>
 <p>A file for creating a user interface to interact with a model’s parameters and visualize the graph based on the updated parameters.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="gui.DoubleSlider">
@@ -289,13 +281,14 @@ maximum: The maximum value of the range.</p>
 </dd></dl>
 
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="graph.html" class="btn btn-neutral float-left" title="LifeTwin Graph Representation Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="models.html" class="btn btn-neutral float-right" title="LifeTwin Statistical Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="models.score.html" class="btn btn-neutral float-left" title="Score Simulation Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="database.html" class="btn btn-neutral float-right" title="LifeTwin Database Connector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

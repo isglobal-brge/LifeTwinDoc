@@ -1,6 +1,20 @@
 LifeTwin Graph Representation Module
 =====================================
 
+Single Prediction Example Graph
+-------------------------------
+
+.. image:: ../images/predictions/singles.png
+
+Spread Prediction Example Graph
+-------------------------------
+
+.. image:: ../images/predictions/spread.png
+
+
+Module Contents
+---------------
+
 .. automodule:: graph
    :members:
    :undoc-members:

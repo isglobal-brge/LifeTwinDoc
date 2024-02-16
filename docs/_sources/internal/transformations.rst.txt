@@ -1,6 +1,115 @@
 LifeTwin Simulation Language
 ============================
 
+
+LifeTwin Modelling Language
+---------------------------
+
+Data distribution section
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These Python classes are critical for simulating
+and statistical behavior on our population attributes. The classes of this section are
+then represented in the tree in the next figure.
+
+.. image:: ../images/modelling/LimitValue.png
+
+Attribute Transformations
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This table outlines the Python classes designed for manipulating and sampling parameter values in a population model. The classes range from interfaces, like LimitValue, to more specialized classes, like Uniform and Normal, which inherit from Distribution.
+
+.. table::
+   :widths: auto
+
+   +-----------------+------------------+------------------------------------------------------------------------------------------------------+
+   | Class           | Inherits From    | Description                                                                                          |
+   +=================+==================+======================================================================================================+
+   | ``LimitValue``  | --               | An interface that mandates the implementation of a ``sample()`` method and a                         |
+   |                 |                  | ``contains_distribution()`` method for value limitations.                                            |
+   +-----------------+------------------+------------------------------------------------------------------------------------------------------+
+   | ``Clap``        | ``LimitValue``   | Clamps a given source value within specified minimum and maximum bounds. Capable of sampling         |
+   |                 |                  | from nested ``LimitValue`` objects.                                                                  |
+   +-----------------+------------------+------------------------------------------------------------------------------------------------------+
+   | ``Distribution``| ``LimitValue``   | An abstract class for generating samples from a distribution. Always returns true for                |
+   |                 |                  | ``contains_distribution()``.                                                                         |
+   +-----------------+------------------+------------------------------------------------------------------------------------------------------+
+   | ``Uniform``     | ``Distribution`` | Generates samples from a uniform distribution given minimum and maximum bounds.                      |
+   +-----------------+------------------+------------------------------------------------------------------------------------------------------+
+   | ``Normal``      | ``Distribution`` | Generates samples from a normal distribution specified by a mean and standard deviation.             |
+   +-----------------+------------------+------------------------------------------------------------------------------------------------------+
+   | ``Normal95IC``  | --               | Utility function that returns a ``Normal`` object, whose mean and standard deviation are calculated  |
+   |                 |                  | based on 95% confidence intervals.                                                                   |
+   +-----------------+------------------+------------------------------------------------------------------------------------------------------+
+   | ``LogNormal``   | ``Distribution`` | Generates samples from a log-normal distribution specified by a mean and standard deviation.         |
+   +-----------------+------------------+------------------------------------------------------------------------------------------------------+
+
+
+Transformation section
+~~~~~~~~~~~~~~~~~~~~~~
+
+This table describes the Python classes responsible for transformations on attributes.
+These classes provide utilities for a wide range of modifications, from simple value
+assignments (Set) to complex conditional transformations (OnSubset). These transformations are applied to the attributes and can introduce deterministic or stochastic
+changes.
+
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| Class                   | Inherits From       | Description                                                                      |
++=========================+=====================+==================================================================================+
+| ``Transformation``      | --                  | Interface necessary to implement attribute transformations. It requires          |
+|                         |                     | subclasses to implement ``apply()`` and ``contains_distribution()``.             |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``Set``                 | ``Transformation``  | Sets an attribute to a specific value.                                           |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``WithProbability``     | ``Transformation``  | Applies a nested transformation with a given probability.                        |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``Group``               | ``Transformation``  | Applies a sequence of transformations to attributes.                             |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``OnSubset``            | ``Transformation``  | Conditionally applies a transformation based on a relational operator.           |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``Reduce``              | ``Transformation``  | Decreases an attribute by a given value.                                         |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``ReduceByPercentage``  | ``Transformation``  | Decreases an attribute by a given percentage.                                    |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``Increase``            | ``Transformation``  | Increases an attribute by a given value.                                         |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``IncreaseByPercentage``| ``Transformation``  | Increases an attribute by a given percentage.                                    |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``RegressToValue``      | ``Transformation``  | Adjusts an attribute towards a specific value by a percentage.                   |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+
+This table outlines a set of Python classes designed for implementing timedependent attribute transformations. These classes inherit from a base TimeDelta class
+and provide different strategies to apply transformations based on the passage of time.
+For instance, the Every class applies a transformation every n years, while the Once
+class triggers the transformation in a specific year
+
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| Class                   | Inherits From       | Description                                                                      |
++=========================+=====================+==================================================================================+
+| ``Transformation``      | --                  | Interface necessary to implement attribute transformations. It requires          |
+|                         |                     | subclasses to implement ``apply()`` and ``contains_distribution()``.             |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``Set``                 | ``Transformation``  | Sets an attribute to a specific value.                                           |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``WithProbability``     | ``Transformation``  | Applies a nested transformation with a given probability.                        |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``Group``               | ``Transformation``  | Applies a sequence of transformations to attributes.                             |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``OnSubset``            | ``Transformation``  | Conditionally applies a transformation based on a relational operator.           |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``Reduce``              | ``Transformation``  | Decreases an attribute by a given value.                                         |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``ReduceByPercentage``  | ``Transformation``  | Decreases an attribute by a given percentage.                                    |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``Increase``            | ``Transformation``  | Increases an attribute by a given value.                                         |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``IncreaseByPercentage``| ``Transformation``  | Increases an attribute by a given percentage.                                    |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+| ``RegressToValue``      | ``Transformation``  | Adjusts an attribute towards a specific value by a percentage.                   |
++-------------------------+---------------------+----------------------------------------------------------------------------------+
+
+.. image:: ../images/modelling/Transformation.png
+
 .. automodule:: transformations
    :members:
    :undoc-members:

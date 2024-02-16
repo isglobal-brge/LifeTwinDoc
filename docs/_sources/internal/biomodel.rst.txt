@@ -1,6 +1,14 @@
 LifeTwin Core Internals
 =======================
 
+General Architecture Diagram
+----------------------------
+
+.. image:: ../images/arch.png
+
+Core Modules
+------------
+
 .. automodule:: biomodel.biomodel
    :members:
    :undoc-members:

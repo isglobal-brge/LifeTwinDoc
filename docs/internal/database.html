@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="LifeTwin Graph Representation Module" href="graph.html" />
-    <link rel="prev" title="LifeTwin Core Internals" href="biomodel.html" /> 
+    <link rel="prev" title="LifeTwin Automatic GUI Generator" href="gui.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,88 +48,22 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Database Connector</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#database.Database"><code class="docutils literal notranslate"><span class="pre">Database</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#database.Database.iterate_person"><code class="docutils literal notranslate"><span class="pre">Database.iterate_person()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#database.OMOP_DB"><code class="docutils literal notranslate"><span class="pre">OMOP_DB</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_DB.iterate_person"><code class="docutils literal notranslate"><span class="pre">OMOP_DB.iterate_person()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#database.OMOP_Measurement"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_date"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_date</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_datetime</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_source_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_type_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_type_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.operator_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.operator_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.person_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.provider_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.range_high"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.range_high</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.range_low"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.range_low</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.unit_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.unit_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.unit_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.unit_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.value_as_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_as_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.value_as_number"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_as_number</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.value_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.visit_occurrence_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.visit_occurrence_id</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#database.OMOP_Obsevation"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_date"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_date</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_datetime</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_source_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_type_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_type_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.person_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.provider_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.qualifier_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.qualifier_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.qualifier_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.qualifier_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.unit_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.unit_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.unit_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.unit_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.value_as_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.value_as_number"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_number</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.value_as_string"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_string</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.visit_occurrence_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.visit_occurrence_id</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#database.OMOP_Person"><code class="docutils literal notranslate"><span class="pre">OMOP_Person</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.age"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.age</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.birth_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.birth_datetime</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.care_site_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.care_site_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.day_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.day_of_birth</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.ethnicity_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.ethnicity_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_source_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.ethnicity_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.gender_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.gender_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_source_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.gender_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.is_female"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.is_female</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.is_male"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.is_male</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.location_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.location_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.month_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.month_of_birth</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.person_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.person_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.person_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.provider_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.race_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.race_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_source_concept_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.race_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_source_value</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.sex"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.sex</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.year_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.year_of_birth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-architecture-diagram">General Architecture Diagram</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Database"><code class="docutils literal notranslate"><span class="pre">Database</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_DB"><code class="docutils literal notranslate"><span class="pre">OMOP_DB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person"><code class="docutils literal notranslate"><span class="pre">OMOP_Person</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
 </ul>
 </li>
 </ul>
@@ -159,9 +93,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-database">
-<span id="lifetwin-database-connector"></span><h1>LifeTwin Database Connector<a class="headerlink" href="#module-database" title="Link to this heading"></a></h1>
-<p>This file provides classes for working with OMOP (Observational Medical Outcomes Partnership) database. It includes a class for database operations, as well as classes for representing person, observation, and measurement objects. The classes allow for reading data from files into pandas DataFrames, iterating through the data, and providing string representations of the objects.</p>
+  <section id="lifetwin-database-connector">
+<h1>LifeTwin Database Connector<a class="headerlink" href="#lifetwin-database-connector" title="Link to this heading"></a></h1>
+<section id="general-architecture-diagram">
+<h2>General Architecture Diagram<a class="headerlink" href="#general-architecture-diagram" title="Link to this heading"></a></h2>
+<img alt="../_images/arch.png" src="../_images/arch.png" />
+<p id="module-database">This file provides classes for working with OMOP (Observational Medical Outcomes Partnership) database. It includes a class for database operations, as well as classes for representing person, observation, and measurement objects. The classes allow for reading data from files into pandas DataFrames, iterating through the data, and providing string representations of the objects.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="database.Database">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Database</span></span><a class="headerlink" href="#database.Database" title="Link to this definition"></a></dt>
@@ -499,12 +436,13 @@
 </dd></dl>
 
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="biomodel.html" class="btn btn-neutral float-left" title="LifeTwin Core Internals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gui.html" class="btn btn-neutral float-left" title="LifeTwin Automatic GUI Generator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="graph.html" class="btn btn-neutral float-right" title="LifeTwin Graph Representation Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

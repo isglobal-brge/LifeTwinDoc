@@ -1,6 +1,14 @@
 LifeTwin Automatic GUI Generator
 ================================
 
+Automatic GUI Generator Example
+-------------------------------
+
+.. image:: ../images/fr_graph.png
+
+Gui Internals
+-------------
+
 .. automodule:: gui
    :members:
    :undoc-members:

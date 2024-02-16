@@ -21,8 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="LifeTwin Database Connector" href="database.html" />
-    <link rel="prev" title="LifeTwin Internals" href="modules.html" /> 
+    <link rel="prev" title="LifeTwin Graph Representation Module" href="graph.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,126 +47,33 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Core Internals</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.AgeInt"><code class="docutils literal notranslate"><span class="pre">AgeInt</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.AgeInt.id"><code class="docutils literal notranslate"><span class="pre">AgeInt.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.AgeInt.maximum"><code class="docutils literal notranslate"><span class="pre">AgeInt.maximum</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.AgeInt.minimum"><code class="docutils literal notranslate"><span class="pre">AgeInt.minimum</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.AgeInt.name"><code class="docutils literal notranslate"><span class="pre">AgeInt.name</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.BioModel"><code class="docutils literal notranslate"><span class="pre">BioModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.age_parameter"><code class="docutils literal notranslate"><span class="pre">BioModel.age_parameter()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.describe"><code class="docutils literal notranslate"><span class="pre">BioModel.describe()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.get_intervals"><code class="docutils literal notranslate"><span class="pre">BioModel.get_intervals()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.get_title"><code class="docutils literal notranslate"><span class="pre">BioModel.get_title()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.has_intervals"><code class="docutils literal notranslate"><span class="pre">BioModel.has_intervals()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.has_title"><code class="docutils literal notranslate"><span class="pre">BioModel.has_title()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">BioModel.kwarg_to_omop()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.name"><code class="docutils literal notranslate"><span class="pre">BioModel.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.output_meaning"><code class="docutils literal notranslate"><span class="pre">BioModel.output_meaning()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict"><code class="docutils literal notranslate"><span class="pre">BioModel.predict()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_person"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_person_once"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_once()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_person_time"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_time()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_person_time_variations"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_time_variations()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_population_time"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_population_time()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.return_category"><code class="docutils literal notranslate"><span class="pre">BioModel.return_category()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.should_have_meaning"><code class="docutils literal notranslate"><span class="pre">BioModel.should_have_meaning()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Bool"><code class="docutils literal notranslate"><span class="pre">Bool</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Bool.get_default_value"><code class="docutils literal notranslate"><span class="pre">Bool.get_default_value()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Bool.id"><code class="docutils literal notranslate"><span class="pre">Bool.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Bool.name"><code class="docutils literal notranslate"><span class="pre">Bool.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Bool.type_name"><code class="docutils literal notranslate"><span class="pre">Bool.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.BoolInt"><code class="docutils literal notranslate"><span class="pre">BoolInt</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.false"><code class="docutils literal notranslate"><span class="pre">BoolInt.false</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.get_default_value"><code class="docutils literal notranslate"><span class="pre">BoolInt.get_default_value()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.id"><code class="docutils literal notranslate"><span class="pre">BoolInt.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.name"><code class="docutils literal notranslate"><span class="pre">BoolInt.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.true"><code class="docutils literal notranslate"><span class="pre">BoolInt.true</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.type_name"><code class="docutils literal notranslate"><span class="pre">BoolInt.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.CustomModel"><code class="docutils literal notranslate"><span class="pre">CustomModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.CustomModel.age_parameter"><code class="docutils literal notranslate"><span class="pre">CustomModel.age_parameter()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.CustomModel.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">CustomModel.kwarg_to_omop()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.CustomModel.predict"><code class="docutils literal notranslate"><span class="pre">CustomModel.predict()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.CustomModel.return_category"><code class="docutils literal notranslate"><span class="pre">CustomModel.return_category()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Enum"><code class="docutils literal notranslate"><span class="pre">Enum</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.domain_info"><code class="docutils literal notranslate"><span class="pre">Enum.domain_info()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.get_default_value"><code class="docutils literal notranslate"><span class="pre">Enum.get_default_value()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.id"><code class="docutils literal notranslate"><span class="pre">Enum.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.name"><code class="docutils literal notranslate"><span class="pre">Enum.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.type_name"><code class="docutils literal notranslate"><span class="pre">Enum.type_name()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.values"><code class="docutils literal notranslate"><span class="pre">Enum.values</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Float"><code class="docutils literal notranslate"><span class="pre">Float</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.domain_info"><code class="docutils literal notranslate"><span class="pre">Float.domain_info()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.get_default_value"><code class="docutils literal notranslate"><span class="pre">Float.get_default_value()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.id"><code class="docutils literal notranslate"><span class="pre">Float.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.maximum"><code class="docutils literal notranslate"><span class="pre">Float.maximum</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.minimum"><code class="docutils literal notranslate"><span class="pre">Float.minimum</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.name"><code class="docutils literal notranslate"><span class="pre">Float.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.type_name"><code class="docutils literal notranslate"><span class="pre">Float.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Int"><code class="docutils literal notranslate"><span class="pre">Int</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.domain_info"><code class="docutils literal notranslate"><span class="pre">Int.domain_info()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.get_default_value"><code class="docutils literal notranslate"><span class="pre">Int.get_default_value()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.id"><code class="docutils literal notranslate"><span class="pre">Int.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.maximum"><code class="docutils literal notranslate"><span class="pre">Int.maximum</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.minimum"><code class="docutils literal notranslate"><span class="pre">Int.minimum</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.name"><code class="docutils literal notranslate"><span class="pre">Int.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.type_name"><code class="docutils literal notranslate"><span class="pre">Int.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.OMOPId"><code class="docutils literal notranslate"><span class="pre">OMOPId</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.OMOPId.id"><code class="docutils literal notranslate"><span class="pre">OMOPId.id</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Parameter"><code class="docutils literal notranslate"><span class="pre">Parameter</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.domain_info"><code class="docutils literal notranslate"><span class="pre">Parameter.domain_info()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.get_default_value"><code class="docutils literal notranslate"><span class="pre">Parameter.get_default_value()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.id"><code class="docutils literal notranslate"><span class="pre">Parameter.id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.name"><code class="docutils literal notranslate"><span class="pre">Parameter.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.type_name"><code class="docutils literal notranslate"><span class="pre">Parameter.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.RFunction"><code class="docutils literal notranslate"><span class="pre">RFunction</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.age_parameter"><code class="docutils literal notranslate"><span class="pre">RFunction.age_parameter()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.class_name"><code class="docutils literal notranslate"><span class="pre">RFunction.class_name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">RFunction.kwarg_to_omop()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.predict"><code class="docutils literal notranslate"><span class="pre">RFunction.predict()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.resolved_path"><code class="docutils literal notranslate"><span class="pre">RFunction.resolved_path</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.return_category"><code class="docutils literal notranslate"><span class="pre">RFunction.return_category()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.ReturnCategory"><code class="docutils literal notranslate"><span class="pre">ReturnCategory</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.ReturnCategory.CATEGORICAL"><code class="docutils literal notranslate"><span class="pre">ReturnCategory.CATEGORICAL</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.ReturnCategory.CONTINUOUS"><code class="docutils literal notranslate"><span class="pre">ReturnCategory.CONTINUOUS</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.RiskInterval"><code class="docutils literal notranslate"><span class="pre">RiskInterval</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RiskInterval.name"><code class="docutils literal notranslate"><span class="pre">RiskInterval.name</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RiskInterval.value"><code class="docutils literal notranslate"><span class="pre">RiskInterval.value</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.contains_distribution_in_variations"><code class="docutils literal notranslate"><span class="pre">contains_distribution_in_variations()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.filter_transformations"><code class="docutils literal notranslate"><span class="pre">filter_transformations()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Core Internals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-architecture-diagram">General Architecture Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-biomodel.biomodel">Core Modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.AgeInt"><code class="docutils literal notranslate"><span class="pre">AgeInt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel"><code class="docutils literal notranslate"><span class="pre">BioModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Bool"><code class="docutils literal notranslate"><span class="pre">Bool</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt"><code class="docutils literal notranslate"><span class="pre">BoolInt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.CustomModel"><code class="docutils literal notranslate"><span class="pre">CustomModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum"><code class="docutils literal notranslate"><span class="pre">Enum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float"><code class="docutils literal notranslate"><span class="pre">Float</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int"><code class="docutils literal notranslate"><span class="pre">Int</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.OMOPId"><code class="docutils literal notranslate"><span class="pre">OMOPId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter"><code class="docutils literal notranslate"><span class="pre">Parameter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction"><code class="docutils literal notranslate"><span class="pre">RFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.ReturnCategory"><code class="docutils literal notranslate"><span class="pre">ReturnCategory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RiskInterval"><code class="docutils literal notranslate"><span class="pre">RiskInterval</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.contains_distribution_in_variations"><code class="docutils literal notranslate"><span class="pre">contains_distribution_in_variations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.filter_transformations"><code class="docutils literal notranslate"><span class="pre">filter_transformations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -197,8 +103,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-biomodel.biomodel">
-<span id="lifetwin-core-internals"></span><h1>LifeTwin Core Internals<a class="headerlink" href="#module-biomodel.biomodel" title="Link to this heading"></a></h1>
+  <section id="lifetwin-core-internals">
+<h1>LifeTwin Core Internals<a class="headerlink" href="#lifetwin-core-internals" title="Link to this heading"></a></h1>
+<section id="general-architecture-diagram">
+<h2>General Architecture Diagram<a class="headerlink" href="#general-architecture-diagram" title="Link to this heading"></a></h2>
+<img alt="../_images/arch.png" src="../_images/arch.png" />
+</section>
+<section id="module-biomodel.biomodel">
+<span id="core-modules"></span><h2>Core Modules<a class="headerlink" href="#module-biomodel.biomodel" title="Link to this heading"></a></h2>
 <p>A file containing classes for defining bio models, including parameters, predictions, and model descriptions.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="biomodel.biomodel.AgeInt">
@@ -713,13 +625,13 @@ The class is frozen and supports equality comparison.</p>
 <dd></dd></dl>
 
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="LifeTwin Internals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="database.html" class="btn btn-neutral float-right" title="LifeTwin Database Connector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="graph.html" class="btn btn-neutral float-left" title="LifeTwin Graph Representation Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

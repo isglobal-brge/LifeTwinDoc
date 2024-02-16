@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="LifeTwin Core Internals" href="biomodel.html" />
+    <link rel="next" title="LifeTwin Simulation Language" href="transformations.html" />
     <link rel="prev" title="Covid Simulation GUI" href="../examples/covid_gui.html" /> 
 </head>
 
@@ -48,12 +48,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">LifeTwin Internals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
 </ul>
 </li>
 </ul>
@@ -86,260 +86,44 @@
 <h1>LifeTwin Internals<a class="headerlink" href="#lifetwin-internals" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt"><code class="docutils literal notranslate"><span class="pre">AgeInt</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt.id"><code class="docutils literal notranslate"><span class="pre">AgeInt.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt.maximum"><code class="docutils literal notranslate"><span class="pre">AgeInt.maximum</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt.minimum"><code class="docutils literal notranslate"><span class="pre">AgeInt.minimum</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt.name"><code class="docutils literal notranslate"><span class="pre">AgeInt.name</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel"><code class="docutils literal notranslate"><span class="pre">BioModel</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.age_parameter"><code class="docutils literal notranslate"><span class="pre">BioModel.age_parameter()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.describe"><code class="docutils literal notranslate"><span class="pre">BioModel.describe()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.get_intervals"><code class="docutils literal notranslate"><span class="pre">BioModel.get_intervals()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.get_title"><code class="docutils literal notranslate"><span class="pre">BioModel.get_title()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.has_intervals"><code class="docutils literal notranslate"><span class="pre">BioModel.has_intervals()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.has_title"><code class="docutils literal notranslate"><span class="pre">BioModel.has_title()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">BioModel.kwarg_to_omop()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.name"><code class="docutils literal notranslate"><span class="pre">BioModel.name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.output_meaning"><code class="docutils literal notranslate"><span class="pre">BioModel.output_meaning()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict"><code class="docutils literal notranslate"><span class="pre">BioModel.predict()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_person"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_person_once"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_once()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_person_time"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_time()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_person_time_variations"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_time_variations()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_population_time"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_population_time()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.return_category"><code class="docutils literal notranslate"><span class="pre">BioModel.return_category()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.should_have_meaning"><code class="docutils literal notranslate"><span class="pre">BioModel.should_have_meaning()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool"><code class="docutils literal notranslate"><span class="pre">Bool</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool.get_default_value"><code class="docutils literal notranslate"><span class="pre">Bool.get_default_value()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool.id"><code class="docutils literal notranslate"><span class="pre">Bool.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool.name"><code class="docutils literal notranslate"><span class="pre">Bool.name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool.type_name"><code class="docutils literal notranslate"><span class="pre">Bool.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt"><code class="docutils literal notranslate"><span class="pre">BoolInt</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.false"><code class="docutils literal notranslate"><span class="pre">BoolInt.false</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.get_default_value"><code class="docutils literal notranslate"><span class="pre">BoolInt.get_default_value()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.id"><code class="docutils literal notranslate"><span class="pre">BoolInt.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.name"><code class="docutils literal notranslate"><span class="pre">BoolInt.name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.true"><code class="docutils literal notranslate"><span class="pre">BoolInt.true</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.type_name"><code class="docutils literal notranslate"><span class="pre">BoolInt.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel"><code class="docutils literal notranslate"><span class="pre">CustomModel</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel.age_parameter"><code class="docutils literal notranslate"><span class="pre">CustomModel.age_parameter()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">CustomModel.kwarg_to_omop()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel.predict"><code class="docutils literal notranslate"><span class="pre">CustomModel.predict()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel.return_category"><code class="docutils literal notranslate"><span class="pre">CustomModel.return_category()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum"><code class="docutils literal notranslate"><span class="pre">Enum</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.domain_info"><code class="docutils literal notranslate"><span class="pre">Enum.domain_info()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.get_default_value"><code class="docutils literal notranslate"><span class="pre">Enum.get_default_value()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.id"><code class="docutils literal notranslate"><span class="pre">Enum.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.name"><code class="docutils literal notranslate"><span class="pre">Enum.name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.type_name"><code class="docutils literal notranslate"><span class="pre">Enum.type_name()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.values"><code class="docutils literal notranslate"><span class="pre">Enum.values</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float"><code class="docutils literal notranslate"><span class="pre">Float</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.domain_info"><code class="docutils literal notranslate"><span class="pre">Float.domain_info()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.get_default_value"><code class="docutils literal notranslate"><span class="pre">Float.get_default_value()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.id"><code class="docutils literal notranslate"><span class="pre">Float.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.maximum"><code class="docutils literal notranslate"><span class="pre">Float.maximum</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.minimum"><code class="docutils literal notranslate"><span class="pre">Float.minimum</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.name"><code class="docutils literal notranslate"><span class="pre">Float.name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.type_name"><code class="docutils literal notranslate"><span class="pre">Float.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int"><code class="docutils literal notranslate"><span class="pre">Int</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.domain_info"><code class="docutils literal notranslate"><span class="pre">Int.domain_info()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.get_default_value"><code class="docutils literal notranslate"><span class="pre">Int.get_default_value()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.id"><code class="docutils literal notranslate"><span class="pre">Int.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.maximum"><code class="docutils literal notranslate"><span class="pre">Int.maximum</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.minimum"><code class="docutils literal notranslate"><span class="pre">Int.minimum</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.name"><code class="docutils literal notranslate"><span class="pre">Int.name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.type_name"><code class="docutils literal notranslate"><span class="pre">Int.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId"><code class="docutils literal notranslate"><span class="pre">OMOPId</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId.id"><code class="docutils literal notranslate"><span class="pre">OMOPId.id</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter"><code class="docutils literal notranslate"><span class="pre">Parameter</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.domain_info"><code class="docutils literal notranslate"><span class="pre">Parameter.domain_info()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.get_default_value"><code class="docutils literal notranslate"><span class="pre">Parameter.get_default_value()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.id"><code class="docutils literal notranslate"><span class="pre">Parameter.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.name"><code class="docutils literal notranslate"><span class="pre">Parameter.name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.type_name"><code class="docutils literal notranslate"><span class="pre">Parameter.type_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction"><code class="docutils literal notranslate"><span class="pre">RFunction</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.age_parameter"><code class="docutils literal notranslate"><span class="pre">RFunction.age_parameter()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.class_name"><code class="docutils literal notranslate"><span class="pre">RFunction.class_name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">RFunction.kwarg_to_omop()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.predict"><code class="docutils literal notranslate"><span class="pre">RFunction.predict()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.resolved_path"><code class="docutils literal notranslate"><span class="pre">RFunction.resolved_path</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.return_category"><code class="docutils literal notranslate"><span class="pre">RFunction.return_category()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory"><code class="docutils literal notranslate"><span class="pre">ReturnCategory</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory.CATEGORICAL"><code class="docutils literal notranslate"><span class="pre">ReturnCategory.CATEGORICAL</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory.CONTINUOUS"><code class="docutils literal notranslate"><span class="pre">ReturnCategory.CONTINUOUS</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RiskInterval"><code class="docutils literal notranslate"><span class="pre">RiskInterval</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RiskInterval.name"><code class="docutils literal notranslate"><span class="pre">RiskInterval.name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RiskInterval.value"><code class="docutils literal notranslate"><span class="pre">RiskInterval.value</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.contains_distribution_in_variations"><code class="docutils literal notranslate"><span class="pre">contains_distribution_in_variations()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="biomodel.html#biomodel.biomodel.filter_transformations"><code class="docutils literal notranslate"><span class="pre">filter_transformations()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="database.html">LifeTwin Database Connector</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="database.html#database.Database"><code class="docutils literal notranslate"><span class="pre">Database</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.Database.iterate_person"><code class="docutils literal notranslate"><span class="pre">Database.iterate_person()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="database.html#database.OMOP_DB"><code class="docutils literal notranslate"><span class="pre">OMOP_DB</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_DB.iterate_person"><code class="docutils literal notranslate"><span class="pre">OMOP_DB.iterate_person()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="database.html#database.OMOP_Measurement"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_date"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_date</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_datetime</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_source_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_type_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_type_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.operator_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.operator_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.person_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.provider_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.range_high"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.range_high</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.range_low"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.range_low</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.unit_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.unit_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.unit_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.unit_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.value_as_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_as_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.value_as_number"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_as_number</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.value_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement.visit_occurrence_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.visit_occurrence_id</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="database.html#database.OMOP_Obsevation"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_date"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_date</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_datetime</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_source_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_type_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_type_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.person_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.provider_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.qualifier_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.qualifier_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.qualifier_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.qualifier_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.unit_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.unit_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.unit_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.unit_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.value_as_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.value_as_number"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_number</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.value_as_string"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_string</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation.visit_occurrence_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.visit_occurrence_id</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="database.html#database.OMOP_Person"><code class="docutils literal notranslate"><span class="pre">OMOP_Person</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.age"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.age</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.birth_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.birth_datetime</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.care_site_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.care_site_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.day_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.day_of_birth</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.ethnicity_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.ethnicity_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_source_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.ethnicity_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.gender_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.gender_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_source_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.gender_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.is_female"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.is_female</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.is_male"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.is_male</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.location_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.location_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.month_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.month_of_birth</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.person_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.person_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.person_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.provider_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.race_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.race_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_source_concept_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.race_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_source_value</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.sex"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.sex</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person.year_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.year_of_birth</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html#lifetwin-modelling-language">LifeTwin Modelling Language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#data-distribution-section">Data distribution section</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#attribute-transformations">Attribute Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformation-section">Transformation section</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.After"><code class="docutils literal notranslate"><span class="pre">After</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Always"><code class="docutils literal notranslate"><span class="pre">Always</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Before"><code class="docutils literal notranslate"><span class="pre">Before</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.BeforeAndThen"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Clap"><code class="docutils literal notranslate"><span class="pre">Clap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Distribution"><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Every"><code class="docutils literal notranslate"><span class="pre">Every</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Group"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Increase"><code class="docutils literal notranslate"><span class="pre">Increase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.IncreaseByPercentage"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.LimitValue"><code class="docutils literal notranslate"><span class="pre">LimitValue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.LogNormal"><code class="docutils literal notranslate"><span class="pre">LogNormal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Normal"><code class="docutils literal notranslate"><span class="pre">Normal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Normal95IC"><code class="docutils literal notranslate"><span class="pre">Normal95IC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.OnRange"><code class="docutils literal notranslate"><span class="pre">OnRange</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.OnSubset"><code class="docutils literal notranslate"><span class="pre">OnSubset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Once"><code class="docutils literal notranslate"><span class="pre">Once</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Reduce"><code class="docutils literal notranslate"><span class="pre">Reduce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.ReduceByPercentage"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.RegressToValue"><code class="docutils literal notranslate"><span class="pre">RegressToValue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Set"><code class="docutils literal notranslate"><span class="pre">Set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.ThenOnwards"><code class="docutils literal notranslate"><span class="pre">ThenOnwards</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.TimeDelta"><code class="docutils literal notranslate"><span class="pre">TimeDelta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Transformation"><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.Uniform"><code class="docutils literal notranslate"><span class="pre">Uniform</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.WithProbability"><code class="docutils literal notranslate"><span class="pre">WithProbability</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.get_as_id"><code class="docutils literal notranslate"><span class="pre">get_as_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.get_id_value"><code class="docutils literal notranslate"><span class="pre">get_id_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformations.html#transformations.get_value"><code class="docutils literal notranslate"><span class="pre">get_value()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="graph.html#graph.AbstractPrediction"><code class="docutils literal notranslate"><span class="pre">AbstractPrediction</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.AbstractPrediction.plot_change"><code class="docutils literal notranslate"><span class="pre">AbstractPrediction.plot_change()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.AbstractPrediction.show_change"><code class="docutils literal notranslate"><span class="pre">AbstractPrediction.show_change()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="graph.html#graph.Prediction"><code class="docutils literal notranslate"><span class="pre">Prediction</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.Prediction.current_age"><code class="docutils literal notranslate"><span class="pre">Prediction.current_age</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.Prediction.labels"><code class="docutils literal notranslate"><span class="pre">Prediction.labels</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.Prediction.model"><code class="docutils literal notranslate"><span class="pre">Prediction.model</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.Prediction.plot_change"><code class="docutils literal notranslate"><span class="pre">Prediction.plot_change()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.Prediction.prediction_years"><code class="docutils literal notranslate"><span class="pre">Prediction.prediction_years</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.Prediction.predictions"><code class="docutils literal notranslate"><span class="pre">Prediction.predictions</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.Prediction.return_category"><code class="docutils literal notranslate"><span class="pre">Prediction.return_category</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.Prediction.show_change"><code class="docutils literal notranslate"><span class="pre">Prediction.show_change()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="graph.html#graph.SinglePrediction"><code class="docutils literal notranslate"><span class="pre">SinglePrediction</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SinglePrediction.labels"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.labels</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SinglePrediction.model"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.model</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SinglePrediction.plot_change"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.plot_change()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SinglePrediction.predictions"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.predictions</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SinglePrediction.return_category"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.return_category</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="graph.html#graph.SpreadPrediction"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SpreadPrediction.model"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.model</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SpreadPrediction.plot_change"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.plot_change()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SpreadPrediction.prediction_years"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.prediction_years</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SpreadPrediction.return_category"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.return_category</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SpreadPrediction.show_change"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.show_change()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SpreadPrediction.tables"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.tables</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="graph.html#graph.calc_global_95CI"><code class="docutils literal notranslate"><span class="pre">calc_global_95CI()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="graph.html#graph.integrate_horizontals"><code class="docutils literal notranslate"><span class="pre">integrate_horizontals()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="graph.html#graph.set_minimum_value"><code class="docutils literal notranslate"><span class="pre">set_minimum_value()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gui.html#gui.DoubleSlider"><code class="docutils literal notranslate"><span class="pre">DoubleSlider</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.DoubleSlider.doubleValueChanged"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.doubleValueChanged</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.DoubleSlider.emitDoubleValueChanged"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.emitDoubleValueChanged()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.DoubleSlider.setMaximum"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setMaximum()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.DoubleSlider.setMinimum"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setMinimum()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.DoubleSlider.setSingleStep"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setSingleStep()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.DoubleSlider.setValue"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setValue()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.DoubleSlider.singleStep"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.singleStep()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.DoubleSlider.value"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.value()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="gui.html#gui.InterfaceModel"><code class="docutils literal notranslate"><span class="pre">InterfaceModel</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.InterfaceModel.on_parameter_changed"><code class="docutils literal notranslate"><span class="pre">InterfaceModel.on_parameter_changed()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.InterfaceModel.run"><code class="docutils literal notranslate"><span class="pre">InterfaceModel.run()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.InterfaceModel.update_graph"><code class="docutils literal notranslate"><span class="pre">InterfaceModel.update_graph()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="gui.html#gui.ParameterChangedSignal"><code class="docutils literal notranslate"><span class="pre">ParameterChangedSignal</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.ParameterChangedSignal.signal"><code class="docutils literal notranslate"><span class="pre">ParameterChangedSignal.signal</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="gui.html#gui.check_value_in_range"><code class="docutils literal notranslate"><span class="pre">check_value_in_range()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a><ul>
@@ -501,170 +285,276 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.After"><code class="docutils literal notranslate"><span class="pre">After</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.After.apply_this_year"><code class="docutils literal notranslate"><span class="pre">After.apply_this_year()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.After.transformation"><code class="docutils literal notranslate"><span class="pre">After.transformation</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.After.year"><code class="docutils literal notranslate"><span class="pre">After.year</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gui.html#automatic-gui-generator-example">Automatic GUI Generator Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html#module-gui">Gui Internals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.DoubleSlider"><code class="docutils literal notranslate"><span class="pre">DoubleSlider</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.DoubleSlider.doubleValueChanged"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.doubleValueChanged</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.DoubleSlider.emitDoubleValueChanged"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.emitDoubleValueChanged()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.DoubleSlider.setMaximum"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setMaximum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.DoubleSlider.setMinimum"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setMinimum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.DoubleSlider.setSingleStep"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setSingleStep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.DoubleSlider.setValue"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.setValue()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.DoubleSlider.singleStep"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.singleStep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.DoubleSlider.value"><code class="docutils literal notranslate"><span class="pre">DoubleSlider.value()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Always"><code class="docutils literal notranslate"><span class="pre">Always</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Always.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Always.apply_this_year()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Always.transformation"><code class="docutils literal notranslate"><span class="pre">Always.transformation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.InterfaceModel"><code class="docutils literal notranslate"><span class="pre">InterfaceModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.InterfaceModel.on_parameter_changed"><code class="docutils literal notranslate"><span class="pre">InterfaceModel.on_parameter_changed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.InterfaceModel.run"><code class="docutils literal notranslate"><span class="pre">InterfaceModel.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.InterfaceModel.update_graph"><code class="docutils literal notranslate"><span class="pre">InterfaceModel.update_graph()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Before"><code class="docutils literal notranslate"><span class="pre">Before</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Before.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Before.apply_this_year()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Before.transformation"><code class="docutils literal notranslate"><span class="pre">Before.transformation</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Before.year"><code class="docutils literal notranslate"><span class="pre">Before.year</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.ParameterChangedSignal"><code class="docutils literal notranslate"><span class="pre">ParameterChangedSignal</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gui.html#gui.ParameterChangedSignal.signal"><code class="docutils literal notranslate"><span class="pre">ParameterChangedSignal.signal</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.BeforeAndThen"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.BeforeAndThen.apply_this_year"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen.apply_this_year()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.BeforeAndThen.transformation"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen.transformation</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.BeforeAndThen.year"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen.year</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui.html#gui.check_value_in_range"><code class="docutils literal notranslate"><span class="pre">check_value_in_range()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Clap"><code class="docutils literal notranslate"><span class="pre">Clap</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Clap.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Clap.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Clap.max"><code class="docutils literal notranslate"><span class="pre">Clap.max</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Clap.min"><code class="docutils literal notranslate"><span class="pre">Clap.min</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Clap.sample"><code class="docutils literal notranslate"><span class="pre">Clap.sample()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Clap.source"><code class="docutils literal notranslate"><span class="pre">Clap.source</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Distribution"><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Distribution.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Distribution.contains_distribution()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">LifeTwin Database Connector</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database.html#general-architecture-diagram">General Architecture Diagram</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#database.Database"><code class="docutils literal notranslate"><span class="pre">Database</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.Database.iterate_person"><code class="docutils literal notranslate"><span class="pre">Database.iterate_person()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Every"><code class="docutils literal notranslate"><span class="pre">Every</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Every.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Every.apply_this_year()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Every.transformation"><code class="docutils literal notranslate"><span class="pre">Every.transformation</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Every.years"><code class="docutils literal notranslate"><span class="pre">Every.years</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_DB"><code class="docutils literal notranslate"><span class="pre">OMOP_DB</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_DB.iterate_person"><code class="docutils literal notranslate"><span class="pre">OMOP_DB.iterate_person()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Group"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Group.apply"><code class="docutils literal notranslate"><span class="pre">Group.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Group.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Group.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Group.transformations"><code class="docutils literal notranslate"><span class="pre">Group.transformations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Measurement"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_date"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.measurement_type_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_type_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.operator_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.operator_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.person_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.provider_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.range_high"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.range_high</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.range_low"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.range_low</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.unit_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.unit_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.unit_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.unit_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.value_as_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_as_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.value_as_number"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_as_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.value_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Measurement.visit_occurrence_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.visit_occurrence_id</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Increase"><code class="docutils literal notranslate"><span class="pre">Increase</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Increase.apply"><code class="docutils literal notranslate"><span class="pre">Increase.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Increase.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Increase.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Increase.id"><code class="docutils literal notranslate"><span class="pre">Increase.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Increase.value"><code class="docutils literal notranslate"><span class="pre">Increase.value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Obsevation"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_date"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.observation_type_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_type_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.person_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.provider_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.qualifier_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.qualifier_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.qualifier_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.qualifier_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.unit_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.unit_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.unit_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.unit_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.value_as_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.value_as_number"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.value_as_string"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_string</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Obsevation.visit_occurrence_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.visit_occurrence_id</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.IncreaseByPercentage"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.IncreaseByPercentage.apply"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.IncreaseByPercentage.contains_distribution"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.IncreaseByPercentage.id"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.IncreaseByPercentage.percentage"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.percentage</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#database.OMOP_Person"><code class="docutils literal notranslate"><span class="pre">OMOP_Person</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.age"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.age</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.birth_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.birth_datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.care_site_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.care_site_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.day_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.day_of_birth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.ethnicity_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.ethnicity_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.ethnicity_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.gender_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.gender_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.gender_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.is_female"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.is_female</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.is_male"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.is_male</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.location_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.location_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.month_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.month_of_birth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.person_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.person_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.person_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.provider_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.race_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.race_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.race_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.sex"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.sex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="database.html#database.OMOP_Person.year_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.year_of_birth</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.LimitValue"><code class="docutils literal notranslate"><span class="pre">LimitValue</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.LimitValue.contains_distribution"><code class="docutils literal notranslate"><span class="pre">LimitValue.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.LimitValue.sample"><code class="docutils literal notranslate"><span class="pre">LimitValue.sample()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.LogNormal"><code class="docutils literal notranslate"><span class="pre">LogNormal</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.LogNormal.mean"><code class="docutils literal notranslate"><span class="pre">LogNormal.mean</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.LogNormal.sample"><code class="docutils literal notranslate"><span class="pre">LogNormal.sample()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.LogNormal.std"><code class="docutils literal notranslate"><span class="pre">LogNormal.std</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Normal"><code class="docutils literal notranslate"><span class="pre">Normal</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Normal.mean"><code class="docutils literal notranslate"><span class="pre">Normal.mean</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Normal.sample"><code class="docutils literal notranslate"><span class="pre">Normal.sample()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Normal.std"><code class="docutils literal notranslate"><span class="pre">Normal.std</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="graph.html#single-prediction-example-graph">Single Prediction Example Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html#spread-prediction-example-graph">Spread Prediction Example Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html#module-graph">Module Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.AbstractPrediction"><code class="docutils literal notranslate"><span class="pre">AbstractPrediction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.AbstractPrediction.plot_change"><code class="docutils literal notranslate"><span class="pre">AbstractPrediction.plot_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.AbstractPrediction.show_change"><code class="docutils literal notranslate"><span class="pre">AbstractPrediction.show_change()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Normal95IC"><code class="docutils literal notranslate"><span class="pre">Normal95IC()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.OnRange"><code class="docutils literal notranslate"><span class="pre">OnRange</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnRange.apply_this_year"><code class="docutils literal notranslate"><span class="pre">OnRange.apply_this_year()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnRange.end"><code class="docutils literal notranslate"><span class="pre">OnRange.end</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnRange.start"><code class="docutils literal notranslate"><span class="pre">OnRange.start</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnRange.transformation"><code class="docutils literal notranslate"><span class="pre">OnRange.transformation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.Prediction"><code class="docutils literal notranslate"><span class="pre">Prediction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.Prediction.current_age"><code class="docutils literal notranslate"><span class="pre">Prediction.current_age</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.Prediction.labels"><code class="docutils literal notranslate"><span class="pre">Prediction.labels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.Prediction.model"><code class="docutils literal notranslate"><span class="pre">Prediction.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.Prediction.plot_change"><code class="docutils literal notranslate"><span class="pre">Prediction.plot_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.Prediction.prediction_years"><code class="docutils literal notranslate"><span class="pre">Prediction.prediction_years</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.Prediction.predictions"><code class="docutils literal notranslate"><span class="pre">Prediction.predictions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.Prediction.return_category"><code class="docutils literal notranslate"><span class="pre">Prediction.return_category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.Prediction.show_change"><code class="docutils literal notranslate"><span class="pre">Prediction.show_change()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.OnSubset"><code class="docutils literal notranslate"><span class="pre">OnSubset</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnSubset.apply"><code class="docutils literal notranslate"><span class="pre">OnSubset.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnSubset.contains_distribution"><code class="docutils literal notranslate"><span class="pre">OnSubset.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnSubset.id"><code class="docutils literal notranslate"><span class="pre">OnSubset.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnSubset.operator"><code class="docutils literal notranslate"><span class="pre">OnSubset.operator</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnSubset.transformation"><code class="docutils literal notranslate"><span class="pre">OnSubset.transformation</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.OnSubset.value"><code class="docutils literal notranslate"><span class="pre">OnSubset.value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SinglePrediction"><code class="docutils literal notranslate"><span class="pre">SinglePrediction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SinglePrediction.labels"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.labels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SinglePrediction.model"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SinglePrediction.plot_change"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.plot_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SinglePrediction.predictions"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.predictions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SinglePrediction.return_category"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.return_category</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Once"><code class="docutils literal notranslate"><span class="pre">Once</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Once.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Once.apply_this_year()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Once.transformation"><code class="docutils literal notranslate"><span class="pre">Once.transformation</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Once.year"><code class="docutils literal notranslate"><span class="pre">Once.year</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.SpreadPrediction"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SpreadPrediction.model"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SpreadPrediction.plot_change"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.plot_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SpreadPrediction.prediction_years"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.prediction_years</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SpreadPrediction.return_category"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.return_category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SpreadPrediction.show_change"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.show_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="graph.html#graph.SpreadPrediction.tables"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.tables</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Reduce"><code class="docutils literal notranslate"><span class="pre">Reduce</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Reduce.apply"><code class="docutils literal notranslate"><span class="pre">Reduce.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Reduce.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Reduce.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Reduce.id"><code class="docutils literal notranslate"><span class="pre">Reduce.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Reduce.value"><code class="docutils literal notranslate"><span class="pre">Reduce.value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.calc_global_95CI"><code class="docutils literal notranslate"><span class="pre">calc_global_95CI()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.integrate_horizontals"><code class="docutils literal notranslate"><span class="pre">integrate_horizontals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graph.html#graph.set_minimum_value"><code class="docutils literal notranslate"><span class="pre">set_minimum_value()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.ReduceByPercentage"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.ReduceByPercentage.apply"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.ReduceByPercentage.contains_distribution"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.ReduceByPercentage.id"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.ReduceByPercentage.percentage"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.percentage</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.RegressToValue"><code class="docutils literal notranslate"><span class="pre">RegressToValue</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.RegressToValue.apply"><code class="docutils literal notranslate"><span class="pre">RegressToValue.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.RegressToValue.contains_distribution"><code class="docutils literal notranslate"><span class="pre">RegressToValue.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.RegressToValue.id"><code class="docutils literal notranslate"><span class="pre">RegressToValue.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.RegressToValue.percentage"><code class="docutils literal notranslate"><span class="pre">RegressToValue.percentage</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.RegressToValue.value"><code class="docutils literal notranslate"><span class="pre">RegressToValue.value</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html#general-architecture-diagram">General Architecture Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html#module-biomodel.biomodel">Core Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt"><code class="docutils literal notranslate"><span class="pre">AgeInt</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt.id"><code class="docutils literal notranslate"><span class="pre">AgeInt.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt.maximum"><code class="docutils literal notranslate"><span class="pre">AgeInt.maximum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt.minimum"><code class="docutils literal notranslate"><span class="pre">AgeInt.minimum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.AgeInt.name"><code class="docutils literal notranslate"><span class="pre">AgeInt.name</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Set"><code class="docutils literal notranslate"><span class="pre">Set</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Set.apply"><code class="docutils literal notranslate"><span class="pre">Set.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Set.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Set.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Set.id"><code class="docutils literal notranslate"><span class="pre">Set.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Set.value"><code class="docutils literal notranslate"><span class="pre">Set.value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel"><code class="docutils literal notranslate"><span class="pre">BioModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.age_parameter"><code class="docutils literal notranslate"><span class="pre">BioModel.age_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.describe"><code class="docutils literal notranslate"><span class="pre">BioModel.describe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.get_intervals"><code class="docutils literal notranslate"><span class="pre">BioModel.get_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.get_title"><code class="docutils literal notranslate"><span class="pre">BioModel.get_title()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.has_intervals"><code class="docutils literal notranslate"><span class="pre">BioModel.has_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.has_title"><code class="docutils literal notranslate"><span class="pre">BioModel.has_title()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">BioModel.kwarg_to_omop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.name"><code class="docutils literal notranslate"><span class="pre">BioModel.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.output_meaning"><code class="docutils literal notranslate"><span class="pre">BioModel.output_meaning()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict"><code class="docutils literal notranslate"><span class="pre">BioModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_person"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_person_once"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_once()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_person_time"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_person_time_variations"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_time_variations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.predict_population_time"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_population_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.return_category"><code class="docutils literal notranslate"><span class="pre">BioModel.return_category()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel.should_have_meaning"><code class="docutils literal notranslate"><span class="pre">BioModel.should_have_meaning()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.ThenOnwards"><code class="docutils literal notranslate"><span class="pre">ThenOnwards</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.ThenOnwards.apply_this_year"><code class="docutils literal notranslate"><span class="pre">ThenOnwards.apply_this_year()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.ThenOnwards.transformation"><code class="docutils literal notranslate"><span class="pre">ThenOnwards.transformation</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.ThenOnwards.year"><code class="docutils literal notranslate"><span class="pre">ThenOnwards.year</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool"><code class="docutils literal notranslate"><span class="pre">Bool</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool.get_default_value"><code class="docutils literal notranslate"><span class="pre">Bool.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool.id"><code class="docutils literal notranslate"><span class="pre">Bool.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool.name"><code class="docutils literal notranslate"><span class="pre">Bool.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Bool.type_name"><code class="docutils literal notranslate"><span class="pre">Bool.type_name()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.TimeDelta"><code class="docutils literal notranslate"><span class="pre">TimeDelta</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.TimeDelta.apply"><code class="docutils literal notranslate"><span class="pre">TimeDelta.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.TimeDelta.apply_this_year"><code class="docutils literal notranslate"><span class="pre">TimeDelta.apply_this_year()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.TimeDelta.contains_distribution"><code class="docutils literal notranslate"><span class="pre">TimeDelta.contains_distribution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt"><code class="docutils literal notranslate"><span class="pre">BoolInt</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.false"><code class="docutils literal notranslate"><span class="pre">BoolInt.false</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.get_default_value"><code class="docutils literal notranslate"><span class="pre">BoolInt.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.id"><code class="docutils literal notranslate"><span class="pre">BoolInt.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.name"><code class="docutils literal notranslate"><span class="pre">BoolInt.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.true"><code class="docutils literal notranslate"><span class="pre">BoolInt.true</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BoolInt.type_name"><code class="docutils literal notranslate"><span class="pre">BoolInt.type_name()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Transformation"><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Transformation.apply"><code class="docutils literal notranslate"><span class="pre">Transformation.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Transformation.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Transformation.contains_distribution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel"><code class="docutils literal notranslate"><span class="pre">CustomModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel.age_parameter"><code class="docutils literal notranslate"><span class="pre">CustomModel.age_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">CustomModel.kwarg_to_omop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel.predict"><code class="docutils literal notranslate"><span class="pre">CustomModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel.return_category"><code class="docutils literal notranslate"><span class="pre">CustomModel.return_category()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.Uniform"><code class="docutils literal notranslate"><span class="pre">Uniform</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Uniform.max"><code class="docutils literal notranslate"><span class="pre">Uniform.max</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Uniform.min"><code class="docutils literal notranslate"><span class="pre">Uniform.min</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.Uniform.sample"><code class="docutils literal notranslate"><span class="pre">Uniform.sample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum"><code class="docutils literal notranslate"><span class="pre">Enum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.domain_info"><code class="docutils literal notranslate"><span class="pre">Enum.domain_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.get_default_value"><code class="docutils literal notranslate"><span class="pre">Enum.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.id"><code class="docutils literal notranslate"><span class="pre">Enum.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.name"><code class="docutils literal notranslate"><span class="pre">Enum.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.type_name"><code class="docutils literal notranslate"><span class="pre">Enum.type_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Enum.values"><code class="docutils literal notranslate"><span class="pre">Enum.values</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.WithProbability"><code class="docutils literal notranslate"><span class="pre">WithProbability</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.WithProbability.apply"><code class="docutils literal notranslate"><span class="pre">WithProbability.apply()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.WithProbability.contains_distribution"><code class="docutils literal notranslate"><span class="pre">WithProbability.contains_distribution()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.WithProbability.probability"><code class="docutils literal notranslate"><span class="pre">WithProbability.probability</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="transformations.html#transformations.WithProbability.transformation"><code class="docutils literal notranslate"><span class="pre">WithProbability.transformation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float"><code class="docutils literal notranslate"><span class="pre">Float</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.domain_info"><code class="docutils literal notranslate"><span class="pre">Float.domain_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.get_default_value"><code class="docutils literal notranslate"><span class="pre">Float.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.id"><code class="docutils literal notranslate"><span class="pre">Float.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.maximum"><code class="docutils literal notranslate"><span class="pre">Float.maximum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.minimum"><code class="docutils literal notranslate"><span class="pre">Float.minimum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.name"><code class="docutils literal notranslate"><span class="pre">Float.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Float.type_name"><code class="docutils literal notranslate"><span class="pre">Float.type_name()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.get_as_id"><code class="docutils literal notranslate"><span class="pre">get_as_id()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.get_id_value"><code class="docutils literal notranslate"><span class="pre">get_id_value()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="transformations.html#transformations.get_value"><code class="docutils literal notranslate"><span class="pre">get_value()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int"><code class="docutils literal notranslate"><span class="pre">Int</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.domain_info"><code class="docutils literal notranslate"><span class="pre">Int.domain_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.get_default_value"><code class="docutils literal notranslate"><span class="pre">Int.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.id"><code class="docutils literal notranslate"><span class="pre">Int.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.maximum"><code class="docutils literal notranslate"><span class="pre">Int.maximum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.minimum"><code class="docutils literal notranslate"><span class="pre">Int.minimum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.name"><code class="docutils literal notranslate"><span class="pre">Int.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Int.type_name"><code class="docutils literal notranslate"><span class="pre">Int.type_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId"><code class="docutils literal notranslate"><span class="pre">OMOPId</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId.id"><code class="docutils literal notranslate"><span class="pre">OMOPId.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter"><code class="docutils literal notranslate"><span class="pre">Parameter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.domain_info"><code class="docutils literal notranslate"><span class="pre">Parameter.domain_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.get_default_value"><code class="docutils literal notranslate"><span class="pre">Parameter.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.id"><code class="docutils literal notranslate"><span class="pre">Parameter.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.name"><code class="docutils literal notranslate"><span class="pre">Parameter.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.Parameter.type_name"><code class="docutils literal notranslate"><span class="pre">Parameter.type_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction"><code class="docutils literal notranslate"><span class="pre">RFunction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.age_parameter"><code class="docutils literal notranslate"><span class="pre">RFunction.age_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.class_name"><code class="docutils literal notranslate"><span class="pre">RFunction.class_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">RFunction.kwarg_to_omop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.predict"><code class="docutils literal notranslate"><span class="pre">RFunction.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.resolved_path"><code class="docutils literal notranslate"><span class="pre">RFunction.resolved_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction.return_category"><code class="docutils literal notranslate"><span class="pre">RFunction.return_category()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory"><code class="docutils literal notranslate"><span class="pre">ReturnCategory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory.CATEGORICAL"><code class="docutils literal notranslate"><span class="pre">ReturnCategory.CATEGORICAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory.CONTINUOUS"><code class="docutils literal notranslate"><span class="pre">ReturnCategory.CONTINUOUS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RiskInterval"><code class="docutils literal notranslate"><span class="pre">RiskInterval</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RiskInterval.name"><code class="docutils literal notranslate"><span class="pre">RiskInterval.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="biomodel.html#biomodel.biomodel.RiskInterval.value"><code class="docutils literal notranslate"><span class="pre">RiskInterval.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.contains_distribution_in_variations"><code class="docutils literal notranslate"><span class="pre">contains_distribution_in_variations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="biomodel.html#biomodel.biomodel.filter_transformations"><code class="docutils literal notranslate"><span class="pre">filter_transformations()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -676,7 +566,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../examples/covid_gui.html" class="btn btn-neutral float-left" title="Covid Simulation GUI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="biomodel.html" class="btn btn-neutral float-right" title="LifeTwin Core Internals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="transformations.html" class="btn btn-neutral float-right" title="LifeTwin Simulation Language" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
