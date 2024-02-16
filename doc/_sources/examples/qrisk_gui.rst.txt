@@ -1,0 +1,12 @@
+QRisk Simulation GUI
+====================
+
+.. automodule:: qrisk_gui
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoinclude::
+   :language: python
+   :linenos:
+
+.. autoincludeimage::

@@ -1,0 +1,13 @@
+CRC Simulation Graph
+====================
+
+.. automodule:: crc_graph
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoinclude::
+   :language: python
+   :linenos:
+
+.. autoincludeimage::

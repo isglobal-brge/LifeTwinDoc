@@ -1,0 +1,21 @@
+Genetic Framingham Simulation Model
+===================================
+
+Submodules
+----------
+
+models.framingham\_gen.model\_fr module
+---------------------------------------
+
+.. automodule:: biomodel.models.framingham_gen.model_fr
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: biomodel.models.framingham_gen
+   :members:
+   :undoc-members:
+   :show-inheritance:

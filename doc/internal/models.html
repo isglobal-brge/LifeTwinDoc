@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeTwin Statistical Models &mdash; LifeTwin  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CLivD Simulation Model" href="models.clivd.html" />
+    <link rel="prev" title="LifeTwin Automatic GUI Generator" href="gui.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LifeTwin
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Statistical Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd.html">CLivD Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd_points.html">CLivD Points Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.covid.html">Covid Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham.html">Framingham Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html">Genetic Framingham Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.gail.html">Gail Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.lifecrc.html">LifeCRC Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.pim.html">PIM Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.prostate.html">Prostate Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.qrisk.html">QRisk Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.score.html">Score Simulation Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-biomodel.models">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.CLivD"><code class="docutils literal notranslate"><span class="pre">CLivD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.CLivDPoints"><code class="docutils literal notranslate"><span class="pre">CLivDPoints</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.Covid"><code class="docutils literal notranslate"><span class="pre">Covid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.Framingham"><code class="docutils literal notranslate"><span class="pre">Framingham</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.FraminghamGenetics"><code class="docutils literal notranslate"><span class="pre">FraminghamGenetics</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.Gail"><code class="docutils literal notranslate"><span class="pre">Gail</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.LifeCRC"><code class="docutils literal notranslate"><span class="pre">LifeCRC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.PIMModel"><code class="docutils literal notranslate"><span class="pre">PIMModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.Prostate"><code class="docutils literal notranslate"><span class="pre">Prostate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.QRisk"><code class="docutils literal notranslate"><span class="pre">QRisk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.models.ScoreModel"><code class="docutils literal notranslate"><span class="pre">ScoreModel</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LifeTwin</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">LifeTwin Internals</a></li>
+      <li class="breadcrumb-item active">LifeTwin Statistical Models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internal/models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lifetwin-statistical-models">
+<h1>LifeTwin Statistical Models<a class="headerlink" href="#lifetwin-statistical-models" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="models.clivd.html">CLivD Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.clivd.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.clivd.html#module-biomodel.models.clivd.clivd">models.clivd.clivd module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.clivd.html#biomodel.models.clivd.clivd.CLivD"><code class="docutils literal notranslate"><span class="pre">CLivD</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd.html#biomodel.models.clivd.clivd.CLivD.interpretation"><code class="docutils literal notranslate"><span class="pre">CLivD.interpretation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd.html#biomodel.models.clivd.clivd.CLivD.intervals"><code class="docutils literal notranslate"><span class="pre">CLivD.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd.html#biomodel.models.clivd.clivd.CLivD.name"><code class="docutils literal notranslate"><span class="pre">CLivD.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd.html#biomodel.models.clivd.clivd.CLivD.predict"><code class="docutils literal notranslate"><span class="pre">CLivD.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd.html#biomodel.models.clivd.clivd.CLivD.title"><code class="docutils literal notranslate"><span class="pre">CLivD.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.clivd.html#module-biomodel.models.clivd">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.clivd_points.html">CLivD Points Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.clivd_points.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.clivd_points.html#module-biomodel.models.clivd_points.clivd">models.clivd_points.clivd module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.clivd_points.html#biomodel.models.clivd_points.clivd.CLivDPoints"><code class="docutils literal notranslate"><span class="pre">CLivDPoints</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd_points.html#biomodel.models.clivd_points.clivd.CLivDPoints.interpretation"><code class="docutils literal notranslate"><span class="pre">CLivDPoints.interpretation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd_points.html#biomodel.models.clivd_points.clivd.CLivDPoints.intervals"><code class="docutils literal notranslate"><span class="pre">CLivDPoints.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd_points.html#biomodel.models.clivd_points.clivd.CLivDPoints.name"><code class="docutils literal notranslate"><span class="pre">CLivDPoints.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd_points.html#biomodel.models.clivd_points.clivd.CLivDPoints.predict"><code class="docutils literal notranslate"><span class="pre">CLivDPoints.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd_points.html#biomodel.models.clivd_points.clivd.CLivDPoints.title"><code class="docutils literal notranslate"><span class="pre">CLivDPoints.title</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models.clivd_points.html#biomodel.models.clivd_points.clivd.linear_points"><code class="docutils literal notranslate"><span class="pre">linear_points()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.clivd_points.html#module-biomodel.models.clivd_points">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.covid.html">Covid Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.covid.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.covid.html#module-biomodel.models.covid.covid">models.covid.covid module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.covid.html#biomodel.models.covid.covid.Covid"><code class="docutils literal notranslate"><span class="pre">Covid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.covid.html#biomodel.models.covid.covid.Covid.predict"><code class="docutils literal notranslate"><span class="pre">Covid.predict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.covid.html#module-biomodel.models.covid">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.framingham.html">Framingham Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.framingham.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.framingham.html#module-biomodel.models.framingham.model_fr">models.framingham.model_fr module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.framingham.html#biomodel.models.framingham.model_fr.Framingham"><code class="docutils literal notranslate"><span class="pre">Framingham</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham.html#biomodel.models.framingham.model_fr.Framingham.file_path"><code class="docutils literal notranslate"><span class="pre">Framingham.file_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham.html#biomodel.models.framingham.model_fr.Framingham.function_name"><code class="docutils literal notranslate"><span class="pre">Framingham.function_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham.html#biomodel.models.framingham.model_fr.Framingham.interpretation"><code class="docutils literal notranslate"><span class="pre">Framingham.interpretation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham.html#biomodel.models.framingham.model_fr.Framingham.intervals"><code class="docutils literal notranslate"><span class="pre">Framingham.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham.html#biomodel.models.framingham.model_fr.Framingham.parameters"><code class="docutils literal notranslate"><span class="pre">Framingham.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham.html#biomodel.models.framingham.model_fr.Framingham.title"><code class="docutils literal notranslate"><span class="pre">Framingham.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.framingham.html#module-biomodel.models.framingham">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.framingham-gen.html">Genetic Framingham Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.framingham-gen.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.framingham-gen.html#module-biomodel.models.framingham_gen.model_fr">models.framingham_gen.model_fr module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.framingham-gen.html#biomodel.models.framingham_gen.model_fr.FraminghamGenetics"><code class="docutils literal notranslate"><span class="pre">FraminghamGenetics</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html#biomodel.models.framingham_gen.model_fr.FraminghamGenetics.file_path"><code class="docutils literal notranslate"><span class="pre">FraminghamGenetics.file_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html#biomodel.models.framingham_gen.model_fr.FraminghamGenetics.function_name"><code class="docutils literal notranslate"><span class="pre">FraminghamGenetics.function_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html#biomodel.models.framingham_gen.model_fr.FraminghamGenetics.interpretation"><code class="docutils literal notranslate"><span class="pre">FraminghamGenetics.interpretation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html#biomodel.models.framingham_gen.model_fr.FraminghamGenetics.intervals"><code class="docutils literal notranslate"><span class="pre">FraminghamGenetics.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html#biomodel.models.framingham_gen.model_fr.FraminghamGenetics.parameters"><code class="docutils literal notranslate"><span class="pre">FraminghamGenetics.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html#biomodel.models.framingham_gen.model_fr.FraminghamGenetics.title"><code class="docutils literal notranslate"><span class="pre">FraminghamGenetics.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.framingham-gen.html#module-biomodel.models.framingham_gen">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.gail.html">Gail Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.gail.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.gail.html#module-biomodel.models.gail.model_gail">models.gail.model_gail module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.gail.html#biomodel.models.gail.model_gail.Gail"><code class="docutils literal notranslate"><span class="pre">Gail</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.gail.html#biomodel.models.gail.model_gail.Gail.interpretation"><code class="docutils literal notranslate"><span class="pre">Gail.interpretation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.gail.html#biomodel.models.gail.model_gail.Gail.intervals"><code class="docutils literal notranslate"><span class="pre">Gail.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.gail.html#biomodel.models.gail.model_gail.Gail.predict"><code class="docutils literal notranslate"><span class="pre">Gail.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.gail.html#biomodel.models.gail.model_gail.Gail.predict_over_time"><code class="docutils literal notranslate"><span class="pre">Gail.predict_over_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.gail.html#biomodel.models.gail.model_gail.Gail.title"><code class="docutils literal notranslate"><span class="pre">Gail.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.gail.html#module-biomodel.models.gail">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.lifecrc.html">LifeCRC Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.lifecrc.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.lifecrc.html#module-biomodel.models.lifecrc.model">models.lifecrc.model module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.lifecrc.html#biomodel.models.lifecrc.model.LifeCRC"><code class="docutils literal notranslate"><span class="pre">LifeCRC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.lifecrc.html#biomodel.models.lifecrc.model.LifeCRC.interpretation"><code class="docutils literal notranslate"><span class="pre">LifeCRC.interpretation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.lifecrc.html#biomodel.models.lifecrc.model.LifeCRC.intervals"><code class="docutils literal notranslate"><span class="pre">LifeCRC.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.lifecrc.html#biomodel.models.lifecrc.model.LifeCRC.predict"><code class="docutils literal notranslate"><span class="pre">LifeCRC.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.lifecrc.html#biomodel.models.lifecrc.model.LifeCRC.title"><code class="docutils literal notranslate"><span class="pre">LifeCRC.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.lifecrc.html#module-biomodel.models.lifecrc">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.pim.html">PIM Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.pim.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.pim.html#module-biomodel.models.pim.pim">models.pim.pim module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.pim.html#biomodel.models.pim.pim.PIMModel"><code class="docutils literal notranslate"><span class="pre">PIMModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.pim.html#biomodel.models.pim.pim.PIMModel.interpretation"><code class="docutils literal notranslate"><span class="pre">PIMModel.interpretation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.pim.html#biomodel.models.pim.pim.PIMModel.name"><code class="docutils literal notranslate"><span class="pre">PIMModel.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.pim.html#biomodel.models.pim.pim.PIMModel.predict"><code class="docutils literal notranslate"><span class="pre">PIMModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.pim.html#biomodel.models.pim.pim.PIMModel.title"><code class="docutils literal notranslate"><span class="pre">PIMModel.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.pim.html#module-biomodel.models.pim">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.prostate.html">Prostate Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.prostate.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.prostate.html#module-biomodel.models.prostate.prostate">models.prostate.prostate module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.prostate.html#biomodel.models.prostate.prostate.Prostate"><code class="docutils literal notranslate"><span class="pre">Prostate</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.prostate.html#biomodel.models.prostate.prostate.Prostate.name"><code class="docutils literal notranslate"><span class="pre">Prostate.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.prostate.html#biomodel.models.prostate.prostate.Prostate.predict"><code class="docutils literal notranslate"><span class="pre">Prostate.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.prostate.html#biomodel.models.prostate.prostate.Prostate.title"><code class="docutils literal notranslate"><span class="pre">Prostate.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.prostate.html#module-biomodel.models.prostate">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.qrisk.html">QRisk Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.qrisk.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.qrisk.html#module-biomodel.models.qrisk.qrisk">models.qrisk.qrisk module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.qrisk.html#biomodel.models.qrisk.qrisk.QRisk"><code class="docutils literal notranslate"><span class="pre">QRisk</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.qrisk.html#biomodel.models.qrisk.qrisk.QRisk.interpretation"><code class="docutils literal notranslate"><span class="pre">QRisk.interpretation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.qrisk.html#biomodel.models.qrisk.qrisk.QRisk.intervals"><code class="docutils literal notranslate"><span class="pre">QRisk.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.qrisk.html#biomodel.models.qrisk.qrisk.QRisk.name"><code class="docutils literal notranslate"><span class="pre">QRisk.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.qrisk.html#biomodel.models.qrisk.qrisk.QRisk.predict"><code class="docutils literal notranslate"><span class="pre">QRisk.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.qrisk.html#biomodel.models.qrisk.qrisk.QRisk.title"><code class="docutils literal notranslate"><span class="pre">QRisk.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.qrisk.html#module-biomodel.models.qrisk.qrisk_model">models.qrisk.qrisk_model module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.qrisk.html#biomodel.models.qrisk.qrisk_model.cvd_female_raw"><code class="docutils literal notranslate"><span class="pre">cvd_female_raw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.qrisk.html#biomodel.models.qrisk.qrisk_model.cvd_male_raw"><code class="docutils literal notranslate"><span class="pre">cvd_male_raw()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.qrisk.html#biomodel.models.qrisk.qrisk_model.cvd_raw"><code class="docutils literal notranslate"><span class="pre">cvd_raw()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.qrisk.html#module-biomodel.models.qrisk">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.score.html">Score Simulation Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.score.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.score.html#module-biomodel.models.score.score">models.score.score module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.score.html#biomodel.models.score.score.ScoreModel"><code class="docutils literal notranslate"><span class="pre">ScoreModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.score.html#biomodel.models.score.score.ScoreModel.interpretation"><code class="docutils literal notranslate"><span class="pre">ScoreModel.interpretation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.score.html#biomodel.models.score.score.ScoreModel.intervals"><code class="docutils literal notranslate"><span class="pre">ScoreModel.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.score.html#biomodel.models.score.score.ScoreModel.name"><code class="docutils literal notranslate"><span class="pre">ScoreModel.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.score.html#biomodel.models.score.score.ScoreModel.predict"><code class="docutils literal notranslate"><span class="pre">ScoreModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.score.html#biomodel.models.score.score.ScoreModel.title"><code class="docutils literal notranslate"><span class="pre">ScoreModel.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.score.html#module-biomodel.models.score.score_model">models.score.score_model module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.score.html#biomodel.models.score.score_model.calculate_survival_probabilities"><code class="docutils literal notranslate"><span class="pre">calculate_survival_probabilities()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.score.html#biomodel.models.score.score_model.calculate_sy"><code class="docutils literal notranslate"><span class="pre">calculate_sy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.score.html#biomodel.models.score.score_model.calculate_weighted_sum"><code class="docutils literal notranslate"><span class="pre">calculate_weighted_sum()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.score.html#biomodel.models.score.score_model.combined_cvd_risk"><code class="docutils literal notranslate"><span class="pre">combined_cvd_risk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.score.html#biomodel.models.score.score_model.get_coefficients"><code class="docutils literal notranslate"><span class="pre">get_coefficients()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.score.html#biomodel.models.score.score_model.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.score.html#biomodel.models.score.score_model.ten_year_risk"><code class="docutils literal notranslate"><span class="pre">ten_year_risk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.score.html#biomodel.models.score.score_model.ten_year_survival_probability"><code class="docutils literal notranslate"><span class="pre">ten_year_survival_probability()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.score.html#module-biomodel.models.score">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-biomodel.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-biomodel.models" title="Link to this heading"></a></h2>
+<p>This file dynamically imports classes from submodules that inherit from BioModel. It uses pkgutil and importlib to achieve this.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.CLivD">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">CLivD</span></span><a class="headerlink" href="#biomodel.models.CLivD" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>Predict the risk score for developing a certain condition based on the input parameters such as age, sex, alcohol intake, diabetes status, waist-hip ratio, GGT (Gamma-glutamyl transferase), and smoking status. The function limits the alcohol and GGT values based on certain conditions, calculates the risk score using a predefined model, and then maps the score to a risk category (Minimal, Low, Intermediate, or High) based on predefined thresholds. The risk score is returned as a float value.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.CLivD.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'percentage'</span></em><a class="headerlink" href="#biomodel.models.CLivD.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.CLivD.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=0.0,</span> <span class="pre">name='Minimal</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.5,</span> <span class="pre">name='Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=4,</span> <span class="pre">name='Intermediate</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=10,</span> <span class="pre">name='High</span> <span class="pre">risk')]</span></em><a class="headerlink" href="#biomodel.models.CLivD.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.CLivD.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CLivD'</span></em><a class="headerlink" href="#biomodel.models.CLivD.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.CLivD.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=20,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Age')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id='sex',</span> <span class="pre">values={1:</span> <span class="pre">'Male',</span> <span class="pre">2:</span> <span class="pre">'Female'},</span> <span class="pre">name='Sex')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alcohol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=35810226,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=50,</span> <span class="pre">name='Alcohol</span> <span class="pre">intake</span> <span class="pre">(drinks/week)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diabetes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolInt(id=35817874,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Has</span> <span class="pre">diabetes?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4087501,</span> <span class="pre">minimum=0.6,</span> <span class="pre">maximum=1.4,</span> <span class="pre">name='Waist-hip</span> <span class="pre">ratio')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ggt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4210715,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=200,</span> <span class="pre">name='Gamma-glutamyl</span> <span class="pre">transferase</span> <span class="pre">(U/L)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolInt(id=1585856,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Is</span> <span class="pre">smoker?')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#biomodel.models.CLivD.predict" title="Link to this definition"></a></dt>
+<dd><p>Predict the risk score for developing a certain condition based on the input parameters such as age, sex, alcohol intake, diabetes status, waist-hip ratio, GGT (Gamma-glutamyl transferase), and smoking status. The function limits the alcohol and GGT values based on certain conditions, calculates the risk score using a predefined model, and then maps the score to a risk category (Minimal, Low, Intermediate, or High) based on predefined thresholds. The risk score is returned as a float value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.CLivD.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Percentage</span> <span class="pre">of</span> <span class="pre">developing</span> <span class="pre">liver</span> <span class="pre">disease</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">15</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.CLivD.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.CLivDPoints">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">CLivDPoints</span></span><a class="headerlink" href="#biomodel.models.CLivDPoints" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>Custom model to predict the percentage of developing liver disease in the next 15 years based on input parameters using linear scaling.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): The age of the individual (between 20 and 100).
+sex (int): The gender of the individual (1 for male, 2 for female).
+alcohol (float): The alcohol intake per week (in drinks, between 0 and 50).
+diabetes (bool): Indicates if the individual has diabetes (True for yes, False for no).
+whr (float): The waist-hip ratio of the individual (between 0.6 and 1.4).
+ggt (float): The gamma-glutamyl transferase level (in U/L, between 0 and 200).
+smoking (bool): Indicates if the individual is a smoker (True for yes, False for no).</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: The predicted risk score based on the input parameters.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.CLivDPoints.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'percentage'</span></em><a class="headerlink" href="#biomodel.models.CLivDPoints.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.CLivDPoints.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=0.0,</span> <span class="pre">name='Minimal</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.5,</span> <span class="pre">name='Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=4,</span> <span class="pre">name='Intermediate</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=10,</span> <span class="pre">name='High</span> <span class="pre">risk')]</span></em><a class="headerlink" href="#biomodel.models.CLivDPoints.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.CLivDPoints.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CLivD'</span></em><a class="headerlink" href="#biomodel.models.CLivDPoints.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.CLivDPoints.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=20,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Age')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id='sex',</span> <span class="pre">values={1:</span> <span class="pre">'Male',</span> <span class="pre">2:</span> <span class="pre">'Female'},</span> <span class="pre">name='Sex')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alcohol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=35810226,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=50,</span> <span class="pre">name='Alcohol</span> <span class="pre">intake</span> <span class="pre">(drinks/week)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diabetes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolInt(id=35817874,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Has</span> <span class="pre">diabetes?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4087501,</span> <span class="pre">minimum=0.6,</span> <span class="pre">maximum=1.4,</span> <span class="pre">name='Waist-hip</span> <span class="pre">ratio')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ggt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4210715,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=200,</span> <span class="pre">name='Gamma-glutamyl</span> <span class="pre">transferase</span> <span class="pre">(U/L)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolInt(id=1585856,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Is</span> <span class="pre">smoker?')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#biomodel.models.CLivDPoints.predict" title="Link to this definition"></a></dt>
+<dd><p>Predict the risk score based on the input parameters using linear scaling.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): The age of the individual (between 20 and 100).
+sex (int): The gender of the individual (1 for male, 2 for female).
+alcohol (float): The alcohol intake per week (in drinks, between 0 and 50).
+diabetes (bool): Indicates if the individual has diabetes (True for yes, False for no).
+whr (float): The waist-hip ratio of the individual (between 0.6 and 1.4).
+ggt (float): The gamma-glutamyl transferase level (in U/L, between 0 and 200).
+smoking (bool): Indicates if the individual is a smoker (True for yes, False for no).</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: The predicted risk score based on the input parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.CLivDPoints.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Percentage</span> <span class="pre">of</span> <span class="pre">developing</span> <span class="pre">liver</span> <span class="pre">disease</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">15</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.CLivDPoints.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.Covid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">Covid</span></span><a class="headerlink" href="#biomodel.models.Covid" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>Predict the outcome based on the decision tree.</p>
+<p>Parameters:
+- ldh: Lactic dehydrogenase value.
+- hs_crp: High-sensitivity C-reactive protein value.
+- lymphocyte: Lymphocyte percentage.</p>
+<p>Returns:
+- ‘Survival’ or ‘Death’ based on the decision tree.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.Covid.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ldh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4150493,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=1000,</span> <span class="pre">name='Lactic</span> <span class="pre">dehydrogenase</span> <span class="pre">value')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hs_crp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4208414,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=1000,</span> <span class="pre">name='High-sensitivity</span> <span class="pre">C-reactive</span> <span class="pre">protein</span> <span class="pre">value')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lymphocyte</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=37399254,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Lymphocyte</span> <span class="pre">percentage')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biomodel.models.Covid.predict" title="Link to this definition"></a></dt>
+<dd><p>Predict the outcome based on the decision tree.</p>
+<p>Parameters:
+- ldh: Lactic dehydrogenase value.
+- hs_crp: High-sensitivity C-reactive protein value.
+- lymphocyte: Lymphocyte percentage.</p>
+<p>Returns:
+- ‘Survival’ or ‘Death’ based on the decision tree.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.Framingham">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">Framingham</span></span><a class="headerlink" href="#biomodel.models.Framingham" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction" title="biomodel.biomodel.RFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RFunction</span></code></a></p>
+<p>Represents a class for calculating the probability of having a cardiovascular event in the next 10 years using the Framingham risk function.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>function_name (str): The name of the function.
+file_path (str): The file path for the function.
+interpretation (str): The interpretation of the function.
+title (str): The title of the probability calculation.
+intervals (list): A list of RiskInterval objects representing the risk intervals.
+parameters (dict): A dictionary of parameters required for the calculation, including sex, age, coltot, hdl, tas, tad, smoke, and diab.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Framingham.file_path">
+<span class="sig-name descname"><span class="pre">file_path</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fr.r'</span></em><a class="headerlink" href="#biomodel.models.Framingham.file_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Framingham.function_name">
+<span class="sig-name descname"><span class="pre">function_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'calculadora.risc'</span></em><a class="headerlink" href="#biomodel.models.Framingham.function_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Framingham.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'probability'</span></em><a class="headerlink" href="#biomodel.models.Framingham.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Framingham.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=0.0,</span> <span class="pre">name='Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.1,</span> <span class="pre">name='Medium</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.2,</span> <span class="pre">name='High</span> <span class="pre">risk')]</span></em><a class="headerlink" href="#biomodel.models.Framingham.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Framingham.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'age':</span> <span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=35,</span> <span class="pre">maximum=70,</span> <span class="pre">name='Age'),</span> <span class="pre">'coltot':</span> <span class="pre">Float(id=4224820,</span> <span class="pre">minimum=100,</span> <span class="pre">maximum=400,</span> <span class="pre">name='Colesterol'),</span> <span class="pre">'diab':</span> <span class="pre">BoolInt(id=35817874,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Has</span> <span class="pre">diabetes?'),</span> <span class="pre">'hdl':</span> <span class="pre">Float(id=4011133,</span> <span class="pre">minimum=10,</span> <span class="pre">maximum=100,</span> <span class="pre">name='HDL'),</span> <span class="pre">'sex':</span> <span class="pre">Enum(id='sex',</span> <span class="pre">values={1:</span> <span class="pre">'Male',</span> <span class="pre">2:</span> <span class="pre">'Female'},</span> <span class="pre">name='Sex'),</span> <span class="pre">'smoke':</span> <span class="pre">BoolInt(id=1585856,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Is</span> <span class="pre">smoker?'),</span> <span class="pre">'tad':</span> <span class="pre">Float(id=4154790,</span> <span class="pre">minimum=50,</span> <span class="pre">maximum=150,</span> <span class="pre">name='TAD'),</span> <span class="pre">'tas':</span> <span class="pre">Float(id=4152194,</span> <span class="pre">minimum=50,</span> <span class="pre">maximum=250,</span> <span class="pre">name='TAS')}</span></em><a class="headerlink" href="#biomodel.models.Framingham.parameters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Framingham.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Probability</span> <span class="pre">of</span> <span class="pre">having</span> <span class="pre">a</span> <span class="pre">cardiovascular</span> <span class="pre">event</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">10</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.Framingham.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.FraminghamGenetics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">FraminghamGenetics</span></span><a class="headerlink" href="#biomodel.models.FraminghamGenetics" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction" title="biomodel.biomodel.RFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RFunction</span></code></a></p>
+<p>A class to calculate the probability of having a cardiovascular event in the next 10 years based on Framingham genetics. It provides a wrapper for the calculation function and defines the parameters and intervals for risk assessment.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.FraminghamGenetics.file_path">
+<span class="sig-name descname"><span class="pre">file_path</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'calculadora.risc.gen.r'</span></em><a class="headerlink" href="#biomodel.models.FraminghamGenetics.file_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.FraminghamGenetics.function_name">
+<span class="sig-name descname"><span class="pre">function_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'wrapper_calculadora.risc.gen'</span></em><a class="headerlink" href="#biomodel.models.FraminghamGenetics.function_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.FraminghamGenetics.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'probability'</span></em><a class="headerlink" href="#biomodel.models.FraminghamGenetics.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.FraminghamGenetics.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=0.0,</span> <span class="pre">name='Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.1,</span> <span class="pre">name='Medium</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.2,</span> <span class="pre">name='High</span> <span class="pre">risk')]</span></em><a class="headerlink" href="#biomodel.models.FraminghamGenetics.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.FraminghamGenetics.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'age':</span> <span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=35,</span> <span class="pre">maximum=70,</span> <span class="pre">name='Age'),</span> <span class="pre">'coltot':</span> <span class="pre">Float(id=4224820,</span> <span class="pre">minimum=100,</span> <span class="pre">maximum=400,</span> <span class="pre">name='Colesterol'),</span> <span class="pre">'diab':</span> <span class="pre">BoolInt(id=35817874,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Has</span> <span class="pre">diabetes?'),</span> <span class="pre">'hdl':</span> <span class="pre">Float(id=4011133,</span> <span class="pre">minimum=10,</span> <span class="pre">maximum=100,</span> <span class="pre">name='HDL'),</span> <span class="pre">'rs12526453':</span> <span class="pre">Int(id=9999999,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs12526453'),</span> <span class="pre">'rs1333049':</span> <span class="pre">Int(id=9999998,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs1333049'),</span> <span class="pre">'rs1474787':</span> <span class="pre">Int(id=9999997,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs1474787'),</span> <span class="pre">'rs1515098':</span> <span class="pre">Int(id=9999996,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs1515098'),</span> <span class="pre">'rs17465637':</span> <span class="pre">Int(id=9999995,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs17465637'),</span> <span class="pre">'rs3184504':</span> <span class="pre">Int(id=9999994,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs3184504'),</span> <span class="pre">'rs501120':</span> <span class="pre">Int(id=9999993,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs501120'),</span> <span class="pre">'rs6725887':</span> <span class="pre">Int(id=9999992,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs6725887'),</span> <span class="pre">'rs9818870':</span> <span class="pre">Int(id=9999991,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs9818870'),</span> <span class="pre">'rs9982601':</span> <span class="pre">Int(id=9999990,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=2,</span> <span class="pre">name='rs9982601'),</span> <span class="pre">'sex':</span> <span class="pre">Enum(id='sex',</span> <span class="pre">values={1:</span> <span class="pre">'Male',</span> <span class="pre">2:</span> <span class="pre">'Female'},</span> <span class="pre">name='Sex'),</span> <span class="pre">'smoke':</span> <span class="pre">BoolInt(id=1585856,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Is</span> <span class="pre">smoker?'),</span> <span class="pre">'tad':</span> <span class="pre">Float(id=4154790,</span> <span class="pre">minimum=50,</span> <span class="pre">maximum=150,</span> <span class="pre">name='TAD'),</span> <span class="pre">'tas':</span> <span class="pre">Float(id=4152194,</span> <span class="pre">minimum=50,</span> <span class="pre">maximum=250,</span> <span class="pre">name='TAS')}</span></em><a class="headerlink" href="#biomodel.models.FraminghamGenetics.parameters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.FraminghamGenetics.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Probability</span> <span class="pre">of</span> <span class="pre">having</span> <span class="pre">a</span> <span class="pre">cardiovascular</span> <span class="pre">event</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">10</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.FraminghamGenetics.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.Gail">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">Gail</span></span><a class="headerlink" href="#biomodel.models.Gail" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>Predicts the risk of breast cancer based on various factors such as age, age at menarche, number of biopsies, age at first live birth, number of relatives, and whether the individual has given birth. The function applies specific risk values based on the input factors and calculates the overall relative risk for breast cancer.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Gail.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'percentage'</span></em><a class="headerlink" href="#biomodel.models.Gail.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Gail.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=5,</span> <span class="pre">name='Elevated')]</span></em><a class="headerlink" href="#biomodel.models.Gail.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.Gail.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=20,</span> <span class="pre">maximum=80,</span> <span class="pre">name='Age')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agemen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Int(id=4162552,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=30,</span> <span class="pre">name='Age</span> <span class="pre">at</span> <span class="pre">menarche')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbiops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id=4078191,</span> <span class="pre">values={0:</span> <span class="pre">'0',</span> <span class="pre">1:</span> <span class="pre">'1',</span> <span class="pre">2:</span> <span class="pre">'&gt;1'},</span> <span class="pre">name='Number</span> <span class="pre">of</span> <span class="pre">previous</span> <span class="pre">breast</span> <span class="pre">biopsies')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ageflb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Int(id=35810315,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Age</span> <span class="pre">at</span> <span class="pre">first</span> <span class="pre">live</span> <span class="pre">birth')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numrel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id='first-degree-relatives-breast-cancer',</span> <span class="pre">values={0:</span> <span class="pre">'0',</span> <span class="pre">1:</span> <span class="pre">'1',</span> <span class="pre">2:</span> <span class="pre">'&gt;1'},</span> <span class="pre">name='Number</span> <span class="pre">of</span> <span class="pre">first-degree</span> <span class="pre">relatives</span> <span class="pre">with</span> <span class="pre">breast</span> <span class="pre">cancer')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">given_birth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=35810313,</span> <span class="pre">name='Has</span> <span class="pre">given</span> <span class="pre">birth?')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#biomodel.models.Gail.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts the risk of breast cancer based on various factors such as age, age at menarche, number of biopsies, age at first live birth, number of relatives, and whether the individual has given birth. The function applies specific risk values based on the input factors and calculates the overall relative risk for breast cancer.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Gail.predict_over_time">
+<span class="sig-name descname"><span class="pre">predict_over_time</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#biomodel.models.Gail.predict_over_time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Gail.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Percentage</span> <span class="pre">(%)</span> <span class="pre">of</span> <span class="pre">developing</span> <span class="pre">breast</span> <span class="pre">cancer</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">5</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.Gail.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.LifeCRC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">LifeCRC</span></span><a class="headerlink" href="#biomodel.models.LifeCRC" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>A class to predict the absolute risk of developing colorectal cancer within the next 10 years based on various input parameters such as age, waist circumference, height, alcohol consumption, smoking habit, physical activity, and dietary intake.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.LifeCRC.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'probability'</span></em><a class="headerlink" href="#biomodel.models.LifeCRC.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.LifeCRC.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=0.0,</span> <span class="pre">name='Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.1,</span> <span class="pre">name='Medium</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.2,</span> <span class="pre">name='High</span> <span class="pre">risk')]</span></em><a class="headerlink" href="#biomodel.models.LifeCRC.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.LifeCRC.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=20,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Age')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4172830,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=200,</span> <span class="pre">name='Waist</span> <span class="pre">circumference</span> <span class="pre">in</span> <span class="pre">cm')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=607590,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=1000,</span> <span class="pre">name='Height</span> <span class="pre">in</span> <span class="pre">cm')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alcohol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=4027639,</span> <span class="pre">name='Daily</span> <span class="pre">alcohol')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=1585856,</span> <span class="pre">name='Smoking')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physical</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=4038719,</span> <span class="pre">name='Physically</span> <span class="pre">active')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vegetable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4025582,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=1000,</span> <span class="pre">name='Vegetable</span> <span class="pre">intake</span> <span class="pre">per</span> <span class="pre">100g/day')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dairy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4022880,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=1000,</span> <span class="pre">name='Dairy</span> <span class="pre">products</span> <span class="pre">intake</span> <span class="pre">per</span> <span class="pre">100g/day')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4028164,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=1000,</span> <span class="pre">name='Processed</span> <span class="pre">meat</span> <span class="pre">intake</span> <span class="pre">per</span> <span class="pre">50g/day')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sugar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4023854,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=1000,</span> <span class="pre">name='Sugar</span> <span class="pre">and</span> <span class="pre">confectionary</span> <span class="pre">intake</span> <span class="pre">per</span> <span class="pre">50g/day')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#biomodel.models.LifeCRC.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts the absolute risk of colorectal cancer within 10 years based on the input parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual in years (minimum=20, maximum=100)
+waist (float): Waist circumference in cm (minimum=0, maximum=200)
+height (float): Height in cm (minimum=0, maximum=1000)
+alcohol (bool): Daily alcohol consumption (True for yes, False for no)
+smoking (bool): Smoking habit (True for yes, False for no)
+physical (bool): Physically active or not (True for yes, False for no)
+vegetable (float): Vegetable intake per 100g/day (minimum=0, maximum=1000)
+dairy (float): Dairy products intake per 100g/day (minimum=0, maximum=1000)
+processed (float): Processed meat intake per 50g/day (minimum=0, maximum=1000)
+sugar (float): Sugar and confectionary intake per 50g/day (minimum=0, maximum=1000)</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: The absolute risk of colorectal cancer within 10 years.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.LifeCRC.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Probability</span> <span class="pre">of</span> <span class="pre">developing</span> <span class="pre">colorectal</span> <span class="pre">cancer</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">10</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.LifeCRC.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.PIMModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">PIMModel</span></span><a class="headerlink" href="#biomodel.models.PIMModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>A model to predict the probability of death in paediatric intensive care in the next 10 days based on the provided parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>pupils_fixed (bool): Pupils fixed to light.
+specified_diagnosis (bool): Specified diagnosis.
+elective (bool): Elective admission.
+mechanical_ventilation (bool): Mechanical ventilation immediately after admission.
+SBP (float): Systolic Blood Pressure in mmHg (Range: 0-200).
+base_excess (float): Base Excess in mmol/l (Range: -100-100).
+FIO2 (float): Fractional Inspired Oxygen Concentration (Range: 0-1).
+PaO2 (float): Arterial Oxygen Tension in mmHg (Range: 0.1-200).</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Predicted probability of death.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.PIMModel.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'probability'</span></em><a class="headerlink" href="#biomodel.models.PIMModel.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.PIMModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PIM:</span> <span class="pre">Paediatric</span> <span class="pre">Index</span> <span class="pre">of</span> <span class="pre">Mortality'</span></em><a class="headerlink" href="#biomodel.models.PIMModel.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.PIMModel.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pupils_fixed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=311111,</span> <span class="pre">name='Pupils</span> <span class="pre">fixed</span> <span class="pre">to</span> <span class="pre">light')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specified_diagnosis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=4234469,</span> <span class="pre">name='Specified</span> <span class="pre">diagnosis')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=311113,</span> <span class="pre">name='Elective</span> <span class="pre">admission')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mechanical_ventilation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=4232891,</span> <span class="pre">name='Mechanical</span> <span class="pre">ventilation</span> <span class="pre">immediately</span> <span class="pre">after</span> <span class="pre">admission')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SBP</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4152194,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=200,</span> <span class="pre">name='Systolic</span> <span class="pre">Blood</span> <span class="pre">Pressure</span> <span class="pre">in</span> <span class="pre">mmHg')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_excess</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4297217,</span> <span class="pre">minimum=-100,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Base</span> <span class="pre">Excess</span> <span class="pre">in</span> <span class="pre">mmol/l')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FIO2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4030916,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=1,</span> <span class="pre">name='Fractional</span> <span class="pre">Inspired</span> <span class="pre">Oxygen</span> <span class="pre">Concentration')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PaO2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=37392673,</span> <span class="pre">minimum=0.1,</span> <span class="pre">maximum=200,</span> <span class="pre">name='Arterial</span> <span class="pre">Oxygen</span> <span class="pre">Tension</span> <span class="pre">in</span> <span class="pre">mmHg')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#biomodel.models.PIMModel.predict" title="Link to this definition"></a></dt>
+<dd><p>Calculate the predicted probability of death based on the provided parameters.</p>
+<p>Parameters are as described in the function arguments.</p>
+<p>Returns:
+- Predicted probability of death.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.PIMModel.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Probability</span> <span class="pre">of</span> <span class="pre">death</span> <span class="pre">in</span> <span class="pre">paediatric</span> <span class="pre">intensive</span> <span class="pre">care</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">10</span> <span class="pre">days'</span></em><a class="headerlink" href="#biomodel.models.PIMModel.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.Prostate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">Prostate</span></span><a class="headerlink" href="#biomodel.models.Prostate" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>Predicts the risk of prostate cancer based on input parameters such as PSA, presence of TRUS hypoechoic lesion, age, and prostate volume. Returns the risk level as ‘High Risk’ or ‘Low Risk’.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Prostate.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Prostate</span> <span class="pre">Garzotto</span> <span class="pre">et.</span> <span class="pre">al.'</span></em><a class="headerlink" href="#biomodel.models.Prostate.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.Prostate.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PSA</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4272032,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=10,</span> <span class="pre">name='Prostate</span> <span class="pre">Specific</span> <span class="pre">Antigen</span> <span class="pre">(ng/mL)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TRUS_lesion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=36684854,</span> <span class="pre">name='Presence</span> <span class="pre">of</span> <span class="pre">TRUS</span> <span class="pre">hypoechoic</span> <span class="pre">lesion')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=20,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Age')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prostate_volume</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4096978,</span> <span class="pre">minimum=1,</span> <span class="pre">maximum=200,</span> <span class="pre">name='Prostate</span> <span class="pre">Volume</span> <span class="pre">(mL)')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biomodel.models.Prostate.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts the risk of prostate cancer based on input parameters such as PSA, presence of TRUS hypoechoic lesion, age, and prostate volume. Returns the risk level as ‘High Risk’ or ‘Low Risk’.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.Prostate.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Prostate</span> <span class="pre">Cancer</span> <span class="pre">Risk</span> <span class="pre">Calculator'</span></em><a class="headerlink" href="#biomodel.models.Prostate.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.QRisk">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">QRisk</span></span><a class="headerlink" href="#biomodel.models.QRisk" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>Predicts the absolute risk of cardiovascular disease based on various health and lifestyle parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual (between 20 and 100).
+sex (int): Gender of the individual.
+b_AF (bool): Atrial fibrillation status.
+b_atypicalantipsy (bool): On atypical antipsychotic medication status.
+b_corticosteroids (bool): Regular steroid tablets usage status.
+b_impotence2 (bool): Diagnosis or treatment for erectile dysfunction status.
+b_migraine (bool): Migraine status.
+b_ra (bool): Rheumatoid arthritis status.
+b_renal (bool): Chronic kidney disease (stage 3, 4 or 5) status.
+b_semi (bool): Severe mental illness status.
+b_sle (bool): Systemic lupus erythematosus (SLE) status.
+b_treatedhyp (bool): Blood pressure treatment status.
+diabetes_cat (int): Diabetes status category.
+bmi (float): Body Mass Index (kg/m^2) of the individual (between 15 and 50).
+ethrisk (int): Ethnicity risk category.
+fh_cvd (bool): Angina or heart attack in a 1st degree relative &lt; 60 status.
+rati (float): Total cholesterol/HDL cholesterol ratio.
+sbp (float): Systolic BP (mmHg).
+sbps5 (float): SD of the last two systolic BP readings (mmHg).
+smoke_cat (int): Smoking status category.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Absolute risk of cardiovascular disease.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.QRisk.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'probability'</span></em><a class="headerlink" href="#biomodel.models.QRisk.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.QRisk.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=0.0,</span> <span class="pre">name='Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.1,</span> <span class="pre">name='High</span> <span class="pre">risk')]</span></em><a class="headerlink" href="#biomodel.models.QRisk.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.QRisk.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'QRISK'</span></em><a class="headerlink" href="#biomodel.models.QRisk.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.QRisk.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=20,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Age')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id='sex',</span> <span class="pre">values={1:</span> <span class="pre">'Male',</span> <span class="pre">2:</span> <span class="pre">'Female'},</span> <span class="pre">name='Sex')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_AF</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=313217,</span> <span class="pre">name='Atrial</span> <span class="pre">fibrillation?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_atypicalantipsy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id='atypical-antipsychotic-medication',</span> <span class="pre">name='On</span> <span class="pre">atypical</span> <span class="pre">antipsychotic</span> <span class="pre">medication?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_corticosteroids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id='steroid-tablets',</span> <span class="pre">name='Are</span> <span class="pre">you</span> <span class="pre">on</span> <span class="pre">regular</span> <span class="pre">steroid</span> <span class="pre">tablets?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_impotence2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=3655355,</span> <span class="pre">name='A</span> <span class="pre">diagnosis</span> <span class="pre">or</span> <span class="pre">treatment</span> <span class="pre">for</span> <span class="pre">erectile</span> <span class="pre">disfunction?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_migraine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=318736,</span> <span class="pre">name='Do</span> <span class="pre">you</span> <span class="pre">have</span> <span class="pre">migraines?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_ra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=80809,</span> <span class="pre">name='Rheumatoid</span> <span class="pre">arthritis?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_renal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=46271022,</span> <span class="pre">name='Chronic</span> <span class="pre">kidney</span> <span class="pre">disease</span> <span class="pre">(stage</span> <span class="pre">3,</span> <span class="pre">4</span> <span class="pre">or</span> <span class="pre">5)?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_semi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=4192296,</span> <span class="pre">name='Severe</span> <span class="pre">mental</span> <span class="pre">illness?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_sle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=257628,</span> <span class="pre">name='Systemic</span> <span class="pre">lupus</span> <span class="pre">erythematosus</span> <span class="pre">(SLE)?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_treatedhyp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=4063253,</span> <span class="pre">name='On</span> <span class="pre">BP</span> <span class="pre">treatment?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diabetes_cat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id=4236883,</span> <span class="pre">values={0:</span> <span class="pre">'none',</span> <span class="pre">1:</span> <span class="pre">'type</span> <span class="pre">1',</span> <span class="pre">2:</span> <span class="pre">'type</span> <span class="pre">2'},</span> <span class="pre">name='Diabetes</span> <span class="pre">status')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bmi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4245997,</span> <span class="pre">minimum=15,</span> <span class="pre">maximum=50,</span> <span class="pre">name='Body</span> <span class="pre">Mass</span> <span class="pre">Index</span> <span class="pre">(kg/m^2)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ethrisk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id=44803968,</span> <span class="pre">values={1:</span> <span class="pre">'White</span> <span class="pre">or</span> <span class="pre">not</span> <span class="pre">stated',</span> <span class="pre">2:</span> <span class="pre">'Indian',</span> <span class="pre">3:</span> <span class="pre">'Pakistani',</span> <span class="pre">4:</span> <span class="pre">'Bangladeshi',</span> <span class="pre">5:</span> <span class="pre">'Other</span> <span class="pre">Asian',</span> <span class="pre">6:</span> <span class="pre">'Black</span> <span class="pre">Caribbean',</span> <span class="pre">7:</span> <span class="pre">'Black</span> <span class="pre">African',</span> <span class="pre">8:</span> <span class="pre">'Chinese',</span> <span class="pre">9:</span> <span class="pre">'Other</span> <span class="pre">ethnic</span> <span class="pre">group'},</span> <span class="pre">name='Ethnicity')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fh_cvd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id='angina-ha-fdeg-rel-60',</span> <span class="pre">name='Angina</span> <span class="pre">or</span> <span class="pre">heart</span> <span class="pre">attack</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">1st</span> <span class="pre">degree</span> <span class="pre">relative</span> <span class="pre">&lt;</span> <span class="pre">60?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rati</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4195214,</span> <span class="pre">minimum=1,</span> <span class="pre">maximum=10,</span> <span class="pre">name='Total</span> <span class="pre">cholesterol/HDL</span> <span class="pre">cholesterol</span> <span class="pre">ratio')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4152194,</span> <span class="pre">minimum=80,</span> <span class="pre">maximum=250,</span> <span class="pre">name='Systolic</span> <span class="pre">BP</span> <span class="pre">(mmHg)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbps5</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4297217,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=40,</span> <span class="pre">name='SD</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">two</span> <span class="pre">systolic</span> <span class="pre">BP</span> <span class="pre">readings</span> <span class="pre">(mmHg)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoke_cat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id='smoke-cat',</span> <span class="pre">values={0:</span> <span class="pre">'non-smoker',</span> <span class="pre">1:</span> <span class="pre">'ex-smoker',</span> <span class="pre">2:</span> <span class="pre">'light</span> <span class="pre">smoker</span> <span class="pre">(less</span> <span class="pre">than</span> <span class="pre">10)',</span> <span class="pre">3:</span> <span class="pre">'moderate</span> <span class="pre">smoker</span> <span class="pre">(10</span> <span class="pre">to</span> <span class="pre">19)',</span> <span class="pre">4:</span> <span class="pre">'heavy</span> <span class="pre">smoker</span> <span class="pre">(20</span> <span class="pre">or</span> <span class="pre">over)'},</span> <span class="pre">name='Smoking</span> <span class="pre">status')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#biomodel.models.QRisk.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts the absolute risk of cardiovascular disease based on various health and lifestyle parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual (between 20 and 100).
+sex (int): Gender of the individual.
+b_AF (bool): Atrial fibrillation status.
+b_atypicalantipsy (bool): On atypical antipsychotic medication status.
+b_corticosteroids (bool): Regular steroid tablets usage status.
+b_impotence2 (bool): Diagnosis or treatment for erectile dysfunction status.
+b_migraine (bool): Migraine status.
+b_ra (bool): Rheumatoid arthritis status.
+b_renal (bool): Chronic kidney disease (stage 3, 4 or 5) status.
+b_semi (bool): Severe mental illness status.
+b_sle (bool): Systemic lupus erythematosus (SLE) status.
+b_treatedhyp (bool): Blood pressure treatment status.
+diabetes_cat (int): Diabetes status category.
+bmi (float): Body Mass Index (kg/m^2) of the individual (between 15 and 50).
+ethrisk (int): Ethnicity risk category.
+fh_cvd (bool): Angina or heart attack in a 1st degree relative &lt; 60 status.
+rati (float): Total cholesterol/HDL cholesterol ratio.
+sbp (float): Systolic BP (mmHg).
+sbps5 (float): SD of the last two systolic BP readings (mmHg).
+smoke_cat (int): Smoking status category.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Absolute risk of cardiovascular disease.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.QRisk.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Probability</span> <span class="pre">of</span> <span class="pre">developing</span> <span class="pre">cardiovascular</span> <span class="pre">disease</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">10</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.QRisk.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.ScoreModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.</span></span><span class="sig-name descname"><span class="pre">ScoreModel</span></span><a class="headerlink" href="#biomodel.models.ScoreModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>Predicts the absolute risk of cardiovascular disease based on the input parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual (between 20 and 100).
+sex (int): Gender of the individual (1 for Men, 0 for Women).
+cholesterol (float): Cholesterol level in mmol/L (between 2 and 10).
+sbp (float): Systolic blood pressure in mmHg (between 80 and 250).
+smoker_status (int): Smoker status score.
+country (str): Country of the individual.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Absolute risk of cardiovascular disease.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.ScoreModel.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'probability'</span></em><a class="headerlink" href="#biomodel.models.ScoreModel.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.ScoreModel.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=0.01,</span> <span class="pre">name='Very</span> <span class="pre">Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.02,</span> <span class="pre">name='Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.035,</span> <span class="pre">name='Medium</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.05,</span> <span class="pre">name='High</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.1,</span> <span class="pre">name='Very</span> <span class="pre">High</span> <span class="pre">risk')]</span></em><a class="headerlink" href="#biomodel.models.ScoreModel.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.ScoreModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SCORE'</span></em><a class="headerlink" href="#biomodel.models.ScoreModel.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.ScoreModel.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=20,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Age')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id='sex',</span> <span class="pre">values={1:</span> <span class="pre">'Male',</span> <span class="pre">2:</span> <span class="pre">'Female'},</span> <span class="pre">name='Sex')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cholesterol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4224820,</span> <span class="pre">minimum=2,</span> <span class="pre">maximum=10,</span> <span class="pre">name='Cholesterol</span> <span class="pre">(mmol/L)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4152194,</span> <span class="pre">minimum=80,</span> <span class="pre">maximum=250,</span> <span class="pre">name='Systolic</span> <span class="pre">blood</span> <span class="pre">pressure</span> <span class="pre">(mmHg)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoker_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id=1585856,</span> <span class="pre">values={0:</span> <span class="pre">'non-smoker',</span> <span class="pre">1:</span> <span class="pre">'smoker'},</span> <span class="pre">name='Smoker</span> <span class="pre">Status')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">country</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id=4329169,</span> <span class="pre">values=['Albania',</span> <span class="pre">'Algeria',</span> <span class="pre">'Andorra',</span> <span class="pre">'Armenia',</span> <span class="pre">'Austria',</span> <span class="pre">'Azerbaijan',</span> <span class="pre">'Belarus',</span> <span class="pre">'Belgium',</span> <span class="pre">'Bulgaria',</span> <span class="pre">'Cyprus',</span> <span class="pre">'Denmark',</span> <span class="pre">'Egypt',</span> <span class="pre">'FYR</span> <span class="pre">Macedonia',</span> <span class="pre">'Finland',</span> <span class="pre">'France',</span> <span class="pre">'Georgia',</span> <span class="pre">'Germany',</span> <span class="pre">'Greece',</span> <span class="pre">'Iceland',</span> <span class="pre">'Ireland',</span> <span class="pre">'Israel',</span> <span class="pre">'Italy',</span> <span class="pre">'Kazakhstan',</span> <span class="pre">'Kyrgyzstan',</span> <span class="pre">'Latvia',</span> <span class="pre">'Luxembourg',</span> <span class="pre">'Malta',</span> <span class="pre">'Moldova',</span> <span class="pre">'Monaco',</span> <span class="pre">'Norway',</span> <span class="pre">'Portugal',</span> <span class="pre">'Russian</span> <span class="pre">Federation',</span> <span class="pre">'San</span> <span class="pre">Marino',</span> <span class="pre">'Slovenia',</span> <span class="pre">'Spain',</span> <span class="pre">'Sweden',</span> <span class="pre">'Switzerland',</span> <span class="pre">'Syrian</span> <span class="pre">Arab</span> <span class="pre">Republic',</span> <span class="pre">'Tajikistan',</span> <span class="pre">'The</span> <span class="pre">Netherlands',</span> <span class="pre">'Turkmenistan',</span> <span class="pre">'Ukraine',</span> <span class="pre">'United</span> <span class="pre">Kingdom',</span> <span class="pre">'Uzbekistan'],</span> <span class="pre">name='Country')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#biomodel.models.ScoreModel.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts the absolute risk of cardiovascular disease based on the input parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual (between 20 and 100).
+sex (int): Gender of the individual (1 for Men, 0 for Women).
+cholesterol (float): Cholesterol level in mmol/L (between 2 and 10).
+sbp (float): Systolic blood pressure in mmHg (between 80 and 250).
+smoker_status (int): Smoker status score.
+country (str): Country of the individual.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Absolute risk of cardiovascular disease.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.ScoreModel.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Probability</span> <span class="pre">of</span> <span class="pre">fatal</span> <span class="pre">cardiovascular</span> <span class="pre">disease</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">10</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.ScoreModel.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gui.html" class="btn btn-neutral float-left" title="LifeTwin Automatic GUI Generator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.clivd.html" class="btn btn-neutral float-right" title="CLivD Simulation Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bioinformatic Research Group in Epidemiology (BRGE).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

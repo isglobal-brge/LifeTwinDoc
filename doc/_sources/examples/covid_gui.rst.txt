@@ -1,0 +1,11 @@
+Covid Simulation GUI
+====================
+
+.. automodule:: covid_gui
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoinclude::
+   :language: python
+   :linenos:

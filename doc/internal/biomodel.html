@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeTwin Core Internals &mdash; LifeTwin  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LifeTwin Database Connector" href="database.html" />
+    <link rel="prev" title="LifeTwin Internals" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LifeTwin
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Core Internals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.AgeInt"><code class="docutils literal notranslate"><span class="pre">AgeInt</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.AgeInt.id"><code class="docutils literal notranslate"><span class="pre">AgeInt.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.AgeInt.maximum"><code class="docutils literal notranslate"><span class="pre">AgeInt.maximum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.AgeInt.minimum"><code class="docutils literal notranslate"><span class="pre">AgeInt.minimum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.AgeInt.name"><code class="docutils literal notranslate"><span class="pre">AgeInt.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.BioModel"><code class="docutils literal notranslate"><span class="pre">BioModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.age_parameter"><code class="docutils literal notranslate"><span class="pre">BioModel.age_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.describe"><code class="docutils literal notranslate"><span class="pre">BioModel.describe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.get_intervals"><code class="docutils literal notranslate"><span class="pre">BioModel.get_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.get_title"><code class="docutils literal notranslate"><span class="pre">BioModel.get_title()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.has_intervals"><code class="docutils literal notranslate"><span class="pre">BioModel.has_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.has_title"><code class="docutils literal notranslate"><span class="pre">BioModel.has_title()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">BioModel.kwarg_to_omop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.name"><code class="docutils literal notranslate"><span class="pre">BioModel.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.output_meaning"><code class="docutils literal notranslate"><span class="pre">BioModel.output_meaning()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict"><code class="docutils literal notranslate"><span class="pre">BioModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_person"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_person_once"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_once()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_person_time"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_person_time_variations"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_person_time_variations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.predict_population_time"><code class="docutils literal notranslate"><span class="pre">BioModel.predict_population_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.return_category"><code class="docutils literal notranslate"><span class="pre">BioModel.return_category()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BioModel.should_have_meaning"><code class="docutils literal notranslate"><span class="pre">BioModel.should_have_meaning()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Bool"><code class="docutils literal notranslate"><span class="pre">Bool</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Bool.get_default_value"><code class="docutils literal notranslate"><span class="pre">Bool.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Bool.id"><code class="docutils literal notranslate"><span class="pre">Bool.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Bool.name"><code class="docutils literal notranslate"><span class="pre">Bool.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Bool.type_name"><code class="docutils literal notranslate"><span class="pre">Bool.type_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.BoolInt"><code class="docutils literal notranslate"><span class="pre">BoolInt</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.false"><code class="docutils literal notranslate"><span class="pre">BoolInt.false</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.get_default_value"><code class="docutils literal notranslate"><span class="pre">BoolInt.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.id"><code class="docutils literal notranslate"><span class="pre">BoolInt.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.name"><code class="docutils literal notranslate"><span class="pre">BoolInt.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.true"><code class="docutils literal notranslate"><span class="pre">BoolInt.true</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.BoolInt.type_name"><code class="docutils literal notranslate"><span class="pre">BoolInt.type_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.CustomModel"><code class="docutils literal notranslate"><span class="pre">CustomModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.CustomModel.age_parameter"><code class="docutils literal notranslate"><span class="pre">CustomModel.age_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.CustomModel.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">CustomModel.kwarg_to_omop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.CustomModel.predict"><code class="docutils literal notranslate"><span class="pre">CustomModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.CustomModel.return_category"><code class="docutils literal notranslate"><span class="pre">CustomModel.return_category()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Enum"><code class="docutils literal notranslate"><span class="pre">Enum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.domain_info"><code class="docutils literal notranslate"><span class="pre">Enum.domain_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.get_default_value"><code class="docutils literal notranslate"><span class="pre">Enum.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.id"><code class="docutils literal notranslate"><span class="pre">Enum.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.name"><code class="docutils literal notranslate"><span class="pre">Enum.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.type_name"><code class="docutils literal notranslate"><span class="pre">Enum.type_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Enum.values"><code class="docutils literal notranslate"><span class="pre">Enum.values</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Float"><code class="docutils literal notranslate"><span class="pre">Float</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.domain_info"><code class="docutils literal notranslate"><span class="pre">Float.domain_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.get_default_value"><code class="docutils literal notranslate"><span class="pre">Float.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.id"><code class="docutils literal notranslate"><span class="pre">Float.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.maximum"><code class="docutils literal notranslate"><span class="pre">Float.maximum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.minimum"><code class="docutils literal notranslate"><span class="pre">Float.minimum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.name"><code class="docutils literal notranslate"><span class="pre">Float.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Float.type_name"><code class="docutils literal notranslate"><span class="pre">Float.type_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Int"><code class="docutils literal notranslate"><span class="pre">Int</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.domain_info"><code class="docutils literal notranslate"><span class="pre">Int.domain_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.get_default_value"><code class="docutils literal notranslate"><span class="pre">Int.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.id"><code class="docutils literal notranslate"><span class="pre">Int.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.maximum"><code class="docutils literal notranslate"><span class="pre">Int.maximum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.minimum"><code class="docutils literal notranslate"><span class="pre">Int.minimum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.name"><code class="docutils literal notranslate"><span class="pre">Int.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Int.type_name"><code class="docutils literal notranslate"><span class="pre">Int.type_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.OMOPId"><code class="docutils literal notranslate"><span class="pre">OMOPId</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.OMOPId.id"><code class="docutils literal notranslate"><span class="pre">OMOPId.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.Parameter"><code class="docutils literal notranslate"><span class="pre">Parameter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.domain_info"><code class="docutils literal notranslate"><span class="pre">Parameter.domain_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.get_default_value"><code class="docutils literal notranslate"><span class="pre">Parameter.get_default_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.id"><code class="docutils literal notranslate"><span class="pre">Parameter.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.name"><code class="docutils literal notranslate"><span class="pre">Parameter.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.Parameter.type_name"><code class="docutils literal notranslate"><span class="pre">Parameter.type_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.RFunction"><code class="docutils literal notranslate"><span class="pre">RFunction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.age_parameter"><code class="docutils literal notranslate"><span class="pre">RFunction.age_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.class_name"><code class="docutils literal notranslate"><span class="pre">RFunction.class_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.kwarg_to_omop"><code class="docutils literal notranslate"><span class="pre">RFunction.kwarg_to_omop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.predict"><code class="docutils literal notranslate"><span class="pre">RFunction.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.resolved_path"><code class="docutils literal notranslate"><span class="pre">RFunction.resolved_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RFunction.return_category"><code class="docutils literal notranslate"><span class="pre">RFunction.return_category()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.ReturnCategory"><code class="docutils literal notranslate"><span class="pre">ReturnCategory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.ReturnCategory.CATEGORICAL"><code class="docutils literal notranslate"><span class="pre">ReturnCategory.CATEGORICAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.ReturnCategory.CONTINUOUS"><code class="docutils literal notranslate"><span class="pre">ReturnCategory.CONTINUOUS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.RiskInterval"><code class="docutils literal notranslate"><span class="pre">RiskInterval</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RiskInterval.name"><code class="docutils literal notranslate"><span class="pre">RiskInterval.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biomodel.biomodel.RiskInterval.value"><code class="docutils literal notranslate"><span class="pre">RiskInterval.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.contains_distribution_in_variations"><code class="docutils literal notranslate"><span class="pre">contains_distribution_in_variations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biomodel.biomodel.filter_transformations"><code class="docutils literal notranslate"><span class="pre">filter_transformations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LifeTwin</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">LifeTwin Internals</a></li>
+      <li class="breadcrumb-item active">LifeTwin Core Internals</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internal/biomodel.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-biomodel.biomodel">
+<span id="lifetwin-core-internals"></span><h1>LifeTwin Core Internals<a class="headerlink" href="#module-biomodel.biomodel" title="Link to this heading"></a></h1>
+<p>A file containing classes for defining bio models, including parameters, predictions, and model descriptions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.AgeInt">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">AgeInt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'age'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">120</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Age'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.AgeInt" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biomodel.biomodel.Int" title="biomodel.biomodel.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>A data class representing an age integer parameter, inheriting from the Int class.
+It includes attributes for minimum and maximum values, and the class is frozen and supports equality comparison.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.AgeInt.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'age'</span></em><a class="headerlink" href="#biomodel.biomodel.AgeInt.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.AgeInt.maximum">
+<span class="sig-name descname"><span class="pre">maximum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">120</span></em><a class="headerlink" href="#biomodel.biomodel.AgeInt.maximum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.AgeInt.minimum">
+<span class="sig-name descname"><span class="pre">minimum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#biomodel.biomodel.AgeInt.minimum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.AgeInt.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Age'</span></em><a class="headerlink" href="#biomodel.biomodel.AgeInt.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">BioModel</span></span><a class="headerlink" href="#biomodel.biomodel.BioModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>A base abstract class for defining bio models with various methods for handling predictions and model descriptions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.age_parameter">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">age_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biomodel.biomodel.BioModel.age_parameter" title="Link to this definition"></a></dt>
+<dd><p>This method should be implemented to determine if the model requires an age parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.describe">
+<span class="sig-name descname"><span class="pre">describe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BioModel.describe" title="Link to this definition"></a></dt>
+<dd><p>This method prints the description of the object using the <cite>_describe</cite> method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.get_intervals">
+<span class="sig-name descname"><span class="pre">get_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BioModel.get_intervals" title="Link to this definition"></a></dt>
+<dd><p>Returns the intervals of the object if it exists, otherwise raises a TypeError. It also checks if the intervals attribute is a list and if each element in the list is a RiskInterval object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.get_title">
+<span class="sig-name descname"><span class="pre">get_title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BioModel.get_title" title="Link to this definition"></a></dt>
+<dd><p>Returns the title of the object if it exists, otherwise raises a TypeError.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.has_intervals">
+<span class="sig-name descname"><span class="pre">has_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BioModel.has_intervals" title="Link to this definition"></a></dt>
+<dd><p>Returns a boolean indicating whether the object has an intervals attribute.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.has_title">
+<span class="sig-name descname"><span class="pre">has_title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BioModel.has_title" title="Link to this definition"></a></dt>
+<dd><p>Returns a boolean indicating whether the object has a title attribute.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.kwarg_to_omop">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kwarg_to_omop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BioModel.kwarg_to_omop" title="Link to this definition"></a></dt>
+<dd><p>This method should be implemented to convert keyword arguments to OMOP format.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#biomodel.biomodel.BioModel.name" title="Link to this definition"></a></dt>
+<dd><p>This property returns the name of the class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.output_meaning">
+<span class="sig-name descname"><span class="pre">output_meaning</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BioModel.output_meaning" title="Link to this definition"></a></dt>
+<dd><p>This method returns the interpretation of the model’s output, which should be one of the valid interpretations: “risk”, “percentage”, “probability”, or “value”. If the model is continuous, it should have an interpretation attribute, and if it is categorical, the interpretation attribute should be removed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.predict">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BioModel.predict" title="Link to this definition"></a></dt>
+<dd><p>This method should be implemented to make predictions using the model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.predict_person">
+<span class="sig-name descname"><span class="pre">predict_person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SinglePrediction</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Prediction</span></span></span><a class="headerlink" href="#biomodel.biomodel.BioModel.predict_person" title="Link to this definition"></a></dt>
+<dd><p>This method predicts the outcome for a person based on the model’s characteristics. It determines whether the prediction should be made over time and if variations in the input data are present, and then calls the appropriate prediction method based on these conditions. If the model is not age-dependent but contains a distribution, it raises an Exception.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.predict_person_once">
+<span class="sig-name descname"><span class="pre">predict_person_once</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SinglePrediction</span></span></span><a class="headerlink" href="#biomodel.biomodel.BioModel.predict_person_once" title="Link to this definition"></a></dt>
+<dd><p>This method predicts the outcome for a person based on the model’s characteristics, considering any variations in the input data. It iterates through the variations to make predictions and returns a SinglePrediction object containing the predicted outcomes for each variation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.predict_person_time">
+<span class="sig-name descname"><span class="pre">predict_person_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Prediction</span></span></span><a class="headerlink" href="#biomodel.biomodel.BioModel.predict_person_time" title="Link to this definition"></a></dt>
+<dd><p>This method predicts the outcome for a person over a specified time period, taking into account variations in the input data. It checks for the presence of an age parameter and the required input data, and then iterates through the specified years to make predictions. The method returns a Prediction object containing the predicted outcomes for each variation over the specified time period.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.predict_person_time_variations">
+<span class="sig-name descname"><span class="pre">predict_person_time_variations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation_twins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SpreadPrediction</span></span></span><a class="headerlink" href="#biomodel.biomodel.BioModel.predict_person_time_variations" title="Link to this definition"></a></dt>
+<dd><p>This method predicts the outcome for a person over a specified time period, considering variations in the input data and simulating multiple scenarios. It iterates through the variations and simulations to make predictions and returns a SpreadPrediction object containing the predicted outcomes for each variation and simulation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.predict_population_time">
+<span class="sig-name descname"><span class="pre">predict_population_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">person_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Prediction</span></span></span><a class="headerlink" href="#biomodel.biomodel.BioModel.predict_population_time" title="Link to this definition"></a></dt>
+<dd><p>This method predicts the outcome for a population over a specified time period, considering variations in the input data and filtering the population based on a provided filter. It iterates through the population and variations to make predictions and returns a SpreadPrediction object containing the predicted outcomes for each variation and person in the population.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.return_category">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">return_category</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#biomodel.biomodel.ReturnCategory" title="biomodel.biomodel.ReturnCategory"><span class="pre">ReturnCategory</span></a></span></span><a class="headerlink" href="#biomodel.biomodel.BioModel.return_category" title="Link to this definition"></a></dt>
+<dd><p>This method should be implemented to return the category of the model’s output.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BioModel.should_have_meaning">
+<span class="sig-name descname"><span class="pre">should_have_meaning</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BioModel.should_have_meaning" title="Link to this definition"></a></dt>
+<dd><p>Returns a boolean indicating whether the model should have an interpretation attribute.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.Bool">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">Bool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Bool" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biomodel.biomodel.Parameter" title="biomodel.biomodel.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a></p>
+<p>A data class representing a boolean parameter, inheriting from the Parameter class.
+It includes a method to get the default value and the type name.
+The class is frozen and supports equality comparison.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Bool.get_default_value">
+<span class="sig-name descname"><span class="pre">get_default_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Bool.get_default_value" title="Link to this definition"></a></dt>
+<dd><p>Returns the default value for the object, which is False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Bool.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#biomodel.biomodel.Bool.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Bool.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.Bool.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Bool.type_name">
+<span class="sig-name descname"><span class="pre">type_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Bool.type_name" title="Link to this definition"></a></dt>
+<dd><p>Returns the type name of the object, which is “Boolean”.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.BoolInt">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">BoolInt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BoolInt" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biomodel.biomodel.Parameter" title="biomodel.biomodel.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a></p>
+<p>A data class representing a boolean integer parameter, inheriting from the Parameter class.
+It includes attributes for true and false values, and methods to get the default value and the type name.
+The class is frozen and supports equality comparison.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.BoolInt.false">
+<span class="sig-name descname"><span class="pre">false</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#biomodel.biomodel.BoolInt.false" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BoolInt.get_default_value">
+<span class="sig-name descname"><span class="pre">get_default_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BoolInt.get_default_value" title="Link to this definition"></a></dt>
+<dd><p>Returns the default value for the object, which is the false value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.BoolInt.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#biomodel.biomodel.BoolInt.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.BoolInt.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.BoolInt.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.BoolInt.true">
+<span class="sig-name descname"><span class="pre">true</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#biomodel.biomodel.BoolInt.true" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.BoolInt.type_name">
+<span class="sig-name descname"><span class="pre">type_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.BoolInt.type_name" title="Link to this definition"></a></dt>
+<dd><p>Returns the type name of the object, which is “Boolean”.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.CustomModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">CustomModel</span></span><a class="headerlink" href="#biomodel.biomodel.CustomModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biomodel.biomodel.BioModel" title="biomodel.biomodel.BioModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BioModel</span></code></a></p>
+<p>A custom model class inheriting from BioModel, with abstract methods for prediction and methods for parsing fields to determine parameters and return category.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.CustomModel.age_parameter">
+<span class="sig-name descname"><span class="pre">age_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.CustomModel.age_parameter" title="Link to this definition"></a></dt>
+<dd><p>This method returns the age parameter from the model’s parameters, if it exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.CustomModel.kwarg_to_omop">
+<span class="sig-name descname"><span class="pre">kwarg_to_omop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.CustomModel.kwarg_to_omop" title="Link to this definition"></a></dt>
+<dd><p>This method returns the parameters in OMOP format for the model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.CustomModel.predict">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.CustomModel.predict" title="Link to this definition"></a></dt>
+<dd><p>This method should be implemented to make predictions using the model based on the input row.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.CustomModel.return_category">
+<span class="sig-name descname"><span class="pre">return_category</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.CustomModel.return_category" title="Link to this definition"></a></dt>
+<dd><p>This method returns the category of the model’s output based on the return annotation. If the return annotation is a string, it returns “CATEGORICAL”. If it is an integer or float, it returns “CONTINUOUS”. If the return annotation is None, it also returns “CONTINUOUS”. If the return annotation is of an unknown type, it raises an Exception.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.Enum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">Enum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Enum" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biomodel.biomodel.Parameter" title="biomodel.biomodel.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a></p>
+<p>A data class representing an enum parameter, inheriting from the Parameter class.
+It includes attributes for values and methods to get the default value, type name, and domain information.
+The class is frozen and supports equality comparison.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Enum.domain_info">
+<span class="sig-name descname"><span class="pre">domain_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Enum.domain_info" title="Link to this definition"></a></dt>
+<dd><p>Returns information about the domain, including the possible values for the object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Enum.get_default_value">
+<span class="sig-name descname"><span class="pre">get_default_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Enum.get_default_value" title="Link to this definition"></a></dt>
+<dd><p>Returns the default value for the object based on the values provided. If the values are in a dictionary, it returns the first key. Otherwise, it returns the first value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Enum.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#biomodel.biomodel.Enum.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Enum.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.Enum.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Enum.type_name">
+<span class="sig-name descname"><span class="pre">type_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Enum.type_name" title="Link to this definition"></a></dt>
+<dd><p>Returns the type name of the object, which is “Enum”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Enum.values">
+<span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#biomodel.biomodel.Enum.values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.Float">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">Float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Float" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biomodel.biomodel.Parameter" title="biomodel.biomodel.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a></p>
+<p>A data class representing a float parameter, inheriting from the Parameter class.
+It includes attributes for minimum and maximum values, and methods to get the default value, type name, and domain information.
+The class is frozen and supports equality comparison.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Float.domain_info">
+<span class="sig-name descname"><span class="pre">domain_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Float.domain_info" title="Link to this definition"></a></dt>
+<dd><p>Returns information about the domain, including the minimum and maximum values if they are defined.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Float.get_default_value">
+<span class="sig-name descname"><span class="pre">get_default_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Float.get_default_value" title="Link to this definition"></a></dt>
+<dd><p>Returns the default value for the object, which is the minimum value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Float.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#biomodel.biomodel.Float.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Float.maximum">
+<span class="sig-name descname"><span class="pre">maximum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.Float.maximum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Float.minimum">
+<span class="sig-name descname"><span class="pre">minimum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.Float.minimum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Float.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.Float.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Float.type_name">
+<span class="sig-name descname"><span class="pre">type_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Float.type_name" title="Link to this definition"></a></dt>
+<dd><p>Returns the type name of the object, which is “Float”.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.Int">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">Int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Int" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biomodel.biomodel.Parameter" title="biomodel.biomodel.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a></p>
+<p>A data class representing an integer parameter, inheriting from the Parameter class.
+It includes attributes for minimum and maximum values, and methods to get the default value, type name, and domain information.
+The class is frozen and supports equality comparison.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Int.domain_info">
+<span class="sig-name descname"><span class="pre">domain_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Int.domain_info" title="Link to this definition"></a></dt>
+<dd><p>Returns information about the domain, including the minimum and maximum values if they are defined.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Int.get_default_value">
+<span class="sig-name descname"><span class="pre">get_default_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Int.get_default_value" title="Link to this definition"></a></dt>
+<dd><p>Returns the default value for the object, which is the minimum value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Int.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#biomodel.biomodel.Int.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Int.maximum">
+<span class="sig-name descname"><span class="pre">maximum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.Int.maximum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Int.minimum">
+<span class="sig-name descname"><span class="pre">minimum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.Int.minimum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Int.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.Int.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Int.type_name">
+<span class="sig-name descname"><span class="pre">type_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Int.type_name" title="Link to this definition"></a></dt>
+<dd><p>Returns the type name of the object, which is “Integer”.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.OMOPId">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">OMOPId</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.OMOPId" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A data class representing an OMOP ID with a union of integer and string types. The class is frozen and supports equality comparison.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.OMOPId.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#biomodel.biomodel.OMOPId.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.Parameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">Parameter</span></span><a class="headerlink" href="#biomodel.biomodel.Parameter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>An abstract base class for defining parameters with an id and an optional name.
+It includes abstract methods to get the default value and the type name, as well as a method to provide domain information.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Parameter.domain_info">
+<span class="sig-name descname"><span class="pre">domain_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Parameter.domain_info" title="Link to this definition"></a></dt>
+<dd><p>This method returns information about the domain.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Parameter.get_default_value">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_default_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Parameter.get_default_value" title="Link to this definition"></a></dt>
+<dd><p>This method should be implemented to return the default value for the object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Parameter.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#biomodel.biomodel.Parameter.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.Parameter.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#biomodel.biomodel.Parameter.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.Parameter.type_name">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.Parameter.type_name" title="Link to this definition"></a></dt>
+<dd><p>This method should be implemented to return the type name of the object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.RFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">RFunction</span></span><a class="headerlink" href="#biomodel.biomodel.RFunction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biomodel.biomodel.BioModel" title="biomodel.biomodel.BioModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BioModel</span></code></a></p>
+<p>A class representing an R function as a bio model, with methods for parsing fields, resolving file paths, and handling predictions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.RFunction.age_parameter">
+<span class="sig-name descname"><span class="pre">age_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.RFunction.age_parameter" title="Link to this definition"></a></dt>
+<dd><p>This method returns the age parameter from the RFunction’s parameters, if it exists. If the age parameter is not found, it returns None.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="biomodel.biomodel.RFunction.class_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">class_name</span></span><a class="headerlink" href="#biomodel.biomodel.RFunction.class_name" title="Link to this definition"></a></dt>
+<dd><p>This property returns the class name of the RFunction object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.RFunction.kwarg_to_omop">
+<span class="sig-name descname"><span class="pre">kwarg_to_omop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.RFunction.kwarg_to_omop" title="Link to this definition"></a></dt>
+<dd><p>This method returns a copy of the parameters for the RFunction in OMOP format.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.RFunction.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.RFunction.predict" title="Link to this definition"></a></dt>
+<dd><p>This method makes predictions using the RFunction by calling the underlying R function with the provided keyword arguments. It raises an Exception if positional arguments are provided or if a keyword argument is not found in the RFunction’s parameters.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="biomodel.biomodel.RFunction.resolved_path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resolved_path</span></span><a class="headerlink" href="#biomodel.biomodel.RFunction.resolved_path" title="Link to this definition"></a></dt>
+<dd><p>This property returns the resolved path of the R file by obtaining the absolute path of the module and then resolving the file path relative to the module’s location.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.biomodel.RFunction.return_category">
+<span class="sig-name descname"><span class="pre">return_category</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.RFunction.return_category" title="Link to this definition"></a></dt>
+<dd><p>This method returns the category of the RFunction’s output based on the return type attribute. If the return type is “continuous”, it returns “CONTINUOUS”. If it is “categorical”, it returns “CATEGORICAL”. If the return type is unknown, it raises an Exception. If the return type attribute is not present, it defaults to “CONTINUOUS”.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.ReturnCategory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">ReturnCategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.ReturnCategory" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>A Python enumeration class representing return categories with continuous and categorical options.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.ReturnCategory.CATEGORICAL">
+<span class="sig-name descname"><span class="pre">CATEGORICAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#biomodel.biomodel.ReturnCategory.CATEGORICAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.ReturnCategory.CONTINUOUS">
+<span class="sig-name descname"><span class="pre">CONTINUOUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#biomodel.biomodel.ReturnCategory.CONTINUOUS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.biomodel.RiskInterval">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">RiskInterval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.RiskInterval" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A data class representing a risk interval with a value and a name.
+The class is frozen and supports equality comparison.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.RiskInterval.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#biomodel.biomodel.RiskInterval.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.biomodel.RiskInterval.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#biomodel.biomodel.RiskInterval.value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biomodel.biomodel.contains_distribution_in_variations">
+<span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">contains_distribution_in_variations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.contains_distribution_in_variations" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biomodel.biomodel.filter_transformations">
+<span class="sig-prename descclassname"><span class="pre">biomodel.biomodel.</span></span><span class="sig-name descname"><span class="pre">filter_transformations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.biomodel.filter_transformations" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="LifeTwin Internals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="database.html" class="btn btn-neutral float-right" title="LifeTwin Database Connector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bioinformatic Research Group in Epidemiology (BRGE).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+PIM Simulation Model
+====================
+
+Submodules
+----------
+
+models.pim.pim module
+---------------------
+
+.. automodule:: biomodel.models.pim.pim
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: biomodel.models.pim
+   :members:
+   :undoc-members:
+   :show-inheritance:

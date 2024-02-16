@@ -1,0 +1,21 @@
+Covid Simulation Model
+======================
+
+Submodules
+----------
+
+models.covid.covid module
+-------------------------
+
+.. automodule:: biomodel.models.covid.covid
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: biomodel.models.covid
+   :members:
+   :undoc-members:
+   :show-inheritance:

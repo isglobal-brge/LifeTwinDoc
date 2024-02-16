@@ -1,0 +1,21 @@
+Gail Simulation Model
+=====================
+
+Submodules
+----------
+
+models.gail.model\_gail module
+------------------------------
+
+.. automodule:: biomodel.models.gail.model_gail
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: biomodel.models.gail
+   :members:
+   :undoc-members:
+   :show-inheritance:

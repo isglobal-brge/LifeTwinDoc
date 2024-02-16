@@ -1,0 +1,13 @@
+Advanced Framingham GUI Simulation
+==================================
+
+.. automodule:: fr_gui_trans
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoinclude::
+   :language: python
+   :linenos:
+
+.. autoincludeimage::

@@ -1,0 +1,29 @@
+Score Simulation Model
+======================
+
+Submodules
+----------
+
+models.score.score module
+-------------------------
+
+.. automodule:: biomodel.models.score.score
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+models.score.score\_model module
+--------------------------------
+
+.. automodule:: biomodel.models.score.score_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: biomodel.models.score
+   :members:
+   :undoc-members:
+   :show-inheritance:

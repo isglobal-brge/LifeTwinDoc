@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeTwin Graph Representation Module &mdash; LifeTwin  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LifeTwin Automatic GUI Generator" href="gui.html" />
+    <link rel="prev" title="LifeTwin Database Connector" href="database.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LifeTwin
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Graph Representation Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#graph.AbstractPrediction"><code class="docutils literal notranslate"><span class="pre">AbstractPrediction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#graph.AbstractPrediction.plot_change"><code class="docutils literal notranslate"><span class="pre">AbstractPrediction.plot_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.AbstractPrediction.show_change"><code class="docutils literal notranslate"><span class="pre">AbstractPrediction.show_change()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graph.Prediction"><code class="docutils literal notranslate"><span class="pre">Prediction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#graph.Prediction.current_age"><code class="docutils literal notranslate"><span class="pre">Prediction.current_age</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.Prediction.labels"><code class="docutils literal notranslate"><span class="pre">Prediction.labels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.Prediction.model"><code class="docutils literal notranslate"><span class="pre">Prediction.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.Prediction.plot_change"><code class="docutils literal notranslate"><span class="pre">Prediction.plot_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.Prediction.prediction_years"><code class="docutils literal notranslate"><span class="pre">Prediction.prediction_years</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.Prediction.predictions"><code class="docutils literal notranslate"><span class="pre">Prediction.predictions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.Prediction.return_category"><code class="docutils literal notranslate"><span class="pre">Prediction.return_category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.Prediction.show_change"><code class="docutils literal notranslate"><span class="pre">Prediction.show_change()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graph.SinglePrediction"><code class="docutils literal notranslate"><span class="pre">SinglePrediction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SinglePrediction.labels"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.labels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SinglePrediction.model"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SinglePrediction.plot_change"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.plot_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SinglePrediction.predictions"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.predictions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SinglePrediction.return_category"><code class="docutils literal notranslate"><span class="pre">SinglePrediction.return_category</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graph.SpreadPrediction"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SpreadPrediction.model"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SpreadPrediction.plot_change"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.plot_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SpreadPrediction.prediction_years"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.prediction_years</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SpreadPrediction.return_category"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.return_category</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SpreadPrediction.show_change"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.show_change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph.SpreadPrediction.tables"><code class="docutils literal notranslate"><span class="pre">SpreadPrediction.tables</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graph.calc_global_95CI"><code class="docutils literal notranslate"><span class="pre">calc_global_95CI()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#graph.integrate_horizontals"><code class="docutils literal notranslate"><span class="pre">integrate_horizontals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#graph.set_minimum_value"><code class="docutils literal notranslate"><span class="pre">set_minimum_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LifeTwin</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">LifeTwin Internals</a></li>
+      <li class="breadcrumb-item active">LifeTwin Graph Representation Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internal/graph.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-graph">
+<span id="lifetwin-graph-representation-module"></span><h1>LifeTwin Graph Representation Module<a class="headerlink" href="#module-graph" title="Link to this heading"></a></h1>
+<p>A class to handle prediction and visualization of data changes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="graph.AbstractPrediction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">graph.</span></span><span class="sig-name descname"><span class="pre">AbstractPrediction</span></span><a class="headerlink" href="#graph.AbstractPrediction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to handle prediction and visualization of data changes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="graph.AbstractPrediction.plot_change">
+<span class="sig-name descname"><span class="pre">plot_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.AbstractPrediction.plot_change" title="Link to this definition"></a></dt>
+<dd><p>Plot the change in the data.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>ax (matplotlib.axes.Axes, optional): The axes to plot on. If not provided, a new figure will be created.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="graph.AbstractPrediction.show_change">
+<span class="sig-name descname"><span class="pre">show_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.AbstractPrediction.show_change" title="Link to this definition"></a></dt>
+<dd><p>Show the change in the data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="graph.Prediction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">graph.</span></span><span class="sig-name descname"><span class="pre">Prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_years</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel" title="biomodel.biomodel.BioModel"><span class="pre">BioModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory" title="biomodel.biomodel.ReturnCategory"><span class="pre">ReturnCategory</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Prediction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#graph.AbstractPrediction" title="graph.AbstractPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractPrediction</span></code></a></p>
+<p>A class to handle predictions and visualize the data changes using line plots for continuous data and tables for categorical data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.Prediction.current_age">
+<span class="sig-name descname"><span class="pre">current_age</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#graph.Prediction.current_age" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.Prediction.labels">
+<span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#graph.Prediction.labels" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.Prediction.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel" title="biomodel.biomodel.BioModel"><span class="pre">BioModel</span></a></em><a class="headerlink" href="#graph.Prediction.model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="graph.Prediction.plot_change">
+<span class="sig-name descname"><span class="pre">plot_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Prediction.plot_change" title="Link to this definition"></a></dt>
+<dd><p>Plot the change in the data using line plots for continuous data and table for categorical data.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>self (Prediction): An instance of the Prediction class.
+ax (matplotlib.axes.Axes, optional): The axes to plot on. If not provided, a new figure will be created.</p>
+</dd>
+<dt>Returns:</dt><dd><p>matplotlib.axes.Axes: The axes containing the plotted data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.Prediction.prediction_years">
+<span class="sig-name descname"><span class="pre">prediction_years</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#graph.Prediction.prediction_years" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.Prediction.predictions">
+<span class="sig-name descname"><span class="pre">predictions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#graph.Prediction.predictions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.Prediction.return_category">
+<span class="sig-name descname"><span class="pre">return_category</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory" title="biomodel.biomodel.ReturnCategory"><span class="pre">ReturnCategory</span></a></em><a class="headerlink" href="#graph.Prediction.return_category" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="graph.Prediction.show_change">
+<span class="sig-name descname"><span class="pre">show_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.Prediction.show_change" title="Link to this definition"></a></dt>
+<dd><p>Show the change in the data using the plot_change method and display the plot.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>self (Prediction): An instance of the Prediction class.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="graph.SinglePrediction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">graph.</span></span><span class="sig-name descname"><span class="pre">SinglePrediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel" title="biomodel.biomodel.BioModel"><span class="pre">BioModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory" title="biomodel.biomodel.ReturnCategory"><span class="pre">ReturnCategory</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.SinglePrediction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#graph.AbstractPrediction" title="graph.AbstractPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractPrediction</span></code></a></p>
+<p>A class to handle single predictions and visualize the data changes using bar plots or tables.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.SinglePrediction.labels">
+<span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#graph.SinglePrediction.labels" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.SinglePrediction.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel" title="biomodel.biomodel.BioModel"><span class="pre">BioModel</span></a></em><a class="headerlink" href="#graph.SinglePrediction.model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="graph.SinglePrediction.plot_change">
+<span class="sig-name descname"><span class="pre">plot_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.SinglePrediction.plot_change" title="Link to this definition"></a></dt>
+<dd><p>Plot the change in the data using bar plots.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>self (Prediction): An instance of the Prediction class.
+ax (matplotlib.axes.Axes, optional): The axes to plot on. If not provided, a new figure will be created.</p>
+</dd>
+<dt>Returns:</dt><dd><p>matplotlib.axes.Axes: The axes containing the plotted data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.SinglePrediction.predictions">
+<span class="sig-name descname"><span class="pre">predictions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#graph.SinglePrediction.predictions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.SinglePrediction.return_category">
+<span class="sig-name descname"><span class="pre">return_category</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory" title="biomodel.biomodel.ReturnCategory"><span class="pre">ReturnCategory</span></a></em><a class="headerlink" href="#graph.SinglePrediction.return_category" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="graph.SpreadPrediction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">graph.</span></span><span class="sig-name descname"><span class="pre">SpreadPrediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prediction_years</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel" title="biomodel.biomodel.BioModel"><span class="pre">BioModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory" title="biomodel.biomodel.ReturnCategory"><span class="pre">ReturnCategory</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.SpreadPrediction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#graph.AbstractPrediction" title="graph.AbstractPrediction"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractPrediction</span></code></a></p>
+<p>A class to handle spread predictions and visualize the data changes using line plots for continuous data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.SpreadPrediction.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.BioModel" title="biomodel.biomodel.BioModel"><span class="pre">BioModel</span></a></em><a class="headerlink" href="#graph.SpreadPrediction.model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="graph.SpreadPrediction.plot_change">
+<span class="sig-name descname"><span class="pre">plot_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.SpreadPrediction.plot_change" title="Link to this definition"></a></dt>
+<dd><p>Plot the change in the data using line plots for continuous data.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>self (SpreadPrediction): An instance of the SpreadPrediction class.
+ax (matplotlib.axes.Axes, optional): The axes to plot on. If not provided, a new figure will be created.</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: If attempting to plot categorical predictions for a population.</p>
+</dd>
+<dt>Returns:</dt><dd><p>matplotlib.axes.Axes: The axes containing the plotted data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.SpreadPrediction.prediction_years">
+<span class="sig-name descname"><span class="pre">prediction_years</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#graph.SpreadPrediction.prediction_years" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.SpreadPrediction.return_category">
+<span class="sig-name descname"><span class="pre">return_category</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.ReturnCategory" title="biomodel.biomodel.ReturnCategory"><span class="pre">ReturnCategory</span></a></em><a class="headerlink" href="#graph.SpreadPrediction.return_category" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="graph.SpreadPrediction.show_change">
+<span class="sig-name descname"><span class="pre">show_change</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.SpreadPrediction.show_change" title="Link to this definition"></a></dt>
+<dd><p>Show the change in the data using the plot_change method and display the plot.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>self (SpreadPrediction): An instance of the SpreadPrediction class.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="graph.SpreadPrediction.tables">
+<span class="sig-name descname"><span class="pre">tables</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#graph.SpreadPrediction.tables" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graph.calc_global_95CI">
+<span class="sig-prename descclassname"><span class="pre">graph.</span></span><span class="sig-name descname"><span class="pre">calc_global_95CI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dfs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.calc_global_95CI" title="Link to this definition"></a></dt>
+<dd><p>Calculate the 95% confidence interval for the global mean based on the provided list of pandas DataFrames.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dfs (list[pd.DataFrame]): A list of pandas DataFrames containing the data.</p>
+</dd>
+<dt>Returns:</dt><dd><p>tuple: A tuple containing the minimum and maximum values of the 95% confidence interval for the global mean.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graph.integrate_horizontals">
+<span class="sig-prename descclassname"><span class="pre">graph.</span></span><span class="sig-name descname"><span class="pre">integrate_horizontals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_interval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.integrate_horizontals" title="Link to this definition"></a></dt>
+<dd><p>Integrate horizontal lines representing intervals into the plot.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>self: The instance of the class.
+ax (matplotlib.axes.Axes): The axes to integrate the horizontal lines into.
+min_interval (float): The minimum value of the interval.
+max_interval (float): The maximum value of the interval.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graph.set_minimum_value">
+<span class="sig-prename descclassname"><span class="pre">graph.</span></span><span class="sig-name descname"><span class="pre">set_minimum_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meaning</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graph.set_minimum_value" title="Link to this definition"></a></dt>
+<dd><p>Set the minimum value for the y-axis on the plot based on the meaning and model intervals.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>ax (matplotlib.axes.Axes): The axes to set the minimum value for.
+minimum (float): The minimum value.
+meaning (str): The meaning of the data.
+model: The model used for the prediction.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: The adjusted minimum value for the y-axis.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="database.html" class="btn btn-neutral float-left" title="LifeTwin Database Connector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gui.html" class="btn btn-neutral float-right" title="LifeTwin Automatic GUI Generator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bioinformatic Research Group in Epidemiology (BRGE).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

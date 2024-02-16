@@ -1,0 +1,25 @@
+Examples
+========
+
+.. toctree::
+   :maxdepth: 4
+
+   crc_graph
+   crc_gui
+   fr_describe
+   fr_graph
+   fr_gui
+   fr_gui_genetics
+   fr_gui_trans
+   fr_gui_twin
+   gail_ui
+   omop_csv
+   omop_csv_filter
+   omop_csv_language
+   pim_gui
+   prostate_gui
+   qrisk_describe
+   qrisk_gui
+   score_gui
+   clivd_gui
+   covid_gui

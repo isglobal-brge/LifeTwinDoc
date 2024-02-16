@@ -1,0 +1,29 @@
+QRisk Simulation Model
+======================
+
+Submodules
+----------
+
+models.qrisk.qrisk module
+-------------------------
+
+.. automodule:: biomodel.models.qrisk.qrisk
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+models.qrisk.qrisk\_model module
+--------------------------------
+
+.. automodule:: biomodel.models.qrisk.qrisk_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: biomodel.models.qrisk
+   :members:
+   :undoc-members:
+   :show-inheritance:

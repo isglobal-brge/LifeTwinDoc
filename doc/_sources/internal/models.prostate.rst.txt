@@ -1,0 +1,21 @@
+Prostate Simulation Model
+=========================
+
+Submodules
+----------
+
+models.prostate.prostate module
+-------------------------------
+
+.. automodule:: biomodel.models.prostate.prostate
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: biomodel.models.prostate
+   :members:
+   :undoc-members:
+   :show-inheritance:

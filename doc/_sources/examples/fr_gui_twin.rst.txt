@@ -1,0 +1,13 @@
+Framingham GUI Simulation with Normal Distribution
+==================================================
+
+.. automodule:: fr_gui_twin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoinclude::
+   :language: python
+   :linenos:
+
+.. autoincludeimage::

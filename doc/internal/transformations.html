@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeTwin Simulation Language &mdash; LifeTwin  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Score Simulation Model" href="models.score.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LifeTwin
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Simulation Language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.After"><code class="docutils literal notranslate"><span class="pre">After</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.After.apply_this_year"><code class="docutils literal notranslate"><span class="pre">After.apply_this_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.After.transformation"><code class="docutils literal notranslate"><span class="pre">After.transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.After.year"><code class="docutils literal notranslate"><span class="pre">After.year</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Always"><code class="docutils literal notranslate"><span class="pre">Always</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Always.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Always.apply_this_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Always.transformation"><code class="docutils literal notranslate"><span class="pre">Always.transformation</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Before"><code class="docutils literal notranslate"><span class="pre">Before</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Before.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Before.apply_this_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Before.transformation"><code class="docutils literal notranslate"><span class="pre">Before.transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Before.year"><code class="docutils literal notranslate"><span class="pre">Before.year</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.BeforeAndThen"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.BeforeAndThen.apply_this_year"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen.apply_this_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.BeforeAndThen.transformation"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen.transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.BeforeAndThen.year"><code class="docutils literal notranslate"><span class="pre">BeforeAndThen.year</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Clap"><code class="docutils literal notranslate"><span class="pre">Clap</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Clap.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.max"><code class="docutils literal notranslate"><span class="pre">Clap.max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.min"><code class="docutils literal notranslate"><span class="pre">Clap.min</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.sample"><code class="docutils literal notranslate"><span class="pre">Clap.sample()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Clap.source"><code class="docutils literal notranslate"><span class="pre">Clap.source</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Distribution"><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Distribution.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Distribution.contains_distribution()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Every"><code class="docutils literal notranslate"><span class="pre">Every</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Every.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Every.apply_this_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Every.transformation"><code class="docutils literal notranslate"><span class="pre">Every.transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Every.years"><code class="docutils literal notranslate"><span class="pre">Every.years</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Group"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Group.apply"><code class="docutils literal notranslate"><span class="pre">Group.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Group.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Group.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Group.transformations"><code class="docutils literal notranslate"><span class="pre">Group.transformations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Increase"><code class="docutils literal notranslate"><span class="pre">Increase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Increase.apply"><code class="docutils literal notranslate"><span class="pre">Increase.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Increase.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Increase.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Increase.id"><code class="docutils literal notranslate"><span class="pre">Increase.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Increase.value"><code class="docutils literal notranslate"><span class="pre">Increase.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.IncreaseByPercentage"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.IncreaseByPercentage.apply"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.IncreaseByPercentage.contains_distribution"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.IncreaseByPercentage.id"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.IncreaseByPercentage.percentage"><code class="docutils literal notranslate"><span class="pre">IncreaseByPercentage.percentage</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.LimitValue"><code class="docutils literal notranslate"><span class="pre">LimitValue</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.LimitValue.contains_distribution"><code class="docutils literal notranslate"><span class="pre">LimitValue.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.LimitValue.sample"><code class="docutils literal notranslate"><span class="pre">LimitValue.sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.LogNormal"><code class="docutils literal notranslate"><span class="pre">LogNormal</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.LogNormal.mean"><code class="docutils literal notranslate"><span class="pre">LogNormal.mean</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.LogNormal.sample"><code class="docutils literal notranslate"><span class="pre">LogNormal.sample()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.LogNormal.std"><code class="docutils literal notranslate"><span class="pre">LogNormal.std</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Normal"><code class="docutils literal notranslate"><span class="pre">Normal</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Normal.mean"><code class="docutils literal notranslate"><span class="pre">Normal.mean</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Normal.sample"><code class="docutils literal notranslate"><span class="pre">Normal.sample()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Normal.std"><code class="docutils literal notranslate"><span class="pre">Normal.std</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Normal95IC"><code class="docutils literal notranslate"><span class="pre">Normal95IC()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.OnRange"><code class="docutils literal notranslate"><span class="pre">OnRange</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnRange.apply_this_year"><code class="docutils literal notranslate"><span class="pre">OnRange.apply_this_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnRange.end"><code class="docutils literal notranslate"><span class="pre">OnRange.end</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnRange.start"><code class="docutils literal notranslate"><span class="pre">OnRange.start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnRange.transformation"><code class="docutils literal notranslate"><span class="pre">OnRange.transformation</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.OnSubset"><code class="docutils literal notranslate"><span class="pre">OnSubset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.apply"><code class="docutils literal notranslate"><span class="pre">OnSubset.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.contains_distribution"><code class="docutils literal notranslate"><span class="pre">OnSubset.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.id"><code class="docutils literal notranslate"><span class="pre">OnSubset.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.operator"><code class="docutils literal notranslate"><span class="pre">OnSubset.operator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.transformation"><code class="docutils literal notranslate"><span class="pre">OnSubset.transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.OnSubset.value"><code class="docutils literal notranslate"><span class="pre">OnSubset.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Once"><code class="docutils literal notranslate"><span class="pre">Once</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Once.apply_this_year"><code class="docutils literal notranslate"><span class="pre">Once.apply_this_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Once.transformation"><code class="docutils literal notranslate"><span class="pre">Once.transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Once.year"><code class="docutils literal notranslate"><span class="pre">Once.year</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Reduce"><code class="docutils literal notranslate"><span class="pre">Reduce</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Reduce.apply"><code class="docutils literal notranslate"><span class="pre">Reduce.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Reduce.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Reduce.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Reduce.id"><code class="docutils literal notranslate"><span class="pre">Reduce.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Reduce.value"><code class="docutils literal notranslate"><span class="pre">Reduce.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.ReduceByPercentage"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.ReduceByPercentage.apply"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.ReduceByPercentage.contains_distribution"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.ReduceByPercentage.id"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.ReduceByPercentage.percentage"><code class="docutils literal notranslate"><span class="pre">ReduceByPercentage.percentage</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.RegressToValue"><code class="docutils literal notranslate"><span class="pre">RegressToValue</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.apply"><code class="docutils literal notranslate"><span class="pre">RegressToValue.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.contains_distribution"><code class="docutils literal notranslate"><span class="pre">RegressToValue.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.id"><code class="docutils literal notranslate"><span class="pre">RegressToValue.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.percentage"><code class="docutils literal notranslate"><span class="pre">RegressToValue.percentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.RegressToValue.value"><code class="docutils literal notranslate"><span class="pre">RegressToValue.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Set"><code class="docutils literal notranslate"><span class="pre">Set</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Set.apply"><code class="docutils literal notranslate"><span class="pre">Set.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Set.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Set.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Set.id"><code class="docutils literal notranslate"><span class="pre">Set.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Set.value"><code class="docutils literal notranslate"><span class="pre">Set.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.ThenOnwards"><code class="docutils literal notranslate"><span class="pre">ThenOnwards</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.ThenOnwards.apply_this_year"><code class="docutils literal notranslate"><span class="pre">ThenOnwards.apply_this_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.ThenOnwards.transformation"><code class="docutils literal notranslate"><span class="pre">ThenOnwards.transformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.ThenOnwards.year"><code class="docutils literal notranslate"><span class="pre">ThenOnwards.year</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.TimeDelta"><code class="docutils literal notranslate"><span class="pre">TimeDelta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.TimeDelta.apply"><code class="docutils literal notranslate"><span class="pre">TimeDelta.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.TimeDelta.apply_this_year"><code class="docutils literal notranslate"><span class="pre">TimeDelta.apply_this_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.TimeDelta.contains_distribution"><code class="docutils literal notranslate"><span class="pre">TimeDelta.contains_distribution()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Transformation"><code class="docutils literal notranslate"><span class="pre">Transformation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Transformation.apply"><code class="docutils literal notranslate"><span class="pre">Transformation.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Transformation.contains_distribution"><code class="docutils literal notranslate"><span class="pre">Transformation.contains_distribution()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.Uniform"><code class="docutils literal notranslate"><span class="pre">Uniform</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Uniform.max"><code class="docutils literal notranslate"><span class="pre">Uniform.max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Uniform.min"><code class="docutils literal notranslate"><span class="pre">Uniform.min</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.Uniform.sample"><code class="docutils literal notranslate"><span class="pre">Uniform.sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.WithProbability"><code class="docutils literal notranslate"><span class="pre">WithProbability</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.WithProbability.apply"><code class="docutils literal notranslate"><span class="pre">WithProbability.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.WithProbability.contains_distribution"><code class="docutils literal notranslate"><span class="pre">WithProbability.contains_distribution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.WithProbability.probability"><code class="docutils literal notranslate"><span class="pre">WithProbability.probability</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformations.WithProbability.transformation"><code class="docutils literal notranslate"><span class="pre">WithProbability.transformation</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.get_as_id"><code class="docutils literal notranslate"><span class="pre">get_as_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.get_id_value"><code class="docutils literal notranslate"><span class="pre">get_id_value()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transformations.get_value"><code class="docutils literal notranslate"><span class="pre">get_value()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LifeTwin</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">LifeTwin Internals</a></li>
+      <li class="breadcrumb-item active">LifeTwin Simulation Language</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internal/transformations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-transformations">
+<span id="lifetwin-simulation-language"></span><h1>LifeTwin Simulation Language<a class="headerlink" href="#module-transformations" title="Link to this heading"></a></h1>
+<p>This file contains classes and functions for implementing limit values, distributions, transformations, and time delta transformations. It includes functionality for sampling, containing distributions, applying transformations, and checking if a transformation should be applied in the current year. The classes and functions are designed to be easily extended and overridden for specific use cases.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.After">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">After</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.After" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.TimeDelta" title="transformations.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a></p>
+<p>This class represents a time delta transformation that applies the specified transformation in the years after the specified year. The ‘apply_this_year’ method returns True if the transformation should be applied in the years after the specified year, otherwise returns False. Additionally, it prints the comparison details.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.After.apply_this_year">
+<span class="sig-name descname"><span class="pre">apply_this_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.After.apply_this_year" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the transformation should be applied in the years after the specified year, otherwise returns False. Additionally, it prints the comparison details.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.After.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.After.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.After.year">
+<span class="sig-name descname"><span class="pre">year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#transformations.After.year" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Always">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Always</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Always" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.TimeDelta" title="transformations.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a></p>
+<p>This class represents a time delta transformation that applies the specified transformation every year. The ‘apply_this_year’ method always returns True, indicating that the transformation should be applied every year.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Always.apply_this_year">
+<span class="sig-name descname"><span class="pre">apply_this_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Always.apply_this_year" title="Link to this definition"></a></dt>
+<dd><p>Always returns True, indicating that the transformation should be applied every year.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Always.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.Always.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Before">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Before</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Before" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.TimeDelta" title="transformations.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a></p>
+<p>This class represents a time delta transformation that applies the specified transformation in the years before the specified year. The ‘apply_this_year’ method returns True if the transformation should be applied in the years before the specified year, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Before.apply_this_year">
+<span class="sig-name descname"><span class="pre">apply_this_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Before.apply_this_year" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the transformation should be applied in the years before the specified year, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Before.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.Before.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Before.year">
+<span class="sig-name descname"><span class="pre">year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#transformations.Before.year" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.BeforeAndThen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">BeforeAndThen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.BeforeAndThen" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.TimeDelta" title="transformations.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a></p>
+<p>This class represents a time delta transformation that applies the specified transformation in the current year or any year before the specified year. The ‘apply_this_year’ method returns True if the transformation should be applied in the current year or any year before the specified year, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.BeforeAndThen.apply_this_year">
+<span class="sig-name descname"><span class="pre">apply_this_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.BeforeAndThen.apply_this_year" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the transformation should be applied in the current year or any year before the specified year, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.BeforeAndThen.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.BeforeAndThen.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.BeforeAndThen.year">
+<span class="sig-name descname"><span class="pre">year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#transformations.BeforeAndThen.year" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Clap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Clap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Clap" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LimitValue</span></code></a></p>
+<p>This class represents a limit value with minimum and maximum constraints. It also includes a source value. The ‘sample’ method returns a value from the source, ensuring it falls within the specified minimum and maximum limits. The ‘contains_distribution’ method returns True if the distribution is contained within the minimum and maximum limits, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Clap.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Clap.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the distribution is contained within the minimum and maximum limits, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Clap.max">
+<span class="sig-name descname"><span class="pre">max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.Clap.max" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Clap.min">
+<span class="sig-name descname"><span class="pre">min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.Clap.min" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Clap.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Clap.sample" title="Link to this definition"></a></dt>
+<dd><p>Returns the sampled value from the source, ensuring it falls within the specified minimum and maximum limits.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Clap.source">
+<span class="sig-name descname"><span class="pre">source</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.Clap.source" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Distribution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Distribution</span></span><a class="headerlink" href="#transformations.Distribution" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LimitValue</span></code></a></p>
+<p>This class represents a distribution within the limits. The ‘contains_distribution’ method always returns True, indicating that the distribution is contained within the limits.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Distribution.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Distribution.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True, indicating that the distribution is contained within the limits.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Every">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Every</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Every" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.TimeDelta" title="transformations.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a></p>
+<p>This class represents a time delta transformation that applies the specified transformation every ‘n’ years. The ‘apply_this_year’ method returns True if the transformation should be applied in the current year based on the specified number of years, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Every.apply_this_year">
+<span class="sig-name descname"><span class="pre">apply_this_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Every.apply_this_year" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the transformation should be applied in the current year based on the specified number of years, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Every.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.Every.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Every.years">
+<span class="sig-name descname"><span class="pre">years</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#transformations.Every.years" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Group">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Group" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents a group of transformations that are applied to the attributes. The ‘apply’ method applies each transformation in the list to the attributes and returns the updated attributes. The ‘contains_distribution’ method returns True if any of the transformations contain a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Group.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Group.apply" title="Link to this definition"></a></dt>
+<dd><p>Applies each transformation in the list to the attributes and returns the updated attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Group.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Group.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if any of the transformations contain a distribution, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Group.transformations">
+<span class="sig-name descname"><span class="pre">transformations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#transformations.Group.transformations" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Increase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Increase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Increase" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents an increase transformation, which adds the value to the attribute associated with the ID. The ‘apply’ method adds the value to the attribute associated with the ID and returns the updated attributes. The ‘contains_distribution’ method returns True if the value contains a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Increase.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Increase.apply" title="Link to this definition"></a></dt>
+<dd><p>Adds the value to the attribute associated with the ID and returns the updated attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Increase.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Increase.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the value contains a distribution, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Increase.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></em><a class="headerlink" href="#transformations.Increase.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Increase.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.Increase.value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.IncreaseByPercentage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">IncreaseByPercentage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.IncreaseByPercentage" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents an increase by percentage transformation, which increases the attribute value by a certain percentage. The ‘apply’ method increases the attribute value by a certain percentage and returns the updated attributes. The ‘contains_distribution’ method returns True if the percentage contains a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.IncreaseByPercentage.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.IncreaseByPercentage.apply" title="Link to this definition"></a></dt>
+<dd><p>Increases the attribute value by a certain percentage and returns the updated attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.IncreaseByPercentage.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.IncreaseByPercentage.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the percentage contains a distribution, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.IncreaseByPercentage.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></em><a class="headerlink" href="#transformations.IncreaseByPercentage.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.IncreaseByPercentage.percentage">
+<span class="sig-name descname"><span class="pre">percentage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.IncreaseByPercentage.percentage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.LimitValue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">LimitValue</span></span><a class="headerlink" href="#transformations.LimitValue" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>This class is an abstract base class for implementing limit value functionality. It contains abstract methods ‘sample’ and ‘contains_distribution’ which must be implemented by subclasses. These methods do not contain any implementation and should be overridden in the derived classes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.LimitValue.contains_distribution">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.LimitValue.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>This is an abstract method that should be implemented by subclasses. It does not contain any implementation and should be overridden in the derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.LimitValue.sample">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.LimitValue.sample" title="Link to this definition"></a></dt>
+<dd><p>This is an abstract method that should be implemented by subclasses. It does not contain any implementation and should be overridden in the derived classes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.LogNormal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">LogNormal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.LogNormal" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Distribution" title="transformations.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a></p>
+<p>This class represents a log-normal distribution with the specified mean and standard deviation. The ‘sample’ method returns a randomly sampled value from a log-normal distribution with the specified mean and standard deviation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.LogNormal.mean">
+<span class="sig-name descname"><span class="pre">mean</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#transformations.LogNormal.mean" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.LogNormal.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.LogNormal.sample" title="Link to this definition"></a></dt>
+<dd><p>Returns a randomly sampled value from a log-normal distribution with the specified mean and standard deviation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.LogNormal.std">
+<span class="sig-name descname"><span class="pre">std</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#transformations.LogNormal.std" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Normal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Normal" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Distribution" title="transformations.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a></p>
+<p>This class represents a normal distribution with the specified mean and standard deviation. The ‘sample’ method returns a randomly sampled value from a normal distribution with the specified mean and standard deviation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Normal.mean">
+<span class="sig-name descname"><span class="pre">mean</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#transformations.Normal.mean" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Normal.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Normal.sample" title="Link to this definition"></a></dt>
+<dd><p>Returns a randomly sampled value from a normal distribution with the specified mean and standard deviation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Normal.std">
+<span class="sig-name descname"><span class="pre">std</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#transformations.Normal.std" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="transformations.Normal95IC">
+<span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Normal95IC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Normal95IC" title="Link to this definition"></a></dt>
+<dd><p>Returns a normal distribution with a mean and standard deviation calculated from the given minimum and maximum values, representing a 95% confidence interval.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.OnRange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">OnRange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.OnRange" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.TimeDelta" title="transformations.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a></p>
+<p>This class represents a time delta transformation that applies the specified transformation within the specified range of years. The ‘apply_this_year’ method returns True if the transformation should be applied within the specified range of years, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.OnRange.apply_this_year">
+<span class="sig-name descname"><span class="pre">apply_this_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.OnRange.apply_this_year" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the transformation should be applied within the specified range of years, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.OnRange.end">
+<span class="sig-name descname"><span class="pre">end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#transformations.OnRange.end" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.OnRange.start">
+<span class="sig-name descname"><span class="pre">start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#transformations.OnRange.start" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.OnRange.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.OnRange.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.OnSubset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">OnSubset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.OnSubset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents a transformation that is applied to the attributes based on the comparison result between the specified attribute and value. The ‘apply’ method applies the transformation to the attributes based on the comparison result between the specified attribute and value, and returns the updated attributes. If the comparison operator is invalid, a ValueError is raised. The ‘contains_distribution’ method returns True if the transformation contains a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.OnSubset.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.OnSubset.apply" title="Link to this definition"></a></dt>
+<dd><p>Applies the transformation to the attributes based on the comparison result between the specified attribute and value, and returns the updated attributes. If the comparison operator is invalid, a ValueError is raised.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.OnSubset.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.OnSubset.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the transformation contains a distribution, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.OnSubset.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></em><a class="headerlink" href="#transformations.OnSubset.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.OnSubset.operator">
+<span class="sig-name descname"><span class="pre">operator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#transformations.OnSubset.operator" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.OnSubset.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.OnSubset.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.OnSubset.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#transformations.OnSubset.value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Once">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Once</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Once" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.TimeDelta" title="transformations.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a></p>
+<p>This class represents a time delta transformation that applies the specified transformation once in a specific year. The ‘apply_this_year’ method returns True if the transformation should be applied in the current year based on the specified year, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Once.apply_this_year">
+<span class="sig-name descname"><span class="pre">apply_this_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Once.apply_this_year" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the transformation should be applied in the current year based on the specified year, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Once.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.Once.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Once.year">
+<span class="sig-name descname"><span class="pre">year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#transformations.Once.year" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Reduce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Reduce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Reduce" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents a reduction transformation, which subtracts the value associated with the ID from the attributes. The ‘apply’ method subtracts the value associated with the ID from the attributes and returns the updated attributes. The ‘contains_distribution’ method returns True if the value contains a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Reduce.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Reduce.apply" title="Link to this definition"></a></dt>
+<dd><p>Subtracts the value associated with the ID from the attributes and returns the updated attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Reduce.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Reduce.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the value contains a distribution, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Reduce.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></em><a class="headerlink" href="#transformations.Reduce.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Reduce.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.Reduce.value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.ReduceByPercentage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">ReduceByPercentage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.ReduceByPercentage" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents a reduction by percentage transformation, which reduces the attribute value by a certain percentage. The ‘apply’ method reduces the attribute value by a certain percentage and returns the updated attributes. The ‘contains_distribution’ method returns True if the percentage contains a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.ReduceByPercentage.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.ReduceByPercentage.apply" title="Link to this definition"></a></dt>
+<dd><p>Reduces the attribute value by a certain percentage and returns the updated attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.ReduceByPercentage.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.ReduceByPercentage.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the percentage contains a distribution, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.ReduceByPercentage.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></em><a class="headerlink" href="#transformations.ReduceByPercentage.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.ReduceByPercentage.percentage">
+<span class="sig-name descname"><span class="pre">percentage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.ReduceByPercentage.percentage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.RegressToValue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">RegressToValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.RegressToValue" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents a regression to value transformation, which adjusts the attribute value based on the specified value and percentage, ensuring it does not exceed the value. The ‘apply’ method adjusts the attribute value based on the specified value and percentage, ensuring it does not exceed the value, and returns the updated attributes. Additionally, it prints the regression details. The ‘contains_distribution’ method returns True if either the value or the percentage contains a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.RegressToValue.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.RegressToValue.apply" title="Link to this definition"></a></dt>
+<dd><p>Adjusts the attribute value based on the specified value and percentage, ensuring it does not exceed the value, and returns the updated attributes. Additionally, it prints the regression details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.RegressToValue.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.RegressToValue.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if either the value or the percentage contains a distribution, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.RegressToValue.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></em><a class="headerlink" href="#transformations.RegressToValue.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.RegressToValue.percentage">
+<span class="sig-name descname"><span class="pre">percentage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.RegressToValue.percentage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.RegressToValue.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.RegressToValue.value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Set">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Set" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents a set transformation, which updates the attributes with the value associated with the ID. The ‘apply’ method updates the attributes with the value associated with the ID, and returns the updated attributes. The ‘contains_distribution’ method returns True if the value contains a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Set.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Set.apply" title="Link to this definition"></a></dt>
+<dd><p>Updates the attributes with the value associated with the ID, and returns the updated attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Set.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Set.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the value contains a distribution, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Set.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></em><a class="headerlink" href="#transformations.Set.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Set.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.Set.value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.ThenOnwards">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">ThenOnwards</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.ThenOnwards" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.TimeDelta" title="transformations.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a></p>
+<p>This class represents a time delta transformation that applies the specified transformation from a specific year onwards. The ‘apply_this_year’ method returns True if the transformation should be applied in the current year or any year after the specified year, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.ThenOnwards.apply_this_year">
+<span class="sig-name descname"><span class="pre">apply_this_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.ThenOnwards.apply_this_year" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the transformation should be applied in the current year or any year after the specified year, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.ThenOnwards.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.ThenOnwards.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.ThenOnwards.year">
+<span class="sig-name descname"><span class="pre">year</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#transformations.ThenOnwards.year" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.TimeDelta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">TimeDelta</span></span><a class="headerlink" href="#transformations.TimeDelta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents a time delta transformation, which applies the transformation to the attributes if it should be applied in the current year. The ‘apply’ method applies the transformation to the attributes if it should be applied in the current year, and returns the updated attributes. The ‘contains_distribution’ method returns True if the transformation contains a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.TimeDelta.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.TimeDelta.apply" title="Link to this definition"></a></dt>
+<dd><p>Applies the transformation to the attributes if it should be applied in the current year, and returns the updated attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.TimeDelta.apply_this_year">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apply_this_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.TimeDelta.apply_this_year" title="Link to this definition"></a></dt>
+<dd><p>This is an abstract method that should be implemented by subclasses. It does not contain any implementation and should be overridden in the derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.TimeDelta.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.TimeDelta.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if the transformation contains a distribution, otherwise returns False.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Transformation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Transformation</span></span><a class="headerlink" href="#transformations.Transformation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>This class is an abstract base class for implementing transformations. It contains abstract methods ‘apply’ and ‘contains_distribution’ which must be implemented by subclasses. These methods do not contain any implementation and should be overridden in the derived classes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Transformation.apply">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Transformation.apply" title="Link to this definition"></a></dt>
+<dd><p>This is an abstract method that should be implemented by subclasses. It does not contain any implementation and should be overridden in the derived classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Transformation.contains_distribution">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Transformation.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>This is an abstract method that should be implemented by subclasses. It does not contain any implementation and should be overridden in the derived classes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.Uniform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">Uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Uniform" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Distribution" title="transformations.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a></p>
+<p>This class represents a uniform distribution within the specified minimum and maximum limits. The ‘sample’ method returns a randomly sampled value within the specified limits.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Uniform.max">
+<span class="sig-name descname"><span class="pre">max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#transformations.Uniform.max" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.Uniform.min">
+<span class="sig-name descname"><span class="pre">min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#transformations.Uniform.min" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.Uniform.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.Uniform.sample" title="Link to this definition"></a></dt>
+<dd><p>Returns a randomly sampled value within the specified minimum and maximum limits.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="transformations.WithProbability">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">WithProbability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.WithProbability" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a></p>
+<p>This class represents a transformation with a certain probability of application. The ‘apply’ method applies the transformation to the attributes with a certain probability and returns the updated attributes. The ‘contains_distribution’ method returns True if either the probability or the transformation contains a distribution, otherwise returns False.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.WithProbability.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_years</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.WithProbability.apply" title="Link to this definition"></a></dt>
+<dd><p>Applies the transformation to the attributes with a certain probability and returns the updated attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transformations.WithProbability.contains_distribution">
+<span class="sig-name descname"><span class="pre">contains_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#transformations.WithProbability.contains_distribution" title="Link to this definition"></a></dt>
+<dd><p>Returns True if either the probability or the transformation contains a distribution, otherwise returns False.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.WithProbability.probability">
+<span class="sig-name descname"><span class="pre">probability</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></em><a class="headerlink" href="#transformations.WithProbability.probability" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="transformations.WithProbability.transformation">
+<span class="sig-name descname"><span class="pre">transformation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#transformations.Transformation" title="transformations.Transformation"><span class="pre">Transformation</span></a></em><a class="headerlink" href="#transformations.WithProbability.transformation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="transformations.get_as_id">
+<span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">get_as_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.get_as_id" title="Link to this definition"></a></dt>
+<dd><p>Returns the input value as an OMOPId object if it is not already, otherwise returns the input value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="transformations.get_id_value">
+<span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">get_id_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="biomodel.html#biomodel.biomodel.OMOPId" title="biomodel.biomodel.OMOPId"><span class="pre">OMOPId</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.get_id_value" title="Link to this definition"></a></dt>
+<dd><p>Returns the ID value if the input is an OMOPId object, otherwise returns the input value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="transformations.get_value">
+<span class="sig-prename descclassname"><span class="pre">transformations.</span></span><span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#transformations.LimitValue" title="transformations.LimitValue"><span class="pre">LimitValue</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transformations.get_value" title="Link to this definition"></a></dt>
+<dd><p>Returns the sampled value if the input is a LimitValue object, otherwise returns the input value.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="models.score.html" class="btn btn-neutral float-left" title="Score Simulation Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bioinformatic Research Group in Epidemiology (BRGE).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

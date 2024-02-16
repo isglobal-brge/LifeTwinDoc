@@ -1,0 +1,12 @@
+Genetic Framingham Simulation Graph
+===================================
+
+.. automodule:: fr_gui_genetics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoinclude::
+   :language: python
+   :linenos:
+.. autoincludeimage::

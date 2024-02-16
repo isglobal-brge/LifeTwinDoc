@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeTwin Database Connector &mdash; LifeTwin  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LifeTwin Graph Representation Module" href="graph.html" />
+    <link rel="prev" title="LifeTwin Core Internals" href="biomodel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LifeTwin
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LifeTwin Database Connector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database.Database"><code class="docutils literal notranslate"><span class="pre">Database</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.Database.iterate_person"><code class="docutils literal notranslate"><span class="pre">Database.iterate_person()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#database.OMOP_DB"><code class="docutils literal notranslate"><span class="pre">OMOP_DB</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_DB.iterate_person"><code class="docutils literal notranslate"><span class="pre">OMOP_DB.iterate_person()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#database.OMOP_Measurement"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_date"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.measurement_type_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.measurement_type_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.operator_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.operator_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.person_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.provider_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.range_high"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.range_high</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.range_low"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.range_low</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.unit_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.unit_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.unit_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.unit_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.value_as_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_as_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.value_as_number"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_as_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.value_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.value_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Measurement.visit_occurrence_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Measurement.visit_occurrence_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#database.OMOP_Obsevation"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_date"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.observation_type_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.observation_type_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.person_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.provider_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.qualifier_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.qualifier_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.qualifier_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.qualifier_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.unit_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.unit_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.unit_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.unit_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.value_as_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.value_as_number"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.value_as_string"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.value_as_string</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Obsevation.visit_occurrence_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Obsevation.visit_occurrence_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#database.OMOP_Person"><code class="docutils literal notranslate"><span class="pre">OMOP_Person</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.age"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.age</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.birth_datetime"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.birth_datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.care_site_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.care_site_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.day_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.day_of_birth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.ethnicity_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.ethnicity_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.ethnicity_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.ethnicity_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.gender_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.gender_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.gender_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.gender_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.is_female"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.is_female</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.is_male"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.is_male</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.location_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.location_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.month_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.month_of_birth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.person_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.person_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.person_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.person_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.provider_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.provider_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.race_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.race_source_concept_id"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_source_concept_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.race_source_value"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.race_source_value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.sex"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.sex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database.OMOP_Person.year_of_birth"><code class="docutils literal notranslate"><span class="pre">OMOP_Person.year_of_birth</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LifeTwin</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">LifeTwin Internals</a></li>
+      <li class="breadcrumb-item active">LifeTwin Database Connector</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internal/database.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-database">
+<span id="lifetwin-database-connector"></span><h1>LifeTwin Database Connector<a class="headerlink" href="#module-database" title="Link to this heading"></a></h1>
+<p>This file provides classes for working with OMOP (Observational Medical Outcomes Partnership) database. It includes a class for database operations, as well as classes for representing person, observation, and measurement objects. The classes allow for reading data from files into pandas DataFrames, iterating through the data, and providing string representations of the objects.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="database.Database">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">Database</span></span><a class="headerlink" href="#database.Database" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>This class provides a method to iterate through a collection of person objects.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.Database.iterate_person">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">iterate_person</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.Database.iterate_person" title="Link to this definition"></a></dt>
+<dd><p>Defines a method to iterate through a collection of person objects.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="database.OMOP_DB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">OMOP_DB</span></span><a class="headerlink" href="#database.OMOP_DB" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#database.Database" title="database.Database"><code class="xref py py-class docutils literal notranslate"><span class="pre">Database</span></code></a></p>
+<p>OMOP_DB is a class that initializes the object with paths to person, observation, and measurement data files. It reads the data from the files into pandas DataFrames and raises errors if the files or expected attributes are not found. It also provides a method to iterate through the person data and retrieve corresponding observations and measurements. The method groups the observations and measurements by concept ID and creates OMOP_Observation and OMOP_Measurement objects, yielding the OMOP_Person object along with the associated observations and measurements.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="database.OMOP_DB.iterate_person">
+<span class="sig-name descname"><span class="pre">iterate_person</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.OMOP_DB.iterate_person" title="Link to this definition"></a></dt>
+<dd><p>Iterates through the person data and retrieves corresponding observations and measurements. Groups the observations and measurements by concept ID and creates OMOP_Observation and OMOP_Measurement objects. Yields the OMOP_Person object along with the associated observations and measurements.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="database.OMOP_Measurement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">OMOP_Measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.OMOP_Measurement" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>OMOP_Measurement is a class that represents a measurement object with specific attributes such as measurement_id, person_id, measurement_concept_id, and others. It initializes the object with a measurement pandas Series and sets the attributes of the object based on the values in the Series. It also provides a string representation of the Measurement object including its id, person id, and concept id.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.measurement_concept_id">
+<span class="sig-name descname"><span class="pre">measurement_concept_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.measurement_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.measurement_date">
+<span class="sig-name descname"><span class="pre">measurement_date</span></span><a class="headerlink" href="#database.OMOP_Measurement.measurement_date" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.measurement_datetime">
+<span class="sig-name descname"><span class="pre">measurement_datetime</span></span><a class="headerlink" href="#database.OMOP_Measurement.measurement_datetime" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.measurement_id">
+<span class="sig-name descname"><span class="pre">measurement_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.measurement_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.measurement_source_concept_id">
+<span class="sig-name descname"><span class="pre">measurement_source_concept_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.measurement_source_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.measurement_source_value">
+<span class="sig-name descname"><span class="pre">measurement_source_value</span></span><a class="headerlink" href="#database.OMOP_Measurement.measurement_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.measurement_type_concept_id">
+<span class="sig-name descname"><span class="pre">measurement_type_concept_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.measurement_type_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.operator_concept_id">
+<span class="sig-name descname"><span class="pre">operator_concept_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.operator_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.person_id">
+<span class="sig-name descname"><span class="pre">person_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.person_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.provider_id">
+<span class="sig-name descname"><span class="pre">provider_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.provider_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.range_high">
+<span class="sig-name descname"><span class="pre">range_high</span></span><a class="headerlink" href="#database.OMOP_Measurement.range_high" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.range_low">
+<span class="sig-name descname"><span class="pre">range_low</span></span><a class="headerlink" href="#database.OMOP_Measurement.range_low" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.unit_concept_id">
+<span class="sig-name descname"><span class="pre">unit_concept_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.unit_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.unit_source_value">
+<span class="sig-name descname"><span class="pre">unit_source_value</span></span><a class="headerlink" href="#database.OMOP_Measurement.unit_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.value_as_concept_id">
+<span class="sig-name descname"><span class="pre">value_as_concept_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.value_as_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.value_as_number">
+<span class="sig-name descname"><span class="pre">value_as_number</span></span><a class="headerlink" href="#database.OMOP_Measurement.value_as_number" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.value_source_value">
+<span class="sig-name descname"><span class="pre">value_source_value</span></span><a class="headerlink" href="#database.OMOP_Measurement.value_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Measurement.visit_occurrence_id">
+<span class="sig-name descname"><span class="pre">visit_occurrence_id</span></span><a class="headerlink" href="#database.OMOP_Measurement.visit_occurrence_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">OMOP_Obsevation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.OMOP_Obsevation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>OMOP_Observation is a class that represents an observation object with specific attributes such as observation_id, person_id, observation_concept_id, and others. It initializes the object with an observation pandas Series and sets the attributes of the object based on the values in the Series. It also provides a string representation of the Observation object including its id, person id, and concept id.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.observation_concept_id">
+<span class="sig-name descname"><span class="pre">observation_concept_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.observation_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.observation_date">
+<span class="sig-name descname"><span class="pre">observation_date</span></span><a class="headerlink" href="#database.OMOP_Obsevation.observation_date" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.observation_datetime">
+<span class="sig-name descname"><span class="pre">observation_datetime</span></span><a class="headerlink" href="#database.OMOP_Obsevation.observation_datetime" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.observation_id">
+<span class="sig-name descname"><span class="pre">observation_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.observation_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.observation_source_concept_id">
+<span class="sig-name descname"><span class="pre">observation_source_concept_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.observation_source_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.observation_source_value">
+<span class="sig-name descname"><span class="pre">observation_source_value</span></span><a class="headerlink" href="#database.OMOP_Obsevation.observation_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.observation_type_concept_id">
+<span class="sig-name descname"><span class="pre">observation_type_concept_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.observation_type_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.person_id">
+<span class="sig-name descname"><span class="pre">person_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.person_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.provider_id">
+<span class="sig-name descname"><span class="pre">provider_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.provider_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.qualifier_concept_id">
+<span class="sig-name descname"><span class="pre">qualifier_concept_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.qualifier_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.qualifier_source_value">
+<span class="sig-name descname"><span class="pre">qualifier_source_value</span></span><a class="headerlink" href="#database.OMOP_Obsevation.qualifier_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.unit_concept_id">
+<span class="sig-name descname"><span class="pre">unit_concept_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.unit_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.unit_source_value">
+<span class="sig-name descname"><span class="pre">unit_source_value</span></span><a class="headerlink" href="#database.OMOP_Obsevation.unit_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.value_as_concept_id">
+<span class="sig-name descname"><span class="pre">value_as_concept_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.value_as_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.value_as_number">
+<span class="sig-name descname"><span class="pre">value_as_number</span></span><a class="headerlink" href="#database.OMOP_Obsevation.value_as_number" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.value_as_string">
+<span class="sig-name descname"><span class="pre">value_as_string</span></span><a class="headerlink" href="#database.OMOP_Obsevation.value_as_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Obsevation.visit_occurrence_id">
+<span class="sig-name descname"><span class="pre">visit_occurrence_id</span></span><a class="headerlink" href="#database.OMOP_Obsevation.visit_occurrence_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="database.OMOP_Person">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">database.</span></span><span class="sig-name descname"><span class="pre">OMOP_Person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.OMOP_Person" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>OMOP_Person is a class that represents a person object with specific attributes such as person_id, month_of_birth, day_of_birth, and others. It initializes the object with a person pandas Series and sets the attributes of the object based on the values in the Series. It also provides properties to calculate the age of the person, determine if the person is male or female, and retrieve the sex of the person as an integer. Additionally, it offers a string representation of the Person object including its id.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="database.OMOP_Person.age">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">age</span></span><a class="headerlink" href="#database.OMOP_Person.age" title="Link to this definition"></a></dt>
+<dd><p>Returns the age of the person based on the current year and the year of birth.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.birth_datetime">
+<span class="sig-name descname"><span class="pre">birth_datetime</span></span><a class="headerlink" href="#database.OMOP_Person.birth_datetime" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.care_site_id">
+<span class="sig-name descname"><span class="pre">care_site_id</span></span><a class="headerlink" href="#database.OMOP_Person.care_site_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.day_of_birth">
+<span class="sig-name descname"><span class="pre">day_of_birth</span></span><a class="headerlink" href="#database.OMOP_Person.day_of_birth" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.ethnicity_concept_id">
+<span class="sig-name descname"><span class="pre">ethnicity_concept_id</span></span><a class="headerlink" href="#database.OMOP_Person.ethnicity_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.ethnicity_source_concept_id">
+<span class="sig-name descname"><span class="pre">ethnicity_source_concept_id</span></span><a class="headerlink" href="#database.OMOP_Person.ethnicity_source_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.ethnicity_source_value">
+<span class="sig-name descname"><span class="pre">ethnicity_source_value</span></span><a class="headerlink" href="#database.OMOP_Person.ethnicity_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.gender_concept_id">
+<span class="sig-name descname"><span class="pre">gender_concept_id</span></span><a class="headerlink" href="#database.OMOP_Person.gender_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.gender_source_concept_id">
+<span class="sig-name descname"><span class="pre">gender_source_concept_id</span></span><a class="headerlink" href="#database.OMOP_Person.gender_source_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.gender_source_value">
+<span class="sig-name descname"><span class="pre">gender_source_value</span></span><a class="headerlink" href="#database.OMOP_Person.gender_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.OMOP_Person.is_female">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_female</span></span><a class="headerlink" href="#database.OMOP_Person.is_female" title="Link to this definition"></a></dt>
+<dd><p>Returns a boolean indicating whether the person is female based on the gender concept id.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.OMOP_Person.is_male">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_male</span></span><a class="headerlink" href="#database.OMOP_Person.is_male" title="Link to this definition"></a></dt>
+<dd><p>Returns a boolean indicating whether the person is male based on the gender concept id.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.location_id">
+<span class="sig-name descname"><span class="pre">location_id</span></span><a class="headerlink" href="#database.OMOP_Person.location_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.month_of_birth">
+<span class="sig-name descname"><span class="pre">month_of_birth</span></span><a class="headerlink" href="#database.OMOP_Person.month_of_birth" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.person_id">
+<span class="sig-name descname"><span class="pre">person_id</span></span><a class="headerlink" href="#database.OMOP_Person.person_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.person_source_value">
+<span class="sig-name descname"><span class="pre">person_source_value</span></span><a class="headerlink" href="#database.OMOP_Person.person_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.provider_id">
+<span class="sig-name descname"><span class="pre">provider_id</span></span><a class="headerlink" href="#database.OMOP_Person.provider_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.race_concept_id">
+<span class="sig-name descname"><span class="pre">race_concept_id</span></span><a class="headerlink" href="#database.OMOP_Person.race_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.race_source_concept_id">
+<span class="sig-name descname"><span class="pre">race_source_concept_id</span></span><a class="headerlink" href="#database.OMOP_Person.race_source_concept_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.race_source_value">
+<span class="sig-name descname"><span class="pre">race_source_value</span></span><a class="headerlink" href="#database.OMOP_Person.race_source_value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="database.OMOP_Person.sex">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sex</span></span><a class="headerlink" href="#database.OMOP_Person.sex" title="Link to this definition"></a></dt>
+<dd><p>Returns the sex of the person as an integer (1 for male, 2 for female) based on the gender concept id. If the gender is not male or female, it raises an exception.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="database.OMOP_Person.year_of_birth">
+<span class="sig-name descname"><span class="pre">year_of_birth</span></span><a class="headerlink" href="#database.OMOP_Person.year_of_birth" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="biomodel.html" class="btn btn-neutral float-left" title="LifeTwin Core Internals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="graph.html" class="btn btn-neutral float-right" title="LifeTwin Graph Representation Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bioinformatic Research Group in Epidemiology (BRGE).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

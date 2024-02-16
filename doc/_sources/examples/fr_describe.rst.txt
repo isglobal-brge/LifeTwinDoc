@@ -1,0 +1,13 @@
+Framingham Parameter Description
+================================
+
+.. automodule:: fr_describe
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoinclude::
+   :language: python
+   :linenos:
+
+.. autoincludeimage::

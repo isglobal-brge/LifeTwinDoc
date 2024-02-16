@@ -1,0 +1,15 @@
+PIM GUI Simulation
+==================
+
+.. automodule:: pim_gui
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+.. autoinclude::
+   :language: python
+   :linenos:
+
+
+.. autoincludeimage::

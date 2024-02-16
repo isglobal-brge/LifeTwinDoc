@@ -1,0 +1,12 @@
+Framingham Simulation Graph
+===========================
+
+.. automodule:: fr_graph
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoinclude::
+   :language: python
+   :linenos:
+.. autoincludeimage::

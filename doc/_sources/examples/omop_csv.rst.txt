@@ -1,0 +1,13 @@
+OMOP DB Population Simulation
+=============================
+
+.. automodule:: omop_csv
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoinclude::
+   :language: python
+   :linenos:
+
+.. autoincludeimage::

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRisk Simulation Model &mdash; LifeTwin  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Score Simulation Model" href="models.score.html" />
+    <link rel="prev" title="Prostate Simulation Model" href="models.prostate.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LifeTwin
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="models.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="models.clivd.html">CLivD Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd_points.html">CLivD Points Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.covid.html">Covid Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham.html">Framingham Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html">Genetic Framingham Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.gail.html">Gail Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.lifecrc.html">LifeCRC Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.pim.html">PIM Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.prostate.html">Prostate Simulation Model</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">QRisk Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.score.html">Score Simulation Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#module-biomodel.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LifeTwin</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">LifeTwin Internals</a></li>
+          <li class="breadcrumb-item"><a href="models.html">LifeTwin Statistical Models</a></li>
+      <li class="breadcrumb-item active">QRisk Simulation Model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internal/models.qrisk.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="qrisk-simulation-model">
+<h1>QRisk Simulation Model<a class="headerlink" href="#qrisk-simulation-model" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-biomodel.models.qrisk.qrisk">
+<span id="models-qrisk-qrisk-module"></span><h2>models.qrisk.qrisk module<a class="headerlink" href="#module-biomodel.models.qrisk.qrisk" title="Link to this heading"></a></h2>
+<p>Predicts the absolute risk of cardiovascular disease based on various health and lifestyle parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual (between 20 and 100).
+sex (int): Gender of the individual.
+b_AF (bool): Atrial fibrillation status.
+b_atypicalantipsy (bool): On atypical antipsychotic medication status.
+b_corticosteroids (bool): Regular steroid tablets usage status.
+b_impotence2 (bool): Diagnosis or treatment for erectile dysfunction status.
+b_migraine (bool): Migraine status.
+b_ra (bool): Rheumatoid arthritis status.
+b_renal (bool): Chronic kidney disease (stage 3, 4 or 5) status.
+b_semi (bool): Severe mental illness status.
+b_sle (bool): Systemic lupus erythematosus (SLE) status.
+b_treatedhyp (bool): Blood pressure treatment status.
+diabetes_cat (int): Diabetes status category.
+bmi (float): Body Mass Index (kg/m^2) of the individual (between 15 and 50).
+ethrisk (int): Ethnicity risk category.
+fh_cvd (bool): Angina or heart attack in a 1st degree relative &lt; 60 status.
+rati (float): Total cholesterol/HDL cholesterol ratio.
+sbp (float): Systolic BP (mmHg).
+sbps5 (float): SD of the last two systolic BP readings (mmHg).
+smoke_cat (int): Smoking status category.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Absolute risk of cardiovascular disease.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.qrisk.qrisk.QRisk">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.qrisk.qrisk.</span></span><span class="sig-name descname"><span class="pre">QRisk</span></span><a class="headerlink" href="#biomodel.models.qrisk.qrisk.QRisk" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>Predicts the absolute risk of cardiovascular disease based on various health and lifestyle parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual (between 20 and 100).
+sex (int): Gender of the individual.
+b_AF (bool): Atrial fibrillation status.
+b_atypicalantipsy (bool): On atypical antipsychotic medication status.
+b_corticosteroids (bool): Regular steroid tablets usage status.
+b_impotence2 (bool): Diagnosis or treatment for erectile dysfunction status.
+b_migraine (bool): Migraine status.
+b_ra (bool): Rheumatoid arthritis status.
+b_renal (bool): Chronic kidney disease (stage 3, 4 or 5) status.
+b_semi (bool): Severe mental illness status.
+b_sle (bool): Systemic lupus erythematosus (SLE) status.
+b_treatedhyp (bool): Blood pressure treatment status.
+diabetes_cat (int): Diabetes status category.
+bmi (float): Body Mass Index (kg/m^2) of the individual (between 15 and 50).
+ethrisk (int): Ethnicity risk category.
+fh_cvd (bool): Angina or heart attack in a 1st degree relative &lt; 60 status.
+rati (float): Total cholesterol/HDL cholesterol ratio.
+sbp (float): Systolic BP (mmHg).
+sbps5 (float): SD of the last two systolic BP readings (mmHg).
+smoke_cat (int): Smoking status category.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Absolute risk of cardiovascular disease.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.qrisk.qrisk.QRisk.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'probability'</span></em><a class="headerlink" href="#biomodel.models.qrisk.qrisk.QRisk.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.qrisk.qrisk.QRisk.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=0.0,</span> <span class="pre">name='Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.1,</span> <span class="pre">name='High</span> <span class="pre">risk')]</span></em><a class="headerlink" href="#biomodel.models.qrisk.qrisk.QRisk.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.qrisk.qrisk.QRisk.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'QRISK'</span></em><a class="headerlink" href="#biomodel.models.qrisk.qrisk.QRisk.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.qrisk.qrisk.QRisk.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=20,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Age')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id='sex',</span> <span class="pre">values={1:</span> <span class="pre">'Male',</span> <span class="pre">2:</span> <span class="pre">'Female'},</span> <span class="pre">name='Sex')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_AF</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=313217,</span> <span class="pre">name='Atrial</span> <span class="pre">fibrillation?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_atypicalantipsy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id='atypical-antipsychotic-medication',</span> <span class="pre">name='On</span> <span class="pre">atypical</span> <span class="pre">antipsychotic</span> <span class="pre">medication?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_corticosteroids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id='steroid-tablets',</span> <span class="pre">name='Are</span> <span class="pre">you</span> <span class="pre">on</span> <span class="pre">regular</span> <span class="pre">steroid</span> <span class="pre">tablets?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_impotence2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=3655355,</span> <span class="pre">name='A</span> <span class="pre">diagnosis</span> <span class="pre">or</span> <span class="pre">treatment</span> <span class="pre">for</span> <span class="pre">erectile</span> <span class="pre">disfunction?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_migraine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=318736,</span> <span class="pre">name='Do</span> <span class="pre">you</span> <span class="pre">have</span> <span class="pre">migraines?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_ra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=80809,</span> <span class="pre">name='Rheumatoid</span> <span class="pre">arthritis?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_renal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=46271022,</span> <span class="pre">name='Chronic</span> <span class="pre">kidney</span> <span class="pre">disease</span> <span class="pre">(stage</span> <span class="pre">3,</span> <span class="pre">4</span> <span class="pre">or</span> <span class="pre">5)?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_semi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=4192296,</span> <span class="pre">name='Severe</span> <span class="pre">mental</span> <span class="pre">illness?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_sle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=257628,</span> <span class="pre">name='Systemic</span> <span class="pre">lupus</span> <span class="pre">erythematosus</span> <span class="pre">(SLE)?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_treatedhyp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=4063253,</span> <span class="pre">name='On</span> <span class="pre">BP</span> <span class="pre">treatment?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diabetes_cat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id=4236883,</span> <span class="pre">values={0:</span> <span class="pre">'none',</span> <span class="pre">1:</span> <span class="pre">'type</span> <span class="pre">1',</span> <span class="pre">2:</span> <span class="pre">'type</span> <span class="pre">2'},</span> <span class="pre">name='Diabetes</span> <span class="pre">status')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bmi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4245997,</span> <span class="pre">minimum=15,</span> <span class="pre">maximum=50,</span> <span class="pre">name='Body</span> <span class="pre">Mass</span> <span class="pre">Index</span> <span class="pre">(kg/m^2)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ethrisk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id=44803968,</span> <span class="pre">values={1:</span> <span class="pre">'White</span> <span class="pre">or</span> <span class="pre">not</span> <span class="pre">stated',</span> <span class="pre">2:</span> <span class="pre">'Indian',</span> <span class="pre">3:</span> <span class="pre">'Pakistani',</span> <span class="pre">4:</span> <span class="pre">'Bangladeshi',</span> <span class="pre">5:</span> <span class="pre">'Other</span> <span class="pre">Asian',</span> <span class="pre">6:</span> <span class="pre">'Black</span> <span class="pre">Caribbean',</span> <span class="pre">7:</span> <span class="pre">'Black</span> <span class="pre">African',</span> <span class="pre">8:</span> <span class="pre">'Chinese',</span> <span class="pre">9:</span> <span class="pre">'Other</span> <span class="pre">ethnic</span> <span class="pre">group'},</span> <span class="pre">name='Ethnicity')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fh_cvd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id='angina-ha-fdeg-rel-60',</span> <span class="pre">name='Angina</span> <span class="pre">or</span> <span class="pre">heart</span> <span class="pre">attack</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">1st</span> <span class="pre">degree</span> <span class="pre">relative</span> <span class="pre">&lt;</span> <span class="pre">60?')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rati</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4195214,</span> <span class="pre">minimum=1,</span> <span class="pre">maximum=10,</span> <span class="pre">name='Total</span> <span class="pre">cholesterol/HDL</span> <span class="pre">cholesterol</span> <span class="pre">ratio')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4152194,</span> <span class="pre">minimum=80,</span> <span class="pre">maximum=250,</span> <span class="pre">name='Systolic</span> <span class="pre">BP</span> <span class="pre">(mmHg)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbps5</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Float(id=4297217,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=40,</span> <span class="pre">name='SD</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">two</span> <span class="pre">systolic</span> <span class="pre">BP</span> <span class="pre">readings</span> <span class="pre">(mmHg)')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoke_cat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id='smoke-cat',</span> <span class="pre">values={0:</span> <span class="pre">'non-smoker',</span> <span class="pre">1:</span> <span class="pre">'ex-smoker',</span> <span class="pre">2:</span> <span class="pre">'light</span> <span class="pre">smoker</span> <span class="pre">(less</span> <span class="pre">than</span> <span class="pre">10)',</span> <span class="pre">3:</span> <span class="pre">'moderate</span> <span class="pre">smoker</span> <span class="pre">(10</span> <span class="pre">to</span> <span class="pre">19)',</span> <span class="pre">4:</span> <span class="pre">'heavy</span> <span class="pre">smoker</span> <span class="pre">(20</span> <span class="pre">or</span> <span class="pre">over)'},</span> <span class="pre">name='Smoking</span> <span class="pre">status')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#biomodel.models.qrisk.qrisk.QRisk.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts the absolute risk of cardiovascular disease based on various health and lifestyle parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual (between 20 and 100).
+sex (int): Gender of the individual.
+b_AF (bool): Atrial fibrillation status.
+b_atypicalantipsy (bool): On atypical antipsychotic medication status.
+b_corticosteroids (bool): Regular steroid tablets usage status.
+b_impotence2 (bool): Diagnosis or treatment for erectile dysfunction status.
+b_migraine (bool): Migraine status.
+b_ra (bool): Rheumatoid arthritis status.
+b_renal (bool): Chronic kidney disease (stage 3, 4 or 5) status.
+b_semi (bool): Severe mental illness status.
+b_sle (bool): Systemic lupus erythematosus (SLE) status.
+b_treatedhyp (bool): Blood pressure treatment status.
+diabetes_cat (int): Diabetes status category.
+bmi (float): Body Mass Index (kg/m^2) of the individual (between 15 and 50).
+ethrisk (int): Ethnicity risk category.
+fh_cvd (bool): Angina or heart attack in a 1st degree relative &lt; 60 status.
+rati (float): Total cholesterol/HDL cholesterol ratio.
+sbp (float): Systolic BP (mmHg).
+sbps5 (float): SD of the last two systolic BP readings (mmHg).
+smoke_cat (int): Smoking status category.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Absolute risk of cardiovascular disease.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.qrisk.qrisk.QRisk.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Probability</span> <span class="pre">of</span> <span class="pre">developing</span> <span class="pre">cardiovascular</span> <span class="pre">disease</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">10</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.qrisk.qrisk.QRisk.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-biomodel.models.qrisk.qrisk_model">
+<span id="models-qrisk-qrisk-model-module"></span><h2>models.qrisk.qrisk_model module<a class="headerlink" href="#module-biomodel.models.qrisk.qrisk_model" title="Link to this heading"></a></h2>
+<p>This file contains functions to calculate the risk score for cardiovascular disease based on various input parameters such as age, sex, medical history, BMI, smoking status, and others. It includes separate functions for calculating the risk score for cardiovascular disease in males and females, as well as a combined function for both sexes.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="biomodel.models.qrisk.qrisk_model.cvd_female_raw">
+<span class="sig-prename descclassname"><span class="pre">biomodel.models.qrisk.qrisk_model.</span></span><span class="sig-name descname"><span class="pre">cvd_female_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_AF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_atypicalantipsy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_corticosteroids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_migraine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_renal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_semi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_sle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_treatedhyp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bmi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ethrisk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fh_cvd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rati</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbps5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoke_cat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">town</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.models.qrisk.qrisk_model.cvd_female_raw" title="Link to this definition"></a></dt>
+<dd><p>Calculate the risk score for cardiovascular disease in females based on various input parameters such as age, medical history, BMI, smoking status, and others.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual.
+b_AF (int): Atrial fibrillation boolean indicator (0 or 1).
+b_atypicalantipsy (int): Atypical antipsychotic medication boolean indicator (0 or 1).
+b_corticosteroids (int): Corticosteroids medication boolean indicator (0 or 1).
+b_migraine (int): Migraine boolean indicator (0 or 1).
+b_ra (int): Rheumatoid arthritis boolean indicator (0 or 1).
+b_renal (int): Renal disease boolean indicator (0 or 1).
+b_semi (int): Socioeconomic status boolean indicator (0 or 1).
+b_sle (int): Systemic lupus erythematosus boolean indicator (0 or 1).
+b_treatedhyp (int): Treated hypertension boolean indicator (0 or 1).
+b_type1 (int): Type 1 diabetes boolean indicator (0 or 1).
+b_type2 (int): Type 2 diabetes boolean indicator (0 or 1).
+bmi (float): Body mass index (BMI) of the individual.
+ethrisk (int): Ethnicity risk category.
+fh_cvd (int): Family history of cardiovascular disease boolean indicator (0 or 1).
+rati (float): Cholesterol ratio.
+sbp (float): Systolic blood pressure.
+sbps5 (float): Systolic blood pressure treatment boolean indicator (0 or 1).
+smoke_cat (int): Smoking category.
+surv (int): Survival status.
+town (float): Townsend deprivation index.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: The calculated risk score for cardiovascular disease in females.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biomodel.models.qrisk.qrisk_model.cvd_male_raw">
+<span class="sig-prename descclassname"><span class="pre">biomodel.models.qrisk.qrisk_model.</span></span><span class="sig-name descname"><span class="pre">cvd_male_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_AF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_atypicalantipsy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_corticosteroids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_impotence2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_migraine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_renal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_semi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_sle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_treatedhyp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bmi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ethrisk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fh_cvd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rati</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbps5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoke_cat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">town</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.models.qrisk.qrisk_model.cvd_male_raw" title="Link to this definition"></a></dt>
+<dd><p>Calculate the risk score for cardiovascular disease in males based on various input parameters such as age, medical history, BMI, smoking status, and others.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>age (int): Age of the individual.
+b_AF (int): Atrial fibrillation boolean indicator (0 or 1).
+b_atypicalantipsy (int): Atypical antipsychotic medication boolean indicator (0 or 1).
+b_corticosteroids (int): Corticosteroids medication boolean indicator (0 or 1).
+b_impotence2 (int): Impotence boolean indicator (0 or 1).
+b_migraine (int): Migraine boolean indicator (0 or 1).
+b_ra (int): Rheumatoid arthritis boolean indicator (0 or 1).
+b_renal (int): Renal disease boolean indicator (0 or 1).
+b_semi (int): Socioeconomic status boolean indicator (0 or 1).
+b_sle (int): Systemic lupus erythematosus boolean indicator (0 or 1).
+b_treatedhyp (int): Treated hypertension boolean indicator (0 or 1).
+b_type1 (int): Type 1 diabetes boolean indicator (0 or 1).
+b_type2 (int): Type 2 diabetes boolean indicator (0 or 1).
+bmi (float): Body mass index (BMI) of the individual.
+ethrisk (int): Ethnicity risk category.
+fh_cvd (int): Family history of cardiovascular disease boolean indicator (0 or 1).
+rati (float): Cholesterol ratio.
+sbp (float): Systolic blood pressure.
+sbps5 (float): Systolic blood pressure treatment boolean indicator (0 or 1).
+smoke_cat (int): Smoking category.
+surv (int): Survival status.
+town (float): Townsend deprivation index.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: The calculated risk score for cardiovascular disease in males.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biomodel.models.qrisk.qrisk_model.cvd_raw">
+<span class="sig-prename descclassname"><span class="pre">biomodel.models.qrisk.qrisk_model.</span></span><span class="sig-name descname"><span class="pre">cvd_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_AF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_atypicalantipsy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_corticosteroids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_impotence2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_migraine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_renal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_semi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_sle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_treatedhyp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bmi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ethrisk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fh_cvd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rati</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sbps5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoke_cat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">town</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biomodel.models.qrisk.qrisk_model.cvd_raw" title="Link to this definition"></a></dt>
+<dd><p>Calculate the risk score for cardiovascular disease based on the individual’s sex, age, medical history, BMI, smoking status, and other relevant parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>sex (int): Sex of the individual (1 for male, 0 for female).
+age (int): Age of the individual.
+b_AF (int): Atrial fibrillation boolean indicator (0 or 1).
+b_atypicalantipsy (int): Atypical antipsychotic medication boolean indicator (0 or 1).
+b_corticosteroids (int): Corticosteroids medication boolean indicator (0 or 1).
+b_impotence2 (int): Impotence boolean indicator (0 or 1) for males.
+b_migraine (int): Migraine boolean indicator (0 or 1).
+b_ra (int): Rheumatoid arthritis boolean indicator (0 or 1).
+b_renal (int): Renal disease boolean indicator (0 or 1).
+b_semi (int): Socioeconomic status boolean indicator (0 or 1).
+b_sle (int): Systemic lupus erythematosus boolean indicator (0 or 1).
+b_treatedhyp (int): Treated hypertension boolean indicator (0 or 1).
+b_type1 (int): Type 1 diabetes boolean indicator (0 or 1).
+b_type2 (int): Type 2 diabetes boolean indicator (0 or 1).
+bmi (float): Body mass index (BMI) of the individual.
+ethrisk (int): Ethnicity risk category.
+fh_cvd (int): Family history of cardiovascular disease boolean indicator (0 or 1).
+rati (float): Cholesterol ratio.
+sbp (float): Systolic blood pressure.
+sbps5 (float): Systolic blood pressure treatment boolean indicator (0 or 1).
+smoke_cat (int): Smoking category.
+surv (int): Survival status.
+town (float): Townsend deprivation index.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: The calculated risk score for cardiovascular disease.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-biomodel.models.qrisk">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-biomodel.models.qrisk" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="models.prostate.html" class="btn btn-neutral float-left" title="Prostate Simulation Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.score.html" class="btn btn-neutral float-right" title="Score Simulation Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bioinformatic Research Group in Epidemiology (BRGE).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+OMOP DB Advanced Language Showcase
+==================================
+
+.. automodule:: omop_csv_language
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoinclude::
+   :language: python
+   :linenos:
+
+.. autoincludeimage::

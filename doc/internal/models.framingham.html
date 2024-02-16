@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Framingham Simulation Model &mdash; LifeTwin  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Genetic Framingham Simulation Model" href="models.framingham-gen.html" />
+    <link rel="prev" title="Covid Simulation Model" href="models.covid.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LifeTwin
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="models.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="models.clivd.html">CLivD Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd_points.html">CLivD Points Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.covid.html">Covid Simulation Model</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Framingham Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html">Genetic Framingham Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.gail.html">Gail Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.lifecrc.html">LifeCRC Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.pim.html">PIM Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.prostate.html">Prostate Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.qrisk.html">QRisk Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.score.html">Score Simulation Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#module-biomodel.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LifeTwin</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">LifeTwin Internals</a></li>
+          <li class="breadcrumb-item"><a href="models.html">LifeTwin Statistical Models</a></li>
+      <li class="breadcrumb-item active">Framingham Simulation Model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internal/models.framingham.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="framingham-simulation-model">
+<h1>Framingham Simulation Model<a class="headerlink" href="#framingham-simulation-model" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-biomodel.models.framingham.model_fr">
+<span id="models-framingham-model-fr-module"></span><h2>models.framingham.model_fr module<a class="headerlink" href="#module-biomodel.models.framingham.model_fr" title="Link to this heading"></a></h2>
+<p>Represents a class for calculating the probability of having a cardiovascular event in the next 10 years using the Framingham risk function.</p>
+<p>Attributes:
+- function_name (str): The name of the function.
+- file_path (str): The file path for the function.
+- interpretation (str): The interpretation of the function.
+- title (str): The title of the probability calculation.
+- intervals (list): A list of RiskInterval objects representing the risk intervals.
+- parameters (dict): A dictionary of parameters required for the calculation, including sex, age, coltot, hdl, tas, tad, smoke, and diab.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.framingham.model_fr.Framingham">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.framingham.model_fr.</span></span><span class="sig-name descname"><span class="pre">Framingham</span></span><a class="headerlink" href="#biomodel.models.framingham.model_fr.Framingham" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.RFunction" title="biomodel.biomodel.RFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RFunction</span></code></a></p>
+<p>Represents a class for calculating the probability of having a cardiovascular event in the next 10 years using the Framingham risk function.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>function_name (str): The name of the function.
+file_path (str): The file path for the function.
+interpretation (str): The interpretation of the function.
+title (str): The title of the probability calculation.
+intervals (list): A list of RiskInterval objects representing the risk intervals.
+parameters (dict): A dictionary of parameters required for the calculation, including sex, age, coltot, hdl, tas, tad, smoke, and diab.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.framingham.model_fr.Framingham.file_path">
+<span class="sig-name descname"><span class="pre">file_path</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fr.r'</span></em><a class="headerlink" href="#biomodel.models.framingham.model_fr.Framingham.file_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.framingham.model_fr.Framingham.function_name">
+<span class="sig-name descname"><span class="pre">function_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'calculadora.risc'</span></em><a class="headerlink" href="#biomodel.models.framingham.model_fr.Framingham.function_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.framingham.model_fr.Framingham.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'probability'</span></em><a class="headerlink" href="#biomodel.models.framingham.model_fr.Framingham.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.framingham.model_fr.Framingham.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=0.0,</span> <span class="pre">name='Low</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.1,</span> <span class="pre">name='Medium</span> <span class="pre">risk'),</span> <span class="pre">RiskInterval(value=0.2,</span> <span class="pre">name='High</span> <span class="pre">risk')]</span></em><a class="headerlink" href="#biomodel.models.framingham.model_fr.Framingham.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.framingham.model_fr.Framingham.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'age':</span> <span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=35,</span> <span class="pre">maximum=70,</span> <span class="pre">name='Age'),</span> <span class="pre">'coltot':</span> <span class="pre">Float(id=4224820,</span> <span class="pre">minimum=100,</span> <span class="pre">maximum=400,</span> <span class="pre">name='Colesterol'),</span> <span class="pre">'diab':</span> <span class="pre">BoolInt(id=35817874,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Has</span> <span class="pre">diabetes?'),</span> <span class="pre">'hdl':</span> <span class="pre">Float(id=4011133,</span> <span class="pre">minimum=10,</span> <span class="pre">maximum=100,</span> <span class="pre">name='HDL'),</span> <span class="pre">'sex':</span> <span class="pre">Enum(id='sex',</span> <span class="pre">values={1:</span> <span class="pre">'Male',</span> <span class="pre">2:</span> <span class="pre">'Female'},</span> <span class="pre">name='Sex'),</span> <span class="pre">'smoke':</span> <span class="pre">BoolInt(id=1585856,</span> <span class="pre">true=1,</span> <span class="pre">false=0,</span> <span class="pre">name='Is</span> <span class="pre">smoker?'),</span> <span class="pre">'tad':</span> <span class="pre">Float(id=4154790,</span> <span class="pre">minimum=50,</span> <span class="pre">maximum=150,</span> <span class="pre">name='TAD'),</span> <span class="pre">'tas':</span> <span class="pre">Float(id=4152194,</span> <span class="pre">minimum=50,</span> <span class="pre">maximum=250,</span> <span class="pre">name='TAS')}</span></em><a class="headerlink" href="#biomodel.models.framingham.model_fr.Framingham.parameters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.framingham.model_fr.Framingham.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Probability</span> <span class="pre">of</span> <span class="pre">having</span> <span class="pre">a</span> <span class="pre">cardiovascular</span> <span class="pre">event</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">10</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.framingham.model_fr.Framingham.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-biomodel.models.framingham">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-biomodel.models.framingham" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="models.covid.html" class="btn btn-neutral float-left" title="Covid Simulation Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.framingham-gen.html" class="btn btn-neutral float-right" title="Genetic Framingham Simulation Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bioinformatic Research Group in Epidemiology (BRGE).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

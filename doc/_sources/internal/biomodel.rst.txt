@@ -1,0 +1,7 @@
+LifeTwin Core Internals
+=======================
+
+.. automodule:: biomodel.biomodel
+   :members:
+   :undoc-members:
+   :show-inheritance:

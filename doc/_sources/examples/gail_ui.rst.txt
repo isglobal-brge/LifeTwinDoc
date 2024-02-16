@@ -1,0 +1,13 @@
+Gail GUI Simulation
+===================
+
+.. automodule:: gail_ui
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoinclude::
+   :language: python
+   :linenos:
+
+
+.. autoincludeimage::

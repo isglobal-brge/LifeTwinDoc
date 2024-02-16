@@ -1,0 +1,12 @@
+Framingham GUI Simulation
+=========================
+
+.. automodule:: fr_gui
+   :members:
+   :undoc-members:
+   :show-inheritance:
+.. autoinclude::
+   :language: python
+   :linenos:
+
+.. autoincludeimage::

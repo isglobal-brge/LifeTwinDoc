@@ -1,0 +1,7 @@
+LifeTwin Automatic GUI Generator
+================================
+
+.. automodule:: gui
+   :members:
+   :undoc-members:
+   :show-inheritance:

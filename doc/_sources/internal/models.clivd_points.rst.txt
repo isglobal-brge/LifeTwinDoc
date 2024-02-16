@@ -1,0 +1,21 @@
+CLivD Points Simulation Model
+=============================
+
+Submodules
+----------
+
+models.clivd\_points.clivd module
+---------------------------------
+
+.. automodule:: biomodel.models.clivd_points.clivd
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: biomodel.models.clivd_points
+   :members:
+   :undoc-members:
+   :show-inheritance:

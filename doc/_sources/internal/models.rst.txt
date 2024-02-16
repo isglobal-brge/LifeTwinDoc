@@ -1,0 +1,28 @@
+LifeTwin Statistical Models
+===========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   models.clivd
+   models.clivd_points
+   models.covid
+   models.framingham
+   models.framingham-gen
+   models.gail
+   models.lifecrc
+   models.pim
+   models.prostate
+   models.qrisk
+   models.score
+
+Module contents
+---------------
+
+.. automodule:: biomodel.models
+   :members:
+   :undoc-members:
+   :show-inheritance:

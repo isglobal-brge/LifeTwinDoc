@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gail Simulation Model &mdash; LifeTwin  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LifeCRC Simulation Model" href="models.lifecrc.html" />
+    <link rel="prev" title="Genetic Framingham Simulation Model" href="models.framingham-gen.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LifeTwin
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples/modules.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">LifeTwin Internals</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="biomodel.html">LifeTwin Core Internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">LifeTwin Database Connector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph.html">LifeTwin Graph Representation Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui.html">LifeTwin Automatic GUI Generator</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="models.html">LifeTwin Statistical Models</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="models.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="models.clivd.html">CLivD Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.clivd_points.html">CLivD Points Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.covid.html">Covid Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham.html">Framingham Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.framingham-gen.html">Genetic Framingham Simulation Model</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Gail Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.lifecrc.html">LifeCRC Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.pim.html">PIM Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.prostate.html">Prostate Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.qrisk.html">QRisk Simulation Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.score.html">Score Simulation Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#module-biomodel.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">LifeTwin Simulation Language</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LifeTwin</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">LifeTwin Internals</a></li>
+          <li class="breadcrumb-item"><a href="models.html">LifeTwin Statistical Models</a></li>
+      <li class="breadcrumb-item active">Gail Simulation Model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/internal/models.gail.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gail-simulation-model">
+<h1>Gail Simulation Model<a class="headerlink" href="#gail-simulation-model" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-biomodel.models.gail.model_gail">
+<span id="models-gail-model-gail-module"></span><h2>models.gail.model_gail module<a class="headerlink" href="#module-biomodel.models.gail.model_gail" title="Link to this heading"></a></h2>
+<p>Predicts the risk of breast cancer based on various factors such as age, age at menarche, number of biopsies, age at first live birth, number of relatives, and whether the individual has given birth. The function applies specific risk values based on the input factors and calculates the overall relative risk for breast cancer.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="biomodel.models.gail.model_gail.Gail">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biomodel.models.gail.model_gail.</span></span><span class="sig-name descname"><span class="pre">Gail</span></span><a class="headerlink" href="#biomodel.models.gail.model_gail.Gail" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="biomodel.html#biomodel.biomodel.CustomModel" title="biomodel.biomodel.CustomModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomModel</span></code></a></p>
+<p>Predicts the risk of breast cancer based on various factors such as age, age at menarche, number of biopsies, age at first live birth, number of relatives, and whether the individual has given birth. The function applies specific risk values based on the input factors and calculates the overall relative risk for breast cancer.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.gail.model_gail.Gail.interpretation">
+<span class="sig-name descname"><span class="pre">interpretation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'percentage'</span></em><a class="headerlink" href="#biomodel.models.gail.model_gail.Gail.interpretation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.gail.model_gail.Gail.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[RiskInterval(value=5,</span> <span class="pre">name='Elevated')]</span></em><a class="headerlink" href="#biomodel.models.gail.model_gail.Gail.intervals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biomodel.models.gail.model_gail.Gail.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AgeInt(id='age',</span> <span class="pre">minimum=20,</span> <span class="pre">maximum=80,</span> <span class="pre">name='Age')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agemen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Int(id=4162552,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=30,</span> <span class="pre">name='Age</span> <span class="pre">at</span> <span class="pre">menarche')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbiops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id=4078191,</span> <span class="pre">values={0:</span> <span class="pre">'0',</span> <span class="pre">1:</span> <span class="pre">'1',</span> <span class="pre">2:</span> <span class="pre">'&gt;1'},</span> <span class="pre">name='Number</span> <span class="pre">of</span> <span class="pre">previous</span> <span class="pre">breast</span> <span class="pre">biopsies')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ageflb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Int(id=35810315,</span> <span class="pre">minimum=0,</span> <span class="pre">maximum=100,</span> <span class="pre">name='Age</span> <span class="pre">at</span> <span class="pre">first</span> <span class="pre">live</span> <span class="pre">birth')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numrel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Enum(id='first-degree-relatives-breast-cancer',</span> <span class="pre">values={0:</span> <span class="pre">'0',</span> <span class="pre">1:</span> <span class="pre">'1',</span> <span class="pre">2:</span> <span class="pre">'&gt;1'},</span> <span class="pre">name='Number</span> <span class="pre">of</span> <span class="pre">first-degree</span> <span class="pre">relatives</span> <span class="pre">with</span> <span class="pre">breast</span> <span class="pre">cancer')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">given_birth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bool(id=35810313,</span> <span class="pre">name='Has</span> <span class="pre">given</span> <span class="pre">birth?')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#biomodel.models.gail.model_gail.Gail.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts the risk of breast cancer based on various factors such as age, age at menarche, number of biopsies, age at first live birth, number of relatives, and whether the individual has given birth. The function applies specific risk values based on the input factors and calculates the overall relative risk for breast cancer.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.gail.model_gail.Gail.predict_over_time">
+<span class="sig-name descname"><span class="pre">predict_over_time</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#biomodel.models.gail.model_gail.Gail.predict_over_time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biomodel.models.gail.model_gail.Gail.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Percentage</span> <span class="pre">(%)</span> <span class="pre">of</span> <span class="pre">developing</span> <span class="pre">breast</span> <span class="pre">cancer</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">5</span> <span class="pre">years'</span></em><a class="headerlink" href="#biomodel.models.gail.model_gail.Gail.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-biomodel.models.gail">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-biomodel.models.gail" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="models.framingham-gen.html" class="btn btn-neutral float-left" title="Genetic Framingham Simulation Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.lifecrc.html" class="btn btn-neutral float-right" title="LifeCRC Simulation Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Bioinformatic Research Group in Epidemiology (BRGE).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
